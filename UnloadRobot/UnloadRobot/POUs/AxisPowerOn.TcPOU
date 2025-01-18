@@ -3,11 +3,13 @@
   <POU Name="AxisPowerOn" Id="{d29dff74-ccf9-49c6-a3da-29ff957c32cd}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM AxisPowerOn
 VAR
+
 END_VAR
 	
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//左臂-左电机-PowerOn
+      <ST><![CDATA[
+//左臂-左电机-PowerOn
 axis_LeftArm_Left_Power(
 	Axis:= axis_LeftArm_Left, 
 	Enable:= bAxis_LeftArm_Left_Enable, 
@@ -35,6 +37,95 @@ axis_LeftArm_Right_Power(
 	Busy=> , 
 	Error=> , 
 	ErrorID=> );
+	
+axis_LeftArm_Lift_Power(
+	Axis:= axis_LeftArm_Lift, 
+	Enable:= bAxis_LeftArm_Lift_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_LeftArm_Wrist_Power(
+	Axis:= axis_LeftArm_Wrist, 
+	Enable:= bAxis_LeftArm_Wrist_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+
+
+//右臂-左电机-PowerOn
+axis_RightArm_Left_Power(
+	Axis:= axis_RightArm_Left, 
+	Enable:= bAxis_RightArm_Left_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> axis_RightArm_Left_Power_Output.Done, 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+//右臂-右电机-PowerOn
+axis_RightArm_Right_Power(
+	Axis:= axis_RightArm_Right, 
+	Enable:= bAxis_RightArm_Right_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> axis_RightArm_Right_Power_Output.Done, 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+//右臂-升电机-Poweron
+axis_RightArm_Lift_Power(
+	Axis:= axis_RightArm_Lift, 
+	Enable:= bAxis_RightArm_Lift_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+//右臂-腕电机-Poweron
+axis_RightArm_Wrist_Power(
+	Axis:= axis_RightArm_Wrist, 
+	Enable:= bAxis_RightArm_Wrist_Enable, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+
+
 	
 //大龙门-左电机-上电
 axis_BigGate_Left_Power(
@@ -123,6 +214,7 @@ axis_BackGate_Right_Power(
 	]]></ST>
     </Implementation>
     <LineIds Name="AxisPowerOn">
+      <LineId Id="177" Count="0" />
       <LineId Id="107" Count="0" />
       <LineId Id="48" Count="10" />
       <LineId Id="31" Count="0" />
@@ -130,6 +222,18 @@ axis_BackGate_Right_Power(
       <LineId Id="108" Count="1" />
       <LineId Id="61" Count="10" />
       <LineId Id="60" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="185" Count="10" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="197" Count="11" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="211" Count="2" />
+      <LineId Id="215" Count="28" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="244" Count="12" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="257" Count="13" />
+      <LineId Id="209" Count="1" />
       <LineId Id="76" Count="0" />
       <LineId Id="110" Count="0" />
       <LineId Id="79" Count="10" />

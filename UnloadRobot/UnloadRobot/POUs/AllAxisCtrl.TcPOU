@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AllAxisCtrl" Id="{d3660b0b-86b3-46ef-a236-dea2cee54968}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AllAxisCtrl
+VAR
+	i				:USINT := 1;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Init();
+
+//所有Axis上电
+IF bAxis_All_Enable THEN
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Enable_Group[i]^:=TRUE;
+	END_FOR
+END_IF
+
+IF bAxis_All_Disable THEN
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Enable_Group[i]^:=FALSE;
+	END_FOR
+END_IF
+
+IF bAxis_All_Reset THEN
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Reset_Group[i]^:=TRUE;
+	END_FOR
+ELSE
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Reset_Group[i]^:=FALSE;
+	END_FOR	
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="AllAxisCtrl">
+      <LineId Id="6" Count="4" />
+      <LineId Id="22" Count="2" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="37" Count="2" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="70" Count="1" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

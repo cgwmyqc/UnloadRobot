@@ -3893,7 +3893,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{F0A8DFEB-9BB3-4575-81A8-D081D6AC9FB2}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{16077EA7-7D08-E912-6443-2E0F8A830A51}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -7909,10 +7909,6 @@ External Setpoint Generation:
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^UnloadRobot^UnloadRobot Instance">
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis02_TestArm_Left">
-				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Left.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Left.PlcToNc" VarB="Inputs^FromPlc"/>
-			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis10_BigGate_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BigGate_Right.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BigGate_Right.PlcToNc" VarB="Inputs^FromPlc"/>
@@ -7932,6 +7928,38 @@ External Setpoint Generation:
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis14_BackGate_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BackGate_Right.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BackGate_Right.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis1_LeftArm_Left">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Left.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis2_LeftArm_Right">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Right.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis3_LeftArm_Wrist">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Wrist.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Wrist.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis4_LeftArm_Lift">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Lift.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Lift.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis5_RightArm_Left">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Left.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis6_RightArm_Right">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Right.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis7_RightArm_Wrist">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Wrist.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Wrist.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis8_RightArm_Lift">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Lift.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Lift.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis9_BigGate_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BigGate_Left.NcToPlc" VarB="Outputs^ToPlc"/>

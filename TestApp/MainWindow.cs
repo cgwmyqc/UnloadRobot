@@ -358,5 +358,59 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bBackGate_Down", false, false);
             }
         }
+
+        // 所有轴上电（鼠标抬起逻辑）
+        private void btnAxisAllPowerEnable_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Enable", true, false);
+            }
+        }
+
+        // 所有轴上电（鼠标松开逻辑）
+        private void btnAxisAllPowerEnable_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Enable", false, false);
+            }
+        }
+
+        // 所有轴下电（鼠标抬起逻辑）
+        private void btnAxisAllPowerDisable_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Disable", true, false);
+            }
+        }
+
+        // 所有轴下电（鼠标抬起逻辑）
+        private void btnAxisAllPowerDisable_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Disable", false, false);
+            }
+        }
+
+        // 所有轴复位清故障mc_reset(鼠标按下逻辑)
+        private void btnAllAxisReset_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Reset", true, false);
+            }
+        }
+
+        // 所有轴复位清故障mc_reset(鼠标抬起逻辑)
+        private void btnAllAxisReset_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Reset", false, false);
+            }
+        }
     }
 }

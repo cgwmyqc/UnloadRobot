@@ -43,6 +43,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\AllAxisCtrl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ArmFK.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
     <Compile Include="POUs\AxisPowerOn.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\AxisReset.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Gate_Back_Move.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -65,6 +71,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Init.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Serial\BackgroundSerialCtrl.TcPOU">

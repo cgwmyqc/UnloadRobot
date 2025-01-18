@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
   <GVL Name="Robot_Motor" Id="{bd434920-f7c6-4d6f-9005-f91fe081068a}">
     <Declaration><![CDATA[//{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -32,7 +32,25 @@ VAR_GLOBAL
 
 (*======================================== 机器人各轴定义 End =============================================*)	
 
-
+	nAxisNum							: USINT:=14;						// 轴组管理的轴的数量
+	
+	// 轴组
+	aAxisGroup							: ARRAY[1..24] OF POINTER TO AXIS_REF :=[
+																	  ADR(axis_LeftArm_Wrist),
+																	  ADR(axis_LeftArm_Left),
+																	  ADR(axis_LeftArm_Right),
+																	  ADR(axis_LeftArm_Lift),
+																	  ADR(axis_RightArm_Wrist),
+																	  ADR(axis_RightArm_Left),
+																	  ADR(axis_RightArm_Right),
+																	  ADR(axis_RightArm_Lift),
+																	  ADR(axis_SmallGate_Left),
+																	  ADR(axis_SmallGate_Right),
+																	  ADR(axis_BigGate_Left),
+																	  ADR(axis_BigGate_Right),
+																	  ADR(axis_BackGate_Left),
+																	  ADR(axis_BackGate_Right)
+																	 ];			
 
 
 (*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
@@ -88,6 +106,36 @@ VAR_GLOBAL
 (*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
 
 
+
+
+(*======================================== 机器人各轴 MC_Reset定义 Start ==================================*)
+
+// 左臂电机
+	axis_LeftArm_Wrist_Reset									:MC_Reset;			//左臂_腕电机Power功能块	
+	axis_LeftArm_Left_Reset										:MC_Reset;			//左臂_左电机Power功能块
+	axis_LeftArm_Right_Reset									:MC_Reset;			//左臂_右电机Power功能块
+	axis_LeftArm_Lift_Reset										:MC_Reset;			//左臂_升电机Power功能块
+
+	// 右臂电机
+	axis_RightArm_Wrist_Reset									:MC_Reset;			//右臂_腕电机Power功能块	
+	axis_RightArm_Left_Reset									:MC_Reset;			//右臂_左电机Power功能块
+	axis_RightArm_Right_Reset									:MC_Reset;			//右臂_右电机Power功能块
+	axis_RightArm_Lift_Reset									:MC_Reset;			//右臂_升电机Power功能块
+	
+	// 小龙门电机
+	axis_SmallGate_Left_Reset									:MC_Reset;			//小门_左电机Power功能块
+	axis_SmallGate_Right_Reset									:MC_Reset;			//小门_右电机Power功能块
+
+	// 大龙门单电机
+	axis_BigGate_Left_Reset										:MC_Reset;			//大门_左电机Power功能块
+	axis_BigGate_Right_Reset									:MC_Reset;			//大门_右电机Power功能块
+	
+	// 后龙门单电机
+	axis_BackGate_Left_Reset									:MC_Reset;			//后门_左电机Power功能块
+	axis_BackGate_Right_Reset									:MC_Reset;			//后门_右电机Power功能块
+
+
+(*======================================== 机器人各轴 MC_Reset定义 End ==================================*)
 
 
 	

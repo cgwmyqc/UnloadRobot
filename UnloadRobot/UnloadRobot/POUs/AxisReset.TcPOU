@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisReset" Id="{f0a21cb2-6fdb-47c3-b950-62c7b25507e5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisReset
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//左臂
+axis_LeftArm_Left_Reset(
+	Axis:= axis_LeftArm_Left, 
+	Execute:= bAxis_LeftArm_Left_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftArm_Right_Reset(
+	Axis:= axis_LeftArm_Right, 
+	Execute:= bAxis_LeftArm_Right_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_LeftArm_Lift_Reset(
+	Axis:= axis_LeftArm_Lift, 
+	Execute:= bAxis_LeftArm_Lift_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_LeftArm_Wrist_Reset(
+	Axis:= axis_LeftArm_Wrist, 
+	Execute:= bAxis_LeftArm_Wrist_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+
+//右臂
+axis_RightArm_Left_Reset(
+	Axis:= axis_RightArm_Left, 
+	Execute:= bAxis_RightArm_Left_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightArm_Right_Reset(
+	Axis:= axis_RightArm_Right, 
+	Execute:= bAxis_RightArm_Right_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_RightArm_Lift_Reset(
+	Axis:= axis_RightArm_Lift, 
+	Execute:= bAxis_RightArm_Lift_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_RightArm_Wrist_Reset(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= bAxis_RightArm_Wrist_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+//大龙门
+axis_BigGate_Left_Reset(
+	Axis:= axis_BigGate_Left, 
+	Execute:= bAxis_BigGate_Left_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_BigGate_Right_Reset(
+	Axis:= axis_BigGate_Right, 
+	Execute:= bAxis_BigGate_Right_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+
+//小龙门
+axis_SmallGate_Left_Reset(
+	Axis:= axis_SmallGate_Left, 
+	Execute:= bAxis_SmallGate_Left_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_SmallGate_Right_Reset(
+	Axis:= axis_SmallGate_Right, 
+	Execute:= bAxis_SmallGate_Right_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+	
+	
+//后龙门
+axis_BackGate_Left_Reset(
+	Axis:= axis_BackGate_Left, 
+	Execute:= bAxis_BackGate_Left_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_BackGate_Right_Reset(
+	Axis:= axis_BackGate_Right, 
+	Execute:= bAxis_BackGate_Right_Reset, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+    <LineIds Name="AxisReset">
+      <LineId Id="68" Count="0" />
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="13" Count="5" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="21" Count="6" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="29" Count="6" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="37" Count="30" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="73" Count="5" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="81" Count="5" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="110" Count="14" />
+      <LineId Id="108" Count="1" />
+      <LineId Id="89" Count="1" />
+      <LineId Id="92" Count="14" />
+      <LineId Id="91" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

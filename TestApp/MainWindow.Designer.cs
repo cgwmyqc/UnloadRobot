@@ -47,6 +47,10 @@ namespace TestApp
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnAllAxisReset = new System.Windows.Forms.Button();
+            this.btnAxisAllPowerDisable = new System.Windows.Forms.Button();
+            this.btnAxisAllPowerEnable = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -109,6 +113,7 @@ namespace TestApp
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -338,6 +343,7 @@ namespace TestApp
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
@@ -353,6 +359,64 @@ namespace TestApp
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "";
             this.tabPage1.Text = " 总成控制";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.btnAllAxisReset);
+            this.groupBox7.Controls.Add(this.btnAxisAllPowerDisable);
+            this.groupBox7.Controls.Add(this.btnAxisAllPowerEnable);
+            this.groupBox7.Font = new System.Drawing.Font("钉钉进步体", 10F);
+            this.groupBox7.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupBox7.Location = new System.Drawing.Point(1352, 1103);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox7.Size = new System.Drawing.Size(498, 420);
+            this.groupBox7.TabIndex = 12;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "轴总体控制";
+            // 
+            // btnAllAxisReset
+            // 
+            this.btnAllAxisReset.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAllAxisReset.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnAllAxisReset.Location = new System.Drawing.Point(25, 169);
+            this.btnAllAxisReset.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAllAxisReset.Name = "btnAllAxisReset";
+            this.btnAllAxisReset.Size = new System.Drawing.Size(455, 92);
+            this.btnAllAxisReset.TabIndex = 8;
+            this.btnAllAxisReset.Text = "清除故障";
+            this.btnAllAxisReset.UseVisualStyleBackColor = true;
+            this.btnAllAxisReset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnAllAxisReset_MouseDown);
+            this.btnAllAxisReset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAllAxisReset_MouseUp);
+            // 
+            // btnAxisAllPowerDisable
+            // 
+            this.btnAxisAllPowerDisable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAxisAllPowerDisable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnAxisAllPowerDisable.Location = new System.Drawing.Point(259, 60);
+            this.btnAxisAllPowerDisable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAxisAllPowerDisable.Name = "btnAxisAllPowerDisable";
+            this.btnAxisAllPowerDisable.Size = new System.Drawing.Size(222, 92);
+            this.btnAxisAllPowerDisable.TabIndex = 7;
+            this.btnAxisAllPowerDisable.Text = "失能";
+            this.btnAxisAllPowerDisable.UseVisualStyleBackColor = true;
+            this.btnAxisAllPowerDisable.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnAxisAllPowerDisable_MouseDown);
+            this.btnAxisAllPowerDisable.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAxisAllPowerDisable_MouseUp);
+            // 
+            // btnAxisAllPowerEnable
+            // 
+            this.btnAxisAllPowerEnable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAxisAllPowerEnable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnAxisAllPowerEnable.Location = new System.Drawing.Point(25, 60);
+            this.btnAxisAllPowerEnable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAxisAllPowerEnable.Name = "btnAxisAllPowerEnable";
+            this.btnAxisAllPowerEnable.Size = new System.Drawing.Size(222, 92);
+            this.btnAxisAllPowerEnable.TabIndex = 6;
+            this.btnAxisAllPowerEnable.Text = "使能";
+            this.btnAxisAllPowerEnable.UseVisualStyleBackColor = true;
+            this.btnAxisAllPowerEnable.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnAxisAllPowerEnable_MouseDown);
+            this.btnAxisAllPowerEnable.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnAxisAllPowerEnable_MouseUp);
             // 
             // groupBox6
             // 
@@ -637,7 +701,7 @@ namespace TestApp
             this.groupBox3.Controls.Add(this.btnBigGateUp);
             this.groupBox3.Font = new System.Drawing.Font("钉钉进步体", 10F);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.groupBox3.Location = new System.Drawing.Point(1358, 636);
+            this.groupBox3.Location = new System.Drawing.Point(1358, 638);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(6);
@@ -1046,7 +1110,7 @@ namespace TestApp
             this.tabPage2.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage2.Size = new System.Drawing.Size(3312, 1539);
+            this.tabPage2.Size = new System.Drawing.Size(3148, 1539);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "单体控制";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1075,6 +1139,7 @@ namespace TestApp
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox5.ResumeLayout(false);
@@ -1163,6 +1228,10 @@ namespace TestApp
         private System.Windows.Forms.Label labelLeftArmStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button btnAxisAllPowerDisable;
+        private System.Windows.Forms.Button btnAxisAllPowerEnable;
+        private System.Windows.Forms.Button btnAllAxisReset;
     }
 }
 

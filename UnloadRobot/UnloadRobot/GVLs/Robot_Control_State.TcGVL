@@ -11,11 +11,15 @@ VAR_GLOBAL
 	bManualCtrl_Part											:BOOL;			// 单轴控制标志位
 	bAutoCtrl_Part_LeftWrist									:BOOL := TRUE;	// 自动控制-单体-腕电机
 	
+	isInitialized	:BOOL:=FALSE;
+
 (*======================================== 自定义标志位 End ========================================*)	
 
 
 
-(*===================================电机使能标志位 Start =============================*)	
+
+(*========================================电机使能标志位 Start =====================================*)	
+	
 	// 左臂电机
 	bAxis_LeftArm_Wrist_Enable									:BOOL;				//左臂_腕电机使能	
 	bAxis_LeftArm_Left_Enable									:BOOL;				//左臂_左电机使能
@@ -39,8 +43,86 @@ VAR_GLOBAL
 	// 后龙门单电机                                                                   	
 	bAxis_BackGate_Left_Enable									:BOOL;				//后门_左电机使能
 	bAxis_BackGate_Right_Enable									:BOOL;				//后门_右电机使能
+	
+	
+	// 所有轴
+	bAxis_All_Enable											:BOOL;				//所有电机使能
+	bAxis_All_Disable											:BOOL;				//所有电机失能
+	
+	
+	// 所有轴使能标志位的地址交给此Group来管理
+	aAxis_All_Enable_Group 										:ARRAY[1..23] OF POINTER TO BOOL:=[
+																									ADR(bAxis_LeftArm_Wrist_Enable),	
+																									ADR(bAxis_LeftArm_Left_Enable),	
+																									ADR(bAxis_LeftArm_Right_Enable),
+																									ADR(bAxis_LeftArm_Lift_Enable),
+																									ADR(bAxis_RightArm_Wrist_Enable),	
+																									ADR(bAxis_RightArm_Left_Enable),	
+																									ADR(bAxis_RightArm_Right_Enable),	
+																									ADR(bAxis_RightArm_Lift_Enable),
+																									ADR(bAxis_SmallGate_Left_Enable),
+																									ADR(bAxis_SmallGate_Right_Enable),
+																									ADR(bAxis_BigGate_Left_Enable),	
+																									ADR(bAxis_BigGate_Right_Enable),
+																									ADR(bAxis_BackGate_Left_Enable),	
+																									ADR(bAxis_BackGate_Right_Enable)
+																				 				 ];
 
-(*====================================电机使能标志位 End =============================*)	
+(*========================================电机使能标志位 End ======================================*)	
+
+
+
+
+(*======================================== 清故障标志位 Start =====================================*)	
+
+	// 左臂电机
+	bAxis_LeftArm_Wrist_Reset									:BOOL;				//左臂_腕电机复位	
+	bAxis_LeftArm_Left_Reset									:BOOL;				//左臂_左电机复位
+	bAxis_LeftArm_Right_Reset									:BOOL;				//左臂_右电机复位	
+	bAxis_LeftArm_Lift_Reset									:BOOL;				//左臂_升电机复位	
+
+	// 右臂电机
+	bAxis_RightArm_Wrist_Reset									:BOOL;				//右臂_腕电机复位	
+	bAxis_RightArm_Left_Reset									:BOOL;				//右臂_左电机复位
+	bAxis_RightArm_Right_Reset									:BOOL;				//右臂_右电机复位
+	bAxis_RightArm_Lift_Reset									:BOOL;				//右臂_升电机复位
+	                                                                            	
+	// 小龙门电机                                                                    	
+	bAxis_SmallGate_Left_Reset									:BOOL;				//小门_左电机复位
+	bAxis_SmallGate_Right_Reset									:BOOL;				//小门_右电机复位
+                                                                                	
+	// 大龙门单电机                                                                   	
+	bAxis_BigGate_Left_Reset									:BOOL;				//大门_左电机复位
+	bAxis_BigGate_Right_Reset									:BOOL;				//大门_右电机复位
+	                                                                            	
+	// 后龙门单电机                                                                   	
+	bAxis_BackGate_Left_Reset									:BOOL;				//后门_左电机复位
+	bAxis_BackGate_Right_Reset									:BOOL;				//后门_右电机复位
+	
+	// 所有轴
+	bAxis_All_Reset												:BOOL;				//所有电机使能
+
+	// 所有轴使能标志位的地址交给此Group来管理
+	aAxis_All_Reset_Group 										:ARRAY[1..23] OF POINTER TO BOOL:=[
+																									ADR(bAxis_LeftArm_Wrist_Reset),	
+																									ADR(bAxis_LeftArm_Left_Reset),	
+																									ADR(bAxis_LeftArm_Right_Reset),
+																									ADR(bAxis_LeftArm_Lift_Reset),
+																									ADR(bAxis_RightArm_Wrist_Reset),	
+																									ADR(bAxis_RightArm_Left_Reset),	
+																									ADR(bAxis_RightArm_Right_Reset),	
+																									ADR(bAxis_RightArm_Lift_Reset),
+																									ADR(bAxis_SmallGate_Left_Reset),
+																									ADR(bAxis_SmallGate_Right_Reset),
+																									ADR(bAxis_BigGate_Left_Reset),	
+																									ADR(bAxis_BigGate_Right_Reset),
+																									ADR(bAxis_BackGate_Left_Reset),	
+																									ADR(bAxis_BackGate_Right_Reset)
+																				 				 ];
+
+
+(*======================================== 清故障标志位 End ========================================*)	
+
 
 
 	
