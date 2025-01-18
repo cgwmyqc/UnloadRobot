@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="Gate_Big_Move" Id="{d13f1184-948a-47c6-a403-9da76bad7ac5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Gate_Big_Move
+VAR
+	bigGateGearIn			:MC_GearInDyn;			// 大龙门电子齿轮，LeftAxis为Master
+	bigGateLeftAxisJog		:MC_Jog;				// 大龙门左轴(电子齿轮的Master轴)MC_Jog
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bigGateGearIn(
+	Master:= axis_BigGate_Left, 
+	Slave:= axis_BigGate_Right, 
+	Enable:= TRUE, 
+	GearRatio:= -1.0, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+	
+bigGateLeftAxisJog(
+	Axis:= axis_BigGate_Left, 
+	JogForward:= bBigGate_Up, 
+	JogBackwards:= bBigGate_Down, 
+	Mode:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+    <LineIds Name="Gate_Big_Move">
+      <LineId Id="49" Count="14" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="14" />
+      <LineId Id="32" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

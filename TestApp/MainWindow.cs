@@ -1,0 +1,362 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TwinCAT.Ads;
+
+
+namespace TestApp
+{
+    public partial class MainWindow : Form
+    {
+        // ads客户端
+        public TcAdsClient adsClient;
+
+        // ads连接状态
+        public StateInfo adsClientStateInfo;
+
+        // Test
+        public Int16 _myIntHand = 0;
+        public Int16 _myBoolHand = 0;
+
+        // 定时器
+        private Timer timer500ms;
+        private Timer timer1000ms;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            timer500ms = new Timer();
+            timer500ms.Interval = 500;
+            timer500ms.Tick += new EventHandler(readAdsClientState);
+        }
+
+
+        // Timer Manager
+
+
+        // ADS connect
+        private void btnAdsConnect_Click(object sender, EventArgs e)
+        {
+            //TODO:netid和port的值未添加校验
+            adsClient = new TcAdsClient();
+            adsClient.Connect(adsNetIDTextBox.Text, Convert.ToInt32(adsPortTextBox.Text));
+            Console.WriteLine("_myIntHand_before:"+ _myIntHand);
+            _myIntHand = (Int16)adsClient.ReadSymbol("MAIN.a1", typeof(Int16), false);
+            Console.WriteLine("_myIntHand_after:" + _myIntHand);
+
+            timer500ms.Start();
+        }
+
+
+        // ADS disconnect
+        private void btnAdsDisconnect_Click(object sender, EventArgs e)
+        {
+            adsClient.Disconnect();
+            adsStatusPicBox.Image = Properties.Resources.stop;
+
+            timer500ms.Stop();
+        }
+
+        // 检测ADS连接状态（500ms检测一次）
+        private void readAdsClientState(object sender, EventArgs e)
+        {
+
+            adsClientStateInfo = adsClient.ReadState();
+                
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsStatusPicBox.Image = Properties.Resources.connected;
+            }
+            else if (adsClientStateInfo.AdsState == AdsState.Stop)
+            {
+                adsStatusPicBox.Image = Properties.Resources.stop;
+            }
+
+        }
+
+        // 左臂上电使能，激活手动控制
+        private void btnLeftArmPowerOnEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable",true,false); 
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable",true,false);
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_LeftArm", true, false);
+            }
+        }
+
+        // 左臂下电，取消激活手动控制
+        private void btnLeftArmPowerOnDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_LeftArm", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable", false, false);
+                
+            }
+        }
+
+
+        // 左臂-向前移动（鼠标按下逻辑）
+        private void btnLeftArmForward_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Forward", true, false);
+
+            }
+        }
+
+        // 左臂-向前移动（鼠标抬起逻辑）
+        private void btnLeftArmForward_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Forward", false, false);
+
+            }
+        }
+
+
+        // 左臂-向左移动（鼠标按下逻辑）
+        private void btnLeftArmLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Left", true, false);
+
+            }
+        }
+
+
+        // 左臂-向左移动（鼠标抬起逻辑）
+        private void btnLeftArmLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Left", false, false);
+
+            }
+        }
+
+
+        // 左臂-向右移动（鼠标按下逻辑）
+        private void btnLeftArmRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Right", true, false);
+
+            }
+        }
+
+        // 左臂-向右移动（鼠标抬起逻辑）
+        private void btnLeftArmRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Right", false, false);
+
+            }
+        }
+
+
+        // 左臂-向后移动（鼠标按下逻辑）
+        private void btnLeftArmBackward_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Backward", true, false);
+            }
+        }
+
+        // 左臂-向后移动（鼠标抬起逻辑）
+        private void btnLeftArmBackward_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Backward", false, false);
+            }
+        }
+
+
+        // 大龙门-轴使能
+        private void btnBigGatePowerEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", true, false);
+            }
+        }
+
+
+        // 大龙门-轴失能
+        private void btnBigGatePowerDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);
+            }
+        }
+
+        // 大龙门-上升（鼠标按下逻辑）
+        private void btnBigGateUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBigGate_Up", true, false);
+            }
+        }
+
+        // 大龙门-上升（鼠标抬起逻辑）
+        private void btnBigGateUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBigGate_Up", false, false);
+            }
+        }
+
+        // 大龙门-下降（鼠标按下逻辑）
+        private void btnBigGateDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBigGate_Down", true, false);
+            }
+        }
+
+        // 大龙门-下降（鼠标抬起逻辑）
+        private void btnBigGateDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBigGate_Down", false, false);
+            }
+        }
+
+        // 小龙门-轴使能
+        private void btnSmallGatePowerEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", true, false);
+            }
+        }
+
+        // 小龙门-轴失能
+        private void btnSmallGatePowerDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);
+            }
+        }
+
+        //小龙门-升（鼠标按下逻辑）
+        private void btnSmallGateUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Up", true, false);
+            }
+        }
+
+        //小龙门-升（鼠标抬起逻辑）
+        private void btnSmallGateUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Up", false, false);
+            }
+        }
+
+        //小龙门-降（鼠标按下逻辑）
+        private void btnSmallGateDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Down", true, false);
+            }
+        }
+
+        //小龙门-降（鼠标抬起逻辑）
+        private void btnSmallGateDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Down", false, false);
+            }
+        }
+
+        //后龙门-轴使能
+        private void btnBackGatePowerEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", true, false);
+            }
+        }
+
+        //后龙门-轴失能
+        private void btnBackGatePowerDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);
+            }
+        }
+
+
+        //后龙门-升（鼠标按下逻辑）
+        private void btnBackGateUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBackGate_Up", true, false);
+            }
+        }
+
+        //后龙门-升（鼠标抬起逻辑）
+        private void btnBackGateUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBackGate_Up", false, false);
+            }
+        }
+
+        //后龙门-降（鼠标按下逻辑）
+        private void btnBackGateDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBackGate_Down", true, false);
+            }
+        }
+
+
+        //后龙门-降（鼠标抬起逻辑）
+        private void btnBackGateDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBackGate_Down", false, false);
+            }
+        }
+    }
+}

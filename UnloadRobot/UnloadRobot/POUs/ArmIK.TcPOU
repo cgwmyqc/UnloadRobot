@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="ArmIK" Id="{2518ff54-4784-4cc2-b675-9797cc353076}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ArmIK : Angles
+VAR_INPUT
+	x:LREAL;
+	y:LREAL;
+END_VAR
+VAR
+	
+	// 中间量
+	p:LREAL;
+	q:LREAL;
+	l:LREAL;
+	k:LREAL;
+	angle_CAF:LREAL;	
+	angle_OAF:LREAL;
+	theta1:LREAL;
+	theta2:LREAL;
+	angle_ACF:LREAL;
+	angle_ACE:LREAL;
+	angle_CAE:LREAL;
+	angle_EAB:LREAL;
+	angle_EBA:LREAL;
+	angle_DBE:LREAL;
+	
+	// 输出
+	angles		:Angles;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TWINCAT 角度换算以弧度为单位
+
+p := SQRT((x-w)*(x-w)+y*y);
+q := SQRT(x*x + y*y);
+ 
+//n := SQRT(i*i+j*j-2*i*j*COS(DEG_TO_RAD(angle_a)));
+angle_CAF := ACOS((f*f+p*p-n*n)/(2*f*p));
+angle_OAF := ACOS((w*w+p*p-q*q)/(2*w*p));
+theta1 := PI-angle_CAF-angle_OAF;
+
+angle_ACF := ACOS((f*f+n*n-p*p)/(2*f*n));
+//angle_FCE := ACOS((n*n+i*i-j*j)/(2*n*i));
+angle_ACE := angle_ACF - DEG_TO_RAD(angle_FCE);
+l := SQRT(i*i+f*f-2*i*f*COS(angle_ACE));
+angle_CAE := ACOS((f*f+l*l-i*i)/(2*f*l));
+angle_EAB := PI-theta1 - angle_CAE;
+k := SQRT(l*l + 4*w*w - 4*l*w*COS(angle_EAB));
+angle_EBA := ACOS((k*k+4*w*w-l*l)/(4*k*w));
+angle_DBE := ACOS((g*g+k*k-h*h)/(2*g*k));
+theta2 := angle_EBA + angle_DBE;
+
+angles.theta1_right := RAD_TO_DEG(theta1);
+angles.theta2_left := RAD_TO_DEG(theta2);
+
+
+ArmIK := angles;]]></ST>
+    </Implementation>
+    <LineIds Name="ArmIK">
+      <LineId Id="42" Count="24" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

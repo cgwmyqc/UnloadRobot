@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="Gate_Back_Move" Id="{6b3b82ea-fe62-454c-a819-06a725bf7083}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Gate_Back_Move
+VAR
+	
+	backGateGearIn		:MC_GearInDyn;
+	backGateLeftAxisJog :MC_Jog;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 后龙门比较特殊，不是和大小龙门结构不一样，GearRatio需要测试*)
+
+backGateGearIn(
+	Master:= axis_BackGate_Left, 
+	Slave:= axis_BackGate_Right, 
+	Enable:= TRUE, 
+	GearRatio:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+backGateLeftAxisJog(
+	Axis:= axis_BackGate_Left, 
+	JogForward:= bBackGate_Up, 
+	JogBackwards:= bBackGate_Down, 
+	Mode:= , 
+	Position:= , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+    <LineIds Name="Gate_Back_Move">
+      <LineId Id="43" Count="1" />
+      <LineId Id="10" Count="14" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="28" Count="14" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

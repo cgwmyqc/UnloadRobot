@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
+	<LicenseInfo>
+		<SystemId>{25446ED6-AAE4-9330-88D8-BAAE10CE7133}</SystemId>
+		<IssueTime>2025-01-15T07:23:00</IssueTime>
+		<ExpireTime>2025-01-23T00:00:00</ExpireTime>
+		<LicenseKey>113e5549fd7da464416ea3ca0408a746757af65c876bf0410c7e8c42c31cd5ba415d74ad3f66d16fbe434fbafc1e2b2c994b3b762ae7e07e49cef7dead9d320426f60f812bcc00bc6e66369c1877c7570de56316df8cafc455b1df1d5e8d76564151565e909e1f628c19326d30abae1f192c5052b6968031953a03cb349d2fc2a933d565aeafb23d52040c647773d8343529fa0e0c8bd02a8c27b80834dd3cde77df9344e2f0935f845d8d1d9aad541b4b2916b235d90ecb78136cd15af2c3f9947d549dd650fb2fd5e263ba44cf659ab65469637583f6f201ce8b063d2d71a0ac5545ecfbed7783a9d7964c4068b371bf521eefc3267d16625f7b34d81ec15a</LicenseKey>
+		<License>
+			<LicenseId>{A19036CF-A53B-4E3A-99FF-023EF5C4798B}</LicenseId>
+			<Name>TC3 NC PTP Axis</Name>
+			<Instances>25</Instances>
+		</License>
+		<License>
+			<LicenseId>{BF78CFC7-2E63-42C3-8C07-BB6C346BFB8B}</LicenseId>
+			<Name>TC3 NC PTP Axes Pack 25</Name>
+			<OrderNo>TF5010</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{BCA6EE0A-9CE1-4D3F-98CA-413ABC0D94FD}</LicenseId>
+			<Name>TC3 Serial-Communication</Name>
+			<OrderNo>TF6340</OrderNo>
+		</License>
+	</LicenseInfo>
+</TcLicenseInfo>

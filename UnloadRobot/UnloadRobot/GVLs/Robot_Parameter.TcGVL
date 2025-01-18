@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="Robot_Parameter" Id="{8552aaf8-67f5-4cf9-b97f-23afdf57a9cd}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//已知量
+	h 						:LREAL:=260;
+	i 						:LREAL:=260;
+	g 						:LREAL:=150;
+	f 						:LREAL:=150;
+	w 						:LREAL:=110;
+	angle_a					:LREAL:=137.5;			// 单位为度
+	j						:LREAL:=40;
+	n						:LREAL:=290.7497;     	// 余弦定理
+	angle_FCE				:LREAL:=5.3330;			//余弦定理（单位为度）
+	
+	//常量
+	PI						:LREAL:=3.1415926;
+	
+	//
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

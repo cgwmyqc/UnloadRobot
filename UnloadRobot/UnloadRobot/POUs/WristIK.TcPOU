@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="WristIK" Id="{fa587cfb-998b-4872-b950-bf765eced708}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION WristIK : REAL
+VAR_INPUT
+	
+	// 末端坐标
+	x: REAL;
+	y: REAL;
+	
+END_VAR
+VAR
+	wrist_Axis_Angle	:REAL;	//腕关节角度
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+wrist_Axis_Angle := ACOS(y/(SQRT(x*x + y*y)));
+IF x >= 0 THEN
+	WristIK := RAD_TO_DEG(wrist_Axis_Angle);
+ELSE
+	WristIK := -RAD_TO_DEG(wrist_Axis_Angle);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="WristIK">
+      <LineId Id="14" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="30" Count="4" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

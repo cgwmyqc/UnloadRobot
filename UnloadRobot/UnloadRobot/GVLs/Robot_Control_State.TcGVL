@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <GVL Name="Robot_Control_State" Id="{9db10112-7154-4071-a9e0-8bf963450b4d}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	(*电机操作逆时针为正*)
+	
+(*======================================== 自定义标志位 Start ======================================*)	
+	bManualCtrl_Asm_LeftArm										:BOOL;			// 手动控制标志位-总成-左臂
+	bManualCtrl_Part											:BOOL;			// 单轴控制标志位
+	bAutoCtrl_Part_LeftWrist									:BOOL := TRUE;	// 自动控制-单体-腕电机
+	
+(*======================================== 自定义标志位 End ========================================*)	
+
+
+
+(*===================================电机使能标志位 Start =============================*)	
+	// 左臂电机
+	bAxis_LeftArm_Wrist_Enable									:BOOL;				//左臂_腕电机使能	
+	bAxis_LeftArm_Left_Enable									:BOOL;				//左臂_左电机使能
+	bAxis_LeftArm_Right_Enable									:BOOL;				//左臂_右电机使能	
+	bAxis_LeftArm_Lift_Enable									:BOOL;				//左臂_升电机使能	
+
+	// 右臂电机
+	bAxis_RightArm_Wrist_Enable									:BOOL;				//右臂_腕电机使能	
+	bAxis_RightArm_Left_Enable									:BOOL;				//右臂_左电机使能
+	bAxis_RightArm_Right_Enable									:BOOL;				//右臂_右电机使能
+	bAxis_RightArm_Lift_Enable									:BOOL;				//右臂_升电机使能
+	                                                                            	
+	// 小龙门电机                                                                    	
+	bAxis_SmallGate_Left_Enable									:BOOL;				//小门_左电机使能
+	bAxis_SmallGate_Right_Enable								:BOOL;				//小门_右电机使能
+                                                                                	
+	// 大龙门单电机                                                                   	
+	bAxis_BigGate_Left_Enable									:BOOL;				//大门_左电机使能
+	bAxis_BigGate_Right_Enable									:BOOL;				//大门_右电机使能
+	                                                                            	
+	// 后龙门单电机                                                                   	
+	bAxis_BackGate_Left_Enable									:BOOL;				//后门_左电机使能
+	bAxis_BackGate_Right_Enable									:BOOL;				//后门_右电机使能
+
+(*====================================电机使能标志位 End =============================*)	
+
+
+	
+(*======================================== 单电机控制标志位 Start ==================================*)								
+	
+	// 左臂单电机控制
+	bAxis_LeftArm_Wrist_JogP			AT%MX0.0				:BOOL;			//左臂_腕电机_JOG正	
+	bAxis_LeftArm_Wrist_JogN			AT%MX0.1				:BOOL;			//左臂_腕电机_JOG负
+	bAxis_LeftArm_Left_JogP				AT%MX0.2				:BOOL;			//左臂_左电机_JOG正	
+	bAxis_LeftArm_Left_JogN				AT%MX0.3				:BOOL;			//左臂_左电机_JOG负	
+	bAxis_LeftArm_Right_JogP			AT%MX0.4				:BOOL;			//左臂_右电机_JOG正	
+	bAxis_LeftArm_Right_JogN			AT%MX0.5				:BOOL;			//左臂_右电机_JOG负	
+	bAxis_LeftArm_Lift_JogP				AT%MX0.6				:BOOL;			//左臂_升电机_JOG正	
+	bAxis_LeftArm_Lift_JogN				AT%MX0.7				:BOOL;			//左臂_升电机_JOG负	
+
+	// 右臂单电机控制
+	bAxis_RightArm_Wrist_JogP			AT%MX1.6				:BOOL;			//右臂_腕电机_JOG正	
+	bAxis_RightArm_Wrist_JogN			AT%MX1.7				:BOOL;			//右臂_腕电机_JOG负
+	bAxis_RightArm_Left_JogP			AT%MX2.0				:BOOL;			//右臂_左电机_JOG正	
+	bAxis_RightArm_Left_JogN			AT%MX2.1				:BOOL;			//右臂_左电机_JOG负	
+	bAxis_RightArm_Right_JogP			AT%MX2.2				:BOOL;			//右臂_右电机_JOG正	
+	bAxis_RightArm_Right_JogN			AT%MX2.3				:BOOL;			//右臂_右电机_JOG负	
+	bAxis_RightArm_Lift_JogP			AT%MX2.4				:BOOL;			//右臂_升电机_JOG正	
+	bAxis_RightArm_Lift_JogN			AT%MX2.5				:BOOL;			//右臂_升电机_JOG负			
+	
+	// 小龙门单电机控制
+	bAxis_SmallGate_Left_JogP			AT%MX1.0				:BOOL;			//小门_左电机_JOG正
+	bAxis_SmallGate_Left_JogN			AT%MX1.1				:BOOL;			//小门_左电机_JOG负
+	bAxis_SmallGate_Right_JogP			AT%MX2.6				:BOOL;			//小门_右电机_JOG正
+	bAxis_SmallGate_Right_JogN			AT%MX2.7				:BOOL;			//小门_右电机_JOG负	
+	
+	// 大龙门单电机控制
+	bAxis_BigGate_Left_JogP				AT%MX1.2				:BOOL;			//大门_左电机_JOG正
+	bAxis_BigGate_Left_JogN				AT%MX1.3				:BOOL;			//大门_左电机_JOG负
+	bAxis_BigGate_Right_JogP			AT%MX3.0				:BOOL;			//大门_右电机_JOG正
+	bAxis_BigGate_Right_JogN			AT%MX3.1				:BOOL;			//大门_右电机_JOG负	
+	
+	// 后龙门单电机控制
+	bAxis_BackGate_Left_JogP			AT%MX1.4				:BOOL;			//后门_左电机_JOG正
+	bAxis_BackGate_Left_JogN			AT%MX1.5				:BOOL;			//后门_左电机_JOG负
+	bAxis_BackGate_Right_JogP			AT%MX3.2				:BOOL;			//后门_右电机_JOG正
+	bAxis_BackGate_Right_JogN			AT%MX3.3				:BOOL;			//后门_右电机_JOG负	
+
+(*===================================== 单电机控制标志位 End ========================================*)
+
+
+
+
+	
+(*===================================== 合成运动制标志位 Start ======================================*)		
+	
+	//左臂合成运动
+	bLeftArm_Backward					AT%MX3.4				:BOOL;			//左臂_向后
+	bLeftArm_Forward					AT%MX3.5				:BOOL;			//左臂_向前
+	bLeftArm_Left						AT%MX3.6				:BOOL;			//左臂_向左
+	bLeftArm_Right						AT%MX3.7				:BOOL;			//左臂_向右
+
+	//右臂合成运动
+	bRightArm_Backward					AT%MX4.0				:BOOL;			//左臂_向后
+	bRightArm_Forward					AT%MX4.1				:BOOL;			//左臂_向前
+	bRightArm_Left						AT%MX4.2				:BOOL;			//左臂_向左
+	bRightArm_Right						AT%MX4.3				:BOOL;			//左臂_向右
+	
+	//小龙门合成运动
+	bSmallGate_Up						AT%MX4.4				:BOOL;			//小门_升
+	bSmallGate_Down						AT%MX4.5				:BOOL;			//小门_降
+	
+	//大龙门合成运动
+	bBigGate_Up							AT%MX4.6				:BOOL;			//大门_升
+	bBigGate_Down						AT%MX4.7				:BOOL;			//大门_降
+	
+	//后龙门合成运动
+	bBackGate_Up						AT%MX5.0				:BOOL;			//后门_升
+	bBackGate_Down						AT%MX5.1				:BOOL;			//后门_降
+	
+(*===================================== 合成运动制标志位 End ========================================*)		
+
+
+
+
+(*===================================== 示教盒相关 Start ============================================*)	
+	
+	bTeachBox_Stop						AT%MX5.2				:BOOL;			//示教盒STOP键
+	bTeachBox_Run						AT%MX5.3				:BOOL;			//示教盒Run键
+	bTeachBox_Hand00					AT%MX5.4				:BOOL;			//示教盒HAND00键
+	bTeachBox_Hand01					AT%MX5.5				:BOOL;			//示教盒HAND01键
+	bTeachBox_Led1						AT%MX6.0				:BOOL;			//示教盒LED1点亮
+	bTeachBox_Led2						AT%MX6.1				:BOOL;			//示教盒LED2点亮
+	bTeachBox_Buzzer_continuous			AT%MX6.2				:BOOL;			//示教盒蜂鸣器长蜂鸣	
+	bTeachBox_Buzzer_Short				AT%MX6.2				:BOOL;			//示教盒蜂鸣器短蜂鸣
+
+(*===================================== 示教盒相关 End ==============================================*)	
+
+
+
+
+
+(*===================================== 电磁阀控制标志位 Start ======================================*)	
+	
+	//左臂电磁阀
+	bLeftArm_SV1						AT%MX7.0				:BOOL;			//左臂_电磁阀1
+	bLeftArm_SV2						AT%MX7.1				:BOOL;			//左臂_电磁阀2	
+	bLeftArm_SV3						AT%MX7.2				:BOOL;			//左臂_电磁阀3
+	bLeftArm_SV4						AT%MX7.3				:BOOL;			//左臂_电磁阀4
+	bLeftArm_SV5						AT%MX7.4				:BOOL;			//左臂_电磁阀5
+	bLeftArm_SV6						AT%MX7.5				:BOOL;			//左臂_电磁阀6
+	bLeftArm_SV7						AT%MX7.6				:BOOL;			//左臂_电磁阀7	
+	bLeftArm_SV8						AT%MX7.7				:BOOL;			//左臂_电磁阀8
+	
+	//左臂电磁阀
+	bRightArm_SV1						AT%MX8.0				:BOOL;			//右臂_电磁阀1
+	bRightArm_SV2						AT%MX8.1				:BOOL;			//右臂_电磁阀2	
+	bRightArm_SV3						AT%MX8.2				:BOOL;			//右臂_电磁阀3
+	bRightArm_SV4						AT%MX8.3				:BOOL;			//右臂_电磁阀4
+	bRightArm_SV5						AT%MX8.4				:BOOL;			//右臂_电磁阀5
+	bRightArm_SV6						AT%MX8.5				:BOOL;			//右臂_电磁阀6
+	bRightArm_SV7						AT%MX8.6				:BOOL;			//右臂_电磁阀7	
+	bRightArm_SV8						AT%MX8.7				:BOOL;			//右臂_电磁阀8
+	
+(*===================================== 电磁阀控制标志位 End ========================================*)	
+	
+	
+
+
+(*===================================== 滚筒控制标志位 Start ========================================*)
+
+	bAxis_GunTong_Left					AT%MX9.0				:BOOL;			//左滚筒_电机
+	bAxis_GunTong_Middle				AT%MX9.1				:BOOL;			//中滚筒_电机
+	bAxis_GunTong_Right					AT%MX9.2				:BOOL;			//右滚筒_电机
+	bAxis_GunTong_Back					AT%MX9.3				:BOOL;			//后滚筒_电机
+
+(*===================================== 滚筒控制标志位 End ==========================================*)
+
+
+
+
+(*===================================== 运行速度设置区 Start ========================================*)	
+	
+	//手动模式速度及加速度设置
+	fManualCtrl_Velo					AT%MD20					:REAL;			//手动控制_运行速度
+	fManualCtrl_Acc						AT%MD24					:REAL;			//手动控制_运行速度
+	
+	//自动模式速度及加速度设置
+	fAutoCtrl_Velo						AT%MD28					:REAL;			//自动控制_运行速度
+	fAutoCtrl_Acc						AT%MD32					:REAL;			//自动控制_运行速度			
+
+(*===================================== 运行速度设置区 End ==========================================*)	
+
+
+
+
+(*====================================== 状态显示字段 Start =========================================*)	
+	
+	//左臂电机状态
+	fAxis_LeftArm_Wrist_ActPos			AT%MD100				:REAL;			//左臂_腕电机_实时位置
+	fAxis_LeftArm_Wrist_ActVelo			AT%MD104				:REAL;			//左臂_腕电机_实时速度
+	fAxis_LeftArm_Wrist_ActTorq			AT%MD108				:REAL;			//左臂_腕电机_实时力矩	
+	fAxis_LeftArm_Left_ActPos			AT%MD112				:REAL;			//左臂_左电机_实时位置
+	fAxis_LeftArm_Left_ActVelo			AT%MD116				:REAL;			//左臂_左电机_实时速度
+	fAxis_LeftArm_Left_ActTorq			AT%MD120				:REAL;			//左臂_左电机_实时力矩		
+	fAxis_LeftArm_Right_ActPos			AT%MD124				:REAL;			//左臂_右电机_实时位置
+	fAxis_LeftArm_Right_ActVelo			AT%MD128				:REAL;			//左臂_右电机_实时速度
+	fAxis_LeftArm_Right_ActTorq			AT%MD132				:REAL;			//左臂_右电机_实时力矩
+	fAxis_LeftArm_Lift_ActPos			AT%MD136				:REAL;			//左臂_升电机_实时位置
+	fAxis_LeftArm_Lift_ActVelo			AT%MD140				:REAL;			//左臂_升电机_实时速度
+	fAxis_LeftArm_Lift_ActTorq			AT%MD144				:REAL;			//左臂_升电机_实时力矩
+
+	//右臂电机状态
+	fAxis_RightArm_Wrist_ActPos			AT%MD184				:REAL;			//右臂_腕电机_实时位置
+	fAxis_RightArm_Wrist_ActVelo		AT%MD188				:REAL;			//右臂_腕电机_实时速度
+	fAxis_RightArm_Wrist_ActTorq		AT%MD192				:REAL;			//右臂_腕电机_实时力矩	
+	fAxis_RightArm_Left_ActPos			AT%MD196				:REAL;			//右臂_左电机_实时位置
+	fAxis_RightArm_Left_ActVelo			AT%MD200				:REAL;			//右臂_左电机_实时速度
+	fAxis_RightArm_Left_ActTorq			AT%MD204				:REAL;			//右臂_左电机_实时力矩		
+	fAxis_RightArm_Right_ActPos			AT%MD208				:REAL;			//右臂_右电机_实时位置
+	fAxis_RightArm_Right_ActVelo		AT%MD212				:REAL;			//右臂_右电机_实时速度
+	fAxis_RightArm_Right_ActTorq		AT%MD216				:REAL;			//右臂_右电机_实时力矩
+	fAxis_RightArm_Lift_ActPos			AT%MD220				:REAL;			//右臂_升电机_实时位置
+	fAxis_RightArm_Lift_ActVelo			AT%MD224				:REAL;			//右臂_升电机_实时速度
+	fAxis_RightArm_Lift_ActTorq			AT%MD228				:REAL;			//右臂_升电机_实时力矩				
+	
+	//小龙门电机状态
+	fAxis_SmallGate_Left_ActPos			AT%MD148				:REAL;			//小龙门_左电机_实时位置
+	fAxis_SmallGate_Left_ActVelo		AT%MD152				:REAL;			//小龙门_左电机_实时速度
+	fAxis_SmallGate_Left_ActTorq		AT%MD156				:REAL;			//小龙门_左电机_实时力矩
+	fAxis_SmallGate_Right_ActPos		AT%MD232				:REAL;			//小龙门_右电机_实时位置
+	fAxis_SmallGate_Right_ActVelo		AT%MD236				:REAL;			//小龙门_右电机_实时速度
+	fAxis_SmallGate_Right_ActTorq		AT%MD240				:REAL;			//小龙门_右电机_实时力矩
+
+	//大龙门电机状态
+	fAxis_BigGate_Left_ActPos			AT%MD160				:REAL;			//大龙门_左电机_实时位置
+	fAxis_BigGate_Left_ActVelo			AT%MD164				:REAL;			//大龙门_左电机_实时速度
+	fAxis_BigGate_Left_ActTorq			AT%MD168				:REAL;			//大龙门_左电机_实时力矩
+	fAxis_BigGate_Right_ActPos			AT%MD244				:REAL;			//大龙门_右电机_实时位置
+	fAxis_BigGate_Right_ActVelo			AT%MD248				:REAL;			//大龙门_右电机_实时速度
+	fAxis_BigGate_Right_ActTorq			AT%MD252				:REAL;			//大龙门_右电机_实时力矩
+
+	//后龙门电机状态
+	fAxis_BackGate_Left_ActPos			AT%MD172				:REAL;			//后龙门_左电机_实时位置
+	fAxis_BackGate_Left_ActVelo			AT%MD176				:REAL;			//后龙门_左电机_实时速度
+	fAxis_BackGate_Left_ActTorq			AT%MD180				:REAL;			//后龙门_左电机_实时力矩
+	fAxis_BackGate_Right_ActPos			AT%MD256				:REAL;			//后龙门_右电机_实时位置
+	fAxis_BackGate_Right_ActVelo		AT%MD260				:REAL;			//后龙门_右电机_实时速度
+	fAxis_BackGate_Right_ActTorq		AT%MD264				:REAL;			//后龙门_右电机_实时力矩
+	
+	
+	
+
+(*====================================== 状态显示字段  End ==========================================*)	
+
+
+END_VAR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

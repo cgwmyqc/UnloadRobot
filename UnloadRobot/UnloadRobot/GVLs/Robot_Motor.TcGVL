@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="Robot_Motor" Id="{bd434920-f7c6-4d6f-9005-f91fe081068a}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+(*======================================== 机器人各轴定义 Start ==========================================*)
+	// 左臂电机
+	axis_LeftArm_Wrist											:AXIS_REF;			//左臂_腕电机	
+	axis_LeftArm_Left											:AXIS_REF;			//左臂_左电机
+	axis_LeftArm_Right											:AXIS_REF;			//左臂_右电机	
+	axis_LeftArm_Lift											:AXIS_REF;			//左臂_升电机	
+
+	// 右臂电机
+	axis_RightArm_Wrist											:AXIS_REF;			//右臂_腕电机	
+	axis_RightArm_Left											:AXIS_REF;			//右臂_左电机
+	axis_RightArm_Right											:AXIS_REF;			//右臂_右电机
+	axis_RightArm_Lift											:AXIS_REF;			//右臂_升电机
+	
+	// 小龙门电机
+	axis_SmallGate_Left											:AXIS_REF;			//小门_左电机
+	axis_SmallGate_Right										:AXIS_REF;			//小门_右电机
+
+	
+	// 大龙门单电机
+	axis_BigGate_Left											:AXIS_REF;			//大门_左电机
+	axis_BigGate_Right											:AXIS_REF;			//大门_右电机
+	
+	// 后龙门单电机
+	axis_BackGate_Left											:AXIS_REF;			//后门_左电机
+	axis_BackGate_Right											:AXIS_REF;			//后门_右电机
+
+(*======================================== 机器人各轴定义 End =============================================*)	
+
+
+
+
+(*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
+	
+	// 左臂电机
+	axis_LeftArm_Wrist_Power									:MC_Power;			//左臂_腕电机Power功能块	
+	axis_LeftArm_Left_Power										:MC_Power;			//左臂_左电机Power功能块
+	axis_LeftArm_Right_Power									:MC_Power;			//左臂_右电机Power功能块
+	axis_LeftArm_Lift_Power										:MC_Power;			//左臂_升电机Power功能块
+
+	// 右臂电机
+	axis_RightArm_Wrist_Power									:MC_Power;			//右臂_腕电机Power功能块	
+	axis_RightArm_Left_Power									:MC_Power;			//右臂_左电机Power功能块
+	axis_RightArm_Right_Power									:MC_Power;			//右臂_右电机Power功能块
+	axis_RightArm_Lift_Power									:MC_Power;			//右臂_升电机Power功能块
+	
+	// 小龙门电机
+	axis_SmallGate_Left_Power									:MC_Power;			//小门_左电机Power功能块
+	axis_SmallGate_Right_Power									:MC_Power;			//小门_右电机Power功能块
+
+	// 大龙门单电机
+	axis_BigGate_Left_Power										:MC_Power;			//大门_左电机Power功能块
+	axis_BigGate_Right_Power									:MC_Power;			//大门_右电机Power功能块
+	
+	// 后龙门单电机
+	axis_BackGate_Left_Power									:MC_Power;			//后门_左电机Power功能块
+	axis_BackGate_Right_Power									:MC_Power;			//后门_右电机Power功能块
+
+	// 左臂电机
+	axis_LeftArm_Wrist_Power_Output									:ST_McOutputs;			//左臂_腕电机状态	
+	axis_LeftArm_Left_Power_Output									:ST_McOutputs;			//左臂_左电机状态
+	axis_LeftArm_Right_Power_Output									:ST_McOutputs;			//左臂_右电机状态
+	axis_LeftArm_Lift_Power_Output									:ST_McOutputs;			//左臂_升电机状态
+
+	// 右臂电机
+	axis_RightArm_Wrist_Power_Output								:ST_McOutputs;			//右臂_腕电机Power功能块	
+	axis_RightArm_Left_Power_Output									:ST_McOutputs;			//右臂_左电机Power功能块
+	axis_RightArm_Right_Power_Output								:ST_McOutputs;			//右臂_右电机Power功能块
+	axis_RightArm_Lift_Power_Output									:ST_McOutputs;			//右臂_升电机Power功能块
+	
+	// 小龙门电机
+	axis_SmallGate_Left_Power_Output								:ST_McOutputs;			//小门_左电机Power功能块
+	axis_SmallGate_Right_Power_Output								:ST_McOutputs;			//小门_右电机Power功能块
+
+	// 大龙门单电机
+	axis_BigGate_Left_Power_Output									:ST_McOutputs;			//大门_左电机Power功能块
+	axis_BigGate_Right_Power_Output									:ST_McOutputs;			//大门_右电机Power功能块
+	
+	// 后龙门单电机
+	axis_BackGate_Left_Power_Output									:ST_McOutputs;			//后门_左电机Power功能块
+	axis_BackGate_Right_Power_Output								:ST_McOutputs;			//后门_右电机Power功能块	
+	
+(*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
+
+
+
+
+	
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

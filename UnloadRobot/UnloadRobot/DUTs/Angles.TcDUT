@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="Angles" Id="{9d894569-ab16-4cb0-99a1-a071639ffc4d}">
+    <Declaration><![CDATA[TYPE Angles :
+STRUCT
+	theta1_right	:LREAL;
+	theta2_left		:LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

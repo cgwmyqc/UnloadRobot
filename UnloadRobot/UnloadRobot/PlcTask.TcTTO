@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <Task Name="PlcTask" Id="{34ecdee2-c0ad-429a-b8c9-1055bd24a480}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>20</Priority>
+    <PouCall>
+      <Name>MAIN</Name>
+    </PouCall>
+    <PouCall>
+      <Name>ArmMove</Name>
+    </PouCall>
+    <PouCall>
+      <Name>AxisPowerOn</Name>
+    </PouCall>
+    <PouCall>
+      <Name>Gate_Big_Move</Name>
+    </PouCall>
+    <PouCall>
+      <Name>Gate_Small_Move</Name>
+    </PouCall>
+    <PouCall>
+      <Name>Gate_Back_Move</Name>
+    </PouCall>
+    <TaskFBGuid>{c1595f60-247e-4d18-9a51-0c48c26ce467}</TaskFBGuid>
+    <Fb_init>{06bc8a1e-5d8a-4856-b4d9-40b8592fe8d3}</Fb_init>
+    <Fb_exit>{59ce8e0d-74a4-413f-81f0-8fa82f7fdba1}</Fb_exit>
+    <CycleUpdate>{3282bd36-3db1-4fe4-979c-9293c233d899}</CycleUpdate>
+    <PostCycleUpdate>{dff53214-3f96-479f-b3e1-97f7498f3217}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

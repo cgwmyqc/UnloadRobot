@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="FB_SerialCom" Id="{c23bcf86-97ba-4885-99b9-d92774641987}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SerialCom
+VAR_INPUT
+
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer : TON 	:= (pt:=T#100MS);
+	fbSend			:SendString;
+	fbSendByte		:SendByte;
+	bSendBusy		:BOOL;
+	eSendErrorID	: ComError_t;
+END_VAR
+VAR_IN_OUT
+	TxBuffer	: ComBuffer;
+	RxBuffer	: ComBuffer;
+	angle		:BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Timer(IN:= TRUE);
+
+IF Timer.Q OR fbSend.Busy THEN
+	Timer(in:=FALSE);
+	
+	//fbSend(SendString:='a' , Busy=> bSendBusy, Error=> , TXbuffer:= TxBuffer);
+	fbSendByte(SendByte:= angle, Busy=>bSendBusy , Error=> , TxBuffer:= TxBuffer);
+	
+	IF fbSend.Error <> COMERROR_NOERROR THEN
+		eSendErrorID	:= fbSend.Error;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_SerialCom">
+      <LineId Id="22" Count="10" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
