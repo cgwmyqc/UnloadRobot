@@ -8,10 +8,24 @@ VAR_GLOBAL
 	
 (*======================================== 自定义标志位 Start ======================================*)	
 	bManualCtrl_Asm_LeftArm										:BOOL;			// 手动控制标志位-总成-左臂
-	bManualCtrl_Part											:BOOL;			// 单轴控制标志位
-	bAutoCtrl_Part_LeftWrist									:BOOL := TRUE;	// 自动控制-单体-腕电机
+
+	bAutoCtrl_Part_LeftWrist									:BOOL;			// 自动控制-单体-腕电机
 	
-	isInitialized	:BOOL:=FALSE;
+
+	bManualCtrl_Part_LeftArm_Left								:BOOL;			// 单轴控制标志位
+	bManualCtrl_Part_LeftArm_Right								:BOOL;			
+	bManualCtrl_Part_LeftArm_Wrist								:BOOL;	
+	bManualCtrl_Part_LeftArm_Lift								:BOOL;
+	bManualCtrl_Part_RightArm_Left								:BOOL;
+	bManualCtrl_Part_RightArm_Right								:BOOL;			
+	bManualCtrl_Part_RightArm_Wrist								:BOOL;	
+	bManualCtrl_Part_RightArm_Lift								:BOOL;
+	bManualCtrl_Part_BigGate_Left								:BOOL;
+	bManualCtrl_Part_BigGate_Right								:BOOL;	
+	bManualCtrl_Part_SmallGate_Left								:BOOL;
+	bManualCtrl_Part_SmallGate_Right							:BOOL;		
+	bManualCtrl_Part_BackGate_Left								:BOOL;
+	bManualCtrl_Part_BackGate_Right								:BOOL;		
 
 (*======================================== 自定义标志位 End ========================================*)	
 

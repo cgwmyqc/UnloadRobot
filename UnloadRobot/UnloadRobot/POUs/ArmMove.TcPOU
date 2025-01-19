@@ -36,7 +36,7 @@ LeftArm_Right_ExtPosGen_Disable.Execute 	:= FALSE;
 LeftArm_Left_ExtPosGen_Enable.Execute 		:= FALSE;
 LeftArm_Left_ExtPosGen_Disable.Execute 		:= FALSE;
 
-IF bManualCtrl_Asm_LeftArm THEN
+IF bManualCtrl_Part_LeftArm_Left THEN
 	
 	// 运动学正解出当前腕关节点坐标
 	point := ArmFK(axis_LeftArm_Right.NcToPlc.ActPos, axis_LeftArm_Left.NcToPlc.ActPos);

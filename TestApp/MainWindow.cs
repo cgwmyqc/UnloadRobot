@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TwinCAT.Ads;
 
 
+
 namespace TestApp
 {
     public partial class MainWindow : Form
@@ -25,16 +26,29 @@ namespace TestApp
         public Int16 _myBoolHand = 0;
 
         // 定时器
+        private Timer timer100ms;
         private Timer timer500ms;
-        private Timer timer1000ms;
+
+
+
+        //
+        public double nLeftArm_Left_Pos = 0;
+        public double nLeftArm_Left_Velo = 0;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            timer100ms = new Timer();
+            timer100ms.Interval = 100;
+            timer100ms.Tick += new EventHandler(get_Axis_Pos_Velo);
+            timer100ms.Tick += new EventHandler(readAdsClientState);
+
+
             timer500ms = new Timer();
             timer500ms.Interval = 500;
-            timer500ms.Tick += new EventHandler(readAdsClientState);
+
+
         }
 
 
@@ -51,6 +65,9 @@ namespace TestApp
             _myIntHand = (Int16)adsClient.ReadSymbol("MAIN.a1", typeof(Int16), false);
             Console.WriteLine("_myIntHand_after:" + _myIntHand);
 
+
+            // 启动定时器
+            timer100ms.Start();
             timer500ms.Start();
         }
 
@@ -81,6 +98,17 @@ namespace TestApp
 
         }
 
+        private void get_Axis_Pos_Velo(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                nLeftArm_Left_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_LeftArm_Left.NcToPlc.ActPos",typeof(double),false);
+                labelLeftArmLeftActPos.Text = nLeftArm_Left_Pos.ToString("0.00");
+                nLeftArm_Left_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_LeftArm_Left.NcToPlc.ActVelo", typeof(double), false);
+                labelLeftArmLeftActVelo.Text = nLeftArm_Left_Velo.ToString("0.00");
+            }
+        }
+
         // 左臂上电使能，激活手动控制
         private void btnLeftArmPowerOnEnable_Click(object sender, EventArgs e)
         {
@@ -88,7 +116,9 @@ namespace TestApp
             {
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable",true,false); 
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable",true,false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable",true, false);
                 adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_LeftArm", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_LeftWrist", true, false);     // 左臂腕关节自动控制（随动）
             }
         }
 
@@ -100,7 +130,9 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_LeftArm", false, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", false, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable", false, false);
-                
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_LeftWrist", false, false);     // 关闭左臂腕关节自动控制（随动）
+
             }
         }
 
@@ -186,6 +218,9 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Backward", false, false);
             }
         }
+
+
+
 
 
         // 大龙门-轴使能
@@ -412,5 +447,104 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_All_Reset", false, false);
             }
         }
+
+        // 左臂左电机使能
+        private void btnLeftArmLeftPowerEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", true, false);        // 左臂左电机单轴控制标志位置true
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_LeftArm_Left", true, false);        // 左臂左电机单轴控制标志位置true
+            }
+        }
+
+        // 左臂左电机失能
+        private void btnLeftArmLeftPowerDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", false, false);        // 左臂左电机单轴控制标志位置false
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_LeftArm_Left", false, false);        // 左臂左电机单轴控制标志位置false
+            }
+        }
+
+        //左臂左慢速Jog正
+        private void btnLeftArmLeftJogSlowP_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", true, false);        
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", true, false);        
+            }
+        }
+        private void btnLeftArmLeftJogSlowP_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", false, false);        
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", false, false);        
+            }
+
+        }
+
+        //左臂左慢速Jog反
+        private void btnLeftArmLeftJogSlowN_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", true, false);        
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", true, false);        
+            }
+        }
+        private void btnLeftArmLeftJogSlowN_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", false, false);        
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", false, false);        
+            }
+        }
+
+        // 左臂左快速Jog正
+        private void btnLeftArmLeftJogFastP_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Motor.bJogFast", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", true, false);
+            }
+        }
+        private void btnLeftArmLeftJogFastP_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Motor.bJogFast", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogP", false, false);
+            }
+        }
+
+
+        // 左臂左快速Jog负
+        private void btnLeftArmLeftJogFastN_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Motor.bJogFast", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", true, false);
+            }
+        }
+        private void btnLeftArmLeftJogFastN_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Motor.bJogFast", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", false, false);
+            }
+        }
     }
 }
+

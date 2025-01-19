@@ -8,7 +8,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Init();
+      <ST><![CDATA[
 
 //所有Axis上电
 IF bAxis_All_Enable THEN
@@ -17,12 +17,14 @@ IF bAxis_All_Enable THEN
 	END_FOR
 END_IF
 
+//所有Axis下电
 IF bAxis_All_Disable THEN
 	FOR i:=1 TO nAxisNum DO
 		aAxis_All_Enable_Group[i]^:=FALSE;
 	END_FOR
 END_IF
 
+//所有轴清除故障
 IF bAxis_All_Reset THEN
 	FOR i:=1 TO nAxisNum DO
 		aAxis_All_Reset_Group[i]^:=TRUE;
@@ -38,10 +40,12 @@ END_IF
     <LineIds Name="AllAxisCtrl">
       <LineId Id="6" Count="4" />
       <LineId Id="22" Count="2" />
+      <LineId Id="77" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="54" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="37" Count="2" />
+      <LineId Id="78" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="44" Count="0" />

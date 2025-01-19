@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisJog" Id="{74d5a483-6847-47e3-a03b-541646338622}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisJog
+VAR
+	lrJogSpeed	: POINTER TO LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// 快速Jog速度设定
+IF bJogFast THEN
+	lrJogSpeed := ADR(aAxis_Jog_Speed[1]);
+ELSE
+	lrJogSpeed := ADR(aAxis_Jog_Speed[0]);
+END_IF
+
+
+IF bManualCtrl_Part_LeftArm_Left THEN
+
+	axis_LeftArm_Left_Jog(
+		Axis:= axis_LeftArm_Left, 
+		JogForward:= bAxis_LeftArm_Left_JogP, 
+		JogBackwards:= bAxis_LeftArm_Left_JogN, 
+		Mode:= , 
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="AxisJog">
+      <LineId Id="71" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="67" Count="3" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="46" Count="14" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

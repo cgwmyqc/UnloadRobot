@@ -55,6 +55,9 @@
     <Compile Include="POUs\ArmMove.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\AxisJog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\AxisPowerOn.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -71,9 +74,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\Init.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Serial\BackgroundSerialCtrl.TcPOU">
