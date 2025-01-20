@@ -5,37 +5,319 @@
 VAR
 	nSpeed_MoveAbs						:LREAL:=3;
 	
-	nTargetPos_LeftArm_Left				:LREAL;
-	
+	nTargetPos_MoveAbs								:LREAL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-IF bManualCtrl_Part_LeftArm_Left THEN
-axis_LeftArm_Left_MoveAbs(
-	Axis:= axis_LeftArm_Left, 
-	Execute:= bAxis_LeftArm_Left_MoveAbs, 
-	Position:= nTargetPos_LeftArm_Left, 
-	Velocity:= nSpeed_MoveAbs, 
-	Acceleration:= , 
-	Deceleration:= , 
-	Jerk:= , 
-	BufferMode:= , 
-	Options:= , 
-	Done=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );	
+// LeftArm_Left_MoveAbs
+IF bManualCtrl_Part_LeftArm_Left THEN					
+	axis_LeftArm_Left_MoveAbs(
+		Axis:= axis_LeftArm_Left, 
+		Execute:= bAxis_LeftArm_Left_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
 END_IF
+
+// LeftArm_Right_MoveAbs
+IF bManualCtrl_Part_LeftArm_Right THEN					
+	axis_LeftArm_Right_MoveAbs(
+		Axis:= axis_LeftArm_Right, 
+		Execute:= bAxis_LeftArm_Right_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// LeftArm_Wrist_MoveAbs
+IF bManualCtrl_Part_LeftArm_Wrist THEN					
+	axis_LeftArm_Wrist_MoveAbs(
+		Axis:= axis_LeftArm_Wrist, 
+		Execute:= bAxis_LeftArm_Wrist_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// LeftArm_Lift_MoveAbs
+IF bManualCtrl_Part_LeftArm_Lift THEN					
+	axis_LeftArm_Lift_MoveAbs(
+		Axis:= axis_LeftArm_Lift, 
+		Execute:= bAxis_LeftArm_Lift_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+
+// RightArm_Left_MoveAbs
+IF bManualCtrl_Part_RightArm_Left THEN					
+	axis_RightArm_Left_MoveAbs(
+		Axis:= axis_RightArm_Left, 
+		Execute:= bAxis_RightArm_Left_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+// RightArm_Right_MoveAbs
+IF bManualCtrl_Part_RightArm_Right THEN					
+	axis_RightArm_Right_MoveAbs(
+		Axis:= axis_RightArm_Right, 
+		Execute:= bAxis_RightArm_Right_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// RightArm_Wrist_MoveAbs
+IF bManualCtrl_Part_RightArm_Wrist THEN					
+	axis_RightArm_Wrist_MoveAbs(
+		Axis:= axis_RightArm_Wrist, 
+		Execute:= bAxis_RightArm_Wrist_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// RightArm_Lift_MoveAbs
+IF bManualCtrl_Part_RightArm_Lift THEN					
+	axis_RightArm_Lift_MoveAbs(
+		Axis:= axis_RightArm_Lift, 
+		Execute:= bAxis_RightArm_Lift_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// BigGate_Left_MoveAbs
+IF bManualCtrl_Part_BigGate_Left THEN					
+	axis_BigGate_Left_MoveAbs(
+		Axis:= axis_BigGate_Left, 
+		Execute:= bAxis_BigGate_Left_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+// BigGate_Right_MoveAbs
+IF bManualCtrl_Part_BigGate_Right THEN					
+	axis_BigGate_Right_MoveAbs(
+		Axis:= axis_BigGate_Right, 
+		Execute:= bAxis_BigGate_Right_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+// SmallGate_Left_MoveAbs
+IF bManualCtrl_Part_SmallGate_Left THEN					
+	axis_SmallGate_Left_MoveAbs(
+		Axis:= axis_SmallGate_Left, 
+		Execute:= bAxis_SmallGate_Left_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+// SmallGate_Right_MoveAbs
+IF bManualCtrl_Part_SmallGate_Right THEN					
+	axis_SmallGate_Right_MoveAbs(
+		Axis:= axis_SmallGate_Right, 
+		Execute:= bAxis_SmallGate_Right_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
+// BackGate_Left_MoveAbs
+IF bManualCtrl_Part_BackGate_Left THEN					
+	axis_BackGate_Left_MoveAbs(
+		Axis:= axis_BackGate_Left, 
+		Execute:= bAxis_BackGate_Left_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+// BackGate_Right_MoveAbs
+IF bManualCtrl_Part_BackGate_Right THEN					
+	axis_BackGate_Right_MoveAbs(
+		Axis:= axis_BackGate_Right, 
+		Execute:= bAxis_BackGate_Right_MoveAbs, 
+		Position:= nTargetPos_MoveAbs, 
+		Velocity:= nSpeed_MoveAbs, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );	
+END_IF
+
+
 ]]></ST>
     </Implementation>
     <LineIds Name="AxisAbs">
+      <LineId Id="56" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="28" Count="14" />
       <LineId Id="26" Count="1" />
+      <LineId Id="57" Count="19" />
+      <LineId Id="78" Count="19" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="99" Count="19" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="119" Count="83" />
+      <LineId Id="204" Count="80" />
+      <LineId Id="286" Count="40" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="203" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

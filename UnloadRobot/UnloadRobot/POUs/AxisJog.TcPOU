@@ -14,7 +14,7 @@ ELSE
 	lrJogSpeed := ADR(aAxis_Jog_Speed[0]);
 END_IF
 
-
+// LeftArm_Left_Jog
 IF bManualCtrl_Part_LeftArm_Left THEN
 
 	axis_LeftArm_Left_Jog(
@@ -36,6 +36,301 @@ IF bManualCtrl_Part_LeftArm_Left THEN
 
 END_IF
 
+// LeftArm_Right_Jog
+IF bManualCtrl_Part_LeftArm_Right THEN
+
+	axis_LeftArm_Right_Jog(
+		Axis:= axis_LeftArm_Right, 
+		JogForward:= bAxis_LeftArm_Right_JogP , 			
+		JogBackwards:= bAxis_LeftArm_Right_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// LeftArm_Wrist_Jog
+IF bManualCtrl_Part_LeftArm_Wrist THEN
+
+	axis_LeftArm_Right_Jog(
+		Axis:= axis_LeftArm_Wrist, 
+		JogForward:= bAxis_LeftArm_Wrist_JogP , 			
+		JogBackwards:= bAxis_LeftArm_Wrist_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+// LeftArm_Lift_Jog
+IF bManualCtrl_Part_LeftArm_Lift THEN
+
+	axis_LeftArm_Lift_Jog(
+		Axis:= axis_LeftArm_Lift, 
+		JogForward:= bAxis_LeftArm_Lift_JogP , 			
+		JogBackwards:= bAxis_LeftArm_Lift_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+
+// RightArm_Left_Jog
+IF bManualCtrl_Part_RightArm_Left THEN
+
+	axis_RightArm_Left_Jog(
+		Axis:= axis_RightArm_Left, 
+		JogForward:= bAxis_RightArm_Left_JogP , 			// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		JogBackwards:= bAxis_RightArm_Left_JogN, 		// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// RightArm_Right_Jog
+IF bManualCtrl_Part_RightArm_Right THEN
+
+	axis_RightArm_Right_Jog(
+		Axis:= axis_RightArm_Right, 
+		JogForward:= bAxis_RightArm_Right_JogP , 			
+		JogBackwards:= bAxis_RightArm_Right_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// RightArm_Wrist_Jog
+IF bManualCtrl_Part_RightArm_Wrist THEN
+
+	axis_RightArm_Right_Jog(
+		Axis:= axis_RightArm_Wrist, 
+		JogForward:= bAxis_RightArm_Wrist_JogP , 			
+		JogBackwards:= bAxis_RightArm_Wrist_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+// RightArm_Lift_Jog
+IF bManualCtrl_Part_RightArm_Lift THEN
+
+	axis_RightArm_Lift_Jog(
+		Axis:= axis_RightArm_Lift, 
+		JogForward:= bAxis_RightArm_Lift_JogP , 			
+		JogBackwards:= bAxis_RightArm_Lift_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+// BigGate_Left_Jog
+IF bManualCtrl_Part_BigGate_Left THEN
+
+	axis_BigGate_Left_Jog(
+		Axis:= axis_BigGate_Left, 
+		JogForward:= bAxis_BigGate_Left_JogP , 			// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		JogBackwards:= bAxis_BigGate_Left_JogN, 		// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// BigGate_Right_Jog
+IF bManualCtrl_Part_BigGate_Right THEN
+
+	axis_BigGate_Right_Jog(
+		Axis:= axis_BigGate_Right, 
+		JogForward:= bAxis_BigGate_Right_JogP , 			
+		JogBackwards:= bAxis_BigGate_Right_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+// SmallGate_Left_Jog
+IF bManualCtrl_Part_SmallGate_Left THEN
+
+	axis_SmallGate_Left_Jog(
+		Axis:= axis_SmallGate_Left, 
+		JogForward:= bAxis_SmallGate_Left_JogP , 			// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		JogBackwards:= bAxis_SmallGate_Left_JogN, 		// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// SmallGate_Right_Jog
+IF bManualCtrl_Part_SmallGate_Right THEN
+
+	axis_SmallGate_Right_Jog(
+		Axis:= axis_SmallGate_Right, 
+		JogForward:= bAxis_SmallGate_Right_JogP , 			
+		JogBackwards:= bAxis_SmallGate_Right_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
+
+// BackGate_Left_Jog
+IF bManualCtrl_Part_BackGate_Left THEN
+
+	axis_BackGate_Left_Jog(
+		Axis:= axis_BackGate_Left, 
+		JogForward:= bAxis_BackGate_Left_JogP , 			// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		JogBackwards:= bAxis_BackGate_Left_JogN, 		// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+// BackGate_Right_Jog
+IF bManualCtrl_Part_BackGate_Right THEN
+
+	axis_BackGate_Right_Jog(
+		Axis:= axis_BackGate_Right, 
+		JogForward:= bAxis_BackGate_Right_JogP , 			
+		JogBackwards:= bAxis_BackGate_Right_JogN, 		
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
+		Position:= , 
+		Velocity:= lrJogSpeed^, 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		Done=> , 
+		Busy=> , 
+		Active=> , 
+		CommandAborted=> , 
+		Error=> , 
+		ErrorID=> );
+
+END_IF
+
+
 ]]></ST>
     </Implementation>
     <LineIds Name="AxisJog">
@@ -49,7 +344,18 @@ END_IF
       <LineId Id="25" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="26" Count="0" />
+      <LineId Id="96" Count="0" />
       <LineId Id="23" Count="0" />
+      <LineId Id="76" Count="19" />
+      <LineId Id="98" Count="20" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="120" Count="22" />
+      <LineId Id="144" Count="90" />
+      <LineId Id="236" Count="44" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="281" Count="89" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="119" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

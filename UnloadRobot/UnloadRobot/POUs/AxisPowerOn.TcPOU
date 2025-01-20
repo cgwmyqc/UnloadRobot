@@ -119,7 +119,7 @@ axis_RightArm_Wrist_Power(
 	Override:= , 
 	BufferMode:= , 
 	Options:= , 
-	Status=> , 
+	Status=> axis_RightArm_Wrist_Power_Output.Done, 
 	Busy=> , 
 	Error=> , 
 	ErrorID=> );

@@ -3,30 +3,18 @@
   <POU Name="Gate_Small_Move" Id="{88f5fbeb-adda-460e-b025-9b481bebc10d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Gate_Small_Move
 VAR
-	smallGateGearIn				:MC_GearInDyn;			// 大龙门电子齿轮，LeftAxis为Master
-	smallGateLeftAxisJog		:MC_Jog;				// 大龙门左轴(电子齿轮的Master轴)MC_Jog
+	smallGateGearIn				:MC_GearIn;				// 小龙门电子齿轮，LeftAxis为Master
+	smallGateGearOut			:MC_GearOut;			// 小龙门电子齿轮取消啮合
+	smallGateLeftAxisJog		:MC_Jog;				// 小龙门左轴(电子齿轮的Master轴)MC_Jog
+	
+	// 默认为啮合状态，当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_SmallGate_Left为true
+	//或bManualCtrl_Part_SmallGate_Right为True，会把此变量置false
+	bSmallGate_Gearin_do		:BOOL:=TRUE;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[smallGateGearIn(
-	Master:= axis_SmallGate_Left, 
-	Slave:= axis_SmallGate_Right, 
-	Enable:= TRUE, 
-	GearRatio:= -1.0, 
-	Acceleration:= , 
-	Deceleration:= , 
-	Jerk:= , 
-	BufferMode:= , 
-	Options:= , 
-	InGear=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
-	
-
-smallGateLeftAxisJog(
+      <ST><![CDATA[smallGateLeftAxisJog(
 	Axis:= axis_SmallGate_Left, 
 	JogForward:= bSmallGate_Down, 
 	JogBackwards:= bSmallGate_Up, 
@@ -41,13 +29,50 @@ smallGateLeftAxisJog(
 	Active=> , 
 	CommandAborted=> , 
 	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+
+	
+smallGateGearIn(
+	Master:= axis_SmallGate_Left, 
+	Slave:= axis_SmallGate_Right, 
+	Execute:= bSmallGate_Gearin_do, 
+	RatioNumerator:= -1, 
+	RatioDenominator:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+smallGateGearOut(
+	Slave:= axis_SmallGate_Right, 
+	Execute:= NOT bSmallGate_Gearin_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );	
+
+]]></ST>
     </Implementation>
     <LineIds Name="Gate_Small_Move">
-      <LineId Id="11" Count="14" />
+      <LineId Id="74" Count="14" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="113" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="89" Count="15" />
       <LineId Id="26" Count="0" />
-      <LineId Id="28" Count="15" />
+      <LineId Id="114" Count="1" />
+      <LineId Id="106" Count="6" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="28" Count="0" />
       <LineId Id="27" Count="0" />
     </LineIds>
   </POU>

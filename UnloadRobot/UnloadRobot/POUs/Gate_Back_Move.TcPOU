@@ -4,32 +4,18 @@
     <Declaration><![CDATA[PROGRAM Gate_Back_Move
 VAR
 	
-	backGateGearIn		:MC_GearInDyn;
-	backGateLeftAxisJog :MC_Jog;
+	backGateGearIn					:MC_GearIn;
+	backGateGearOut					:MC_GearOut;
+	                    			
+	backGateLeftAxisJog 			:MC_Jog;
+	                    			
+	bBackGate_Gearin_do				:BOOL:=TRUE;
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* 后龙门比较特殊，不是和大小龙门结构不一样，GearRatio需要测试*)
 
-backGateGearIn(
-	Master:= axis_BackGate_Left, 
-	Slave:= axis_BackGate_Right, 
-	Enable:= TRUE, 
-	GearRatio:= 1, 
-	Acceleration:= , 
-	Deceleration:= , 
-	Jerk:= , 
-	BufferMode:= , 
-	Options:= , 
-	InGear=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
-	
-	
 backGateLeftAxisJog(
 	Axis:= axis_BackGate_Left, 
 	JogForward:= bBackGate_Up, 
@@ -45,14 +31,49 @@ backGateLeftAxisJog(
 	Active=> , 
 	CommandAborted=> , 
 	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+
+	
+backGateGearIn(
+	Master:= axis_BackGate_Left, 
+	Slave:= axis_BackGate_Right, 
+	Execute:= bBackGate_GearIn_do, 
+	RatioNumerator:= 1, 
+	RatioDenominator:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+backGateGearOut(
+	Slave:= axis_BackGate_Right, 
+	Execute:= NOT bBackGate_GearIn_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );	
+]]></ST>
     </Implementation>
     <LineIds Name="Gate_Back_Move">
-      <LineId Id="43" Count="1" />
-      <LineId Id="10" Count="14" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="58" Count="14" />
+      <LineId Id="57" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="25" Count="1" />
-      <LineId Id="28" Count="14" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="73" Count="15" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="90" Count="8" />
+      <LineId Id="89" Count="0" />
       <LineId Id="27" Count="0" />
     </LineIds>
   </POU>

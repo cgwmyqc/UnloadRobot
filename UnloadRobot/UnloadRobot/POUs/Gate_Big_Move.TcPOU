@@ -3,29 +3,18 @@
   <POU Name="Gate_Big_Move" Id="{d13f1184-948a-47c6-a403-9da76bad7ac5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Gate_Big_Move
 VAR
-	bigGateGearIn			:MC_GearInDyn;			// 大龙门电子齿轮，LeftAxis为Master
+	bigGateGearIn			:MC_GearIn;				// 大龙门电子齿轮，LeftAxis为Master
+	bigGateGearOut			:MC_GearOut;			// 大龙门电子齿轮取消啮合
 	bigGateLeftAxisJog		:MC_Jog;				// 大龙门左轴(电子齿轮的Master轴)MC_Jog
+	
+	// 当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_BigGate_Left或bManualCtrl_Part_BigGate_Right为True，会把此变量置false
+	bBigGate_Gearin_do				:BOOL:=TRUE;			
+
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[bigGateGearIn(
-	Master:= axis_BigGate_Left, 
-	Slave:= axis_BigGate_Right, 
-	Enable:= TRUE, 
-	GearRatio:= -1.0, 
-	Acceleration:= , 
-	Deceleration:= , 
-	Jerk:= , 
-	BufferMode:= , 
-	Options:= , 
-	InGear=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );
-
-	
+      <ST><![CDATA[	
 bigGateLeftAxisJog(
 	Axis:= axis_BigGate_Left, 
 	JogForward:= bBigGate_Up, 
@@ -41,15 +30,46 @@ bigGateLeftAxisJog(
 	Active=> , 
 	CommandAborted=> , 
 	Error=> , 
+	ErrorID=> );
+
+
+bigGateGearIn(
+	Master:= axis_BigGate_Left, 
+	Slave:= axis_BigGate_Right , 
+	Execute:= bBigGate_Gearin_do, 
+	RatioNumerator:=-1 , 
+	RatioDenominator:=1 , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+bigGateGearOut(
+	Slave:=axis_BigGate_Right , 
+	Execute:= NOT bBigGate_Gearin_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
 	ErrorID=> );]]></ST>
     </Implementation>
     <LineIds Name="Gate_Big_Move">
-      <LineId Id="49" Count="14" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="64" Count="0" />
       <LineId Id="31" Count="0" />
       <LineId Id="33" Count="14" />
       <LineId Id="32" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="125" Count="17" />
+      <LineId Id="150" Count="1" />
+      <LineId Id="143" Count="6" />
+      <LineId Id="124" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

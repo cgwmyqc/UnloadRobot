@@ -6,9 +6,194 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[axis_LeftArm_Left_McStop(
+      <ST><![CDATA[// LeftArm_Left_McStop
+axis_LeftArm_Left_McStop(
 	Axis:= axis_LeftArm_Left, 
 	Execute:= bAxis_LeftArm_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// LeftArm_Right_McStop
+axis_LeftArm_Right_McStop(
+	Axis:= axis_LeftArm_Right, 
+	Execute:= bAxis_LeftArm_Right_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// LeftArm_Wrist_McStop	
+axis_LeftArm_Wrist_McStop(
+	Axis:= axis_LeftArm_Wrist, 
+	Execute:= bAxis_LeftArm_Wrist_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// LeftArm_Lift_McStop		
+axis_LeftArm_Lift_McStop(
+	Axis:= axis_LeftArm_Lift, 
+	Execute:= bAxis_LeftArm_Lift_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+	
+// RightArm_Left_McStop
+axis_RightArm_Left_McStop(
+	Axis:= axis_RightArm_Left, 
+	Execute:= bAxis_RightArm_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// RightArm_Right_McStop
+axis_RightArm_Right_McStop(
+	Axis:= axis_RightArm_Right, 
+	Execute:= bAxis_RightArm_Right_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// RightArm_Wrist_McStop	
+axis_RightArm_Wrist_McStop(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= bAxis_RightArm_Wrist_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// RightArm_Lift_McStop		
+axis_RightArm_Lift_McStop(
+	Axis:= axis_RightArm_Lift, 
+	Execute:= bAxis_RightArm_Lift_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// BigGate_Left_McStop	
+axis_BigGate_Left_McStop(
+	Axis:= axis_BigGate_Left, 
+	Execute:= bAxis_BigGate_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// BigGate_Right_McStop
+axis_BigGate_Right_McStop(
+	Axis:= axis_BigGate_Right, 
+	Execute:= bAxis_BigGate_Right_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// SmallGate_Left_McStop	
+axis_SmallGate_Left_McStop(
+	Axis:= axis_SmallGate_Left, 
+	Execute:= bAxis_SmallGate_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// SmallGate_Right_McStop
+axis_SmallGate_Right_McStop(
+	Axis:= axis_SmallGate_Right, 
+	Execute:= bAxis_SmallGate_Right_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+// BackGate_Left_McStop	
+axis_BackGate_Left_McStop(
+	Axis:= axis_BackGate_Left, 
+	Execute:= bAxis_BackGate_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// BackGate_Right_McStop
+axis_BackGate_Right_McStop(
+	Axis:= axis_BackGate_Right, 
+	Execute:= bAxis_BackGate_Right_McStop, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -20,8 +205,33 @@ END_VAR
 	ErrorID=> );]]></ST>
     </Implementation>
     <LineIds Name="AxisStop">
+      <LineId Id="67" Count="0" />
       <LineId Id="17" Count="10" />
       <LineId Id="5" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="30" Count="10" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="43" Count="10" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="56" Count="10" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="75" Count="53" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="130" Count="1" />
+      <LineId Id="133" Count="24" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="160" Count="25" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="186" Count="1" />
+      <LineId Id="189" Count="25" />
+      <LineId Id="188" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

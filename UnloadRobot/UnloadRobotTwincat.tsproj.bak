@@ -3893,7 +3893,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{4AAABF4F-C2B6-B3E8-C2F8-F5CC9C317E54}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{F4697B59-CDE2-F69E-6781-E305CD385C00}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
