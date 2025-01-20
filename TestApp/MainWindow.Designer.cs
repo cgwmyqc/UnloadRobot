@@ -108,10 +108,10 @@ namespace TestApp
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.labelLeftArmLeftActVelo = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnLeftArmLeftMoveAbsStop = new System.Windows.Forms.Button();
+            this.btnLeftArmLeftMoveAbsStart = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxLeftArmLeftMoveAbsPos = new System.Windows.Forms.TextBox();
             this.labelLeftArmLeftActPos = new System.Windows.Forms.Label();
             this.btnLeftArmLeftJogSlowN = new System.Windows.Forms.Button();
             this.btnLeftArmLeftJogSlowP = new System.Windows.Forms.Button();
@@ -121,6 +121,60 @@ namespace TestApp
             this.btnLeftArmLeftPowerEnable = new System.Windows.Forms.Button();
             this.btnLeftArmLeftJogFastN = new System.Windows.Forms.Button();
             this.btnLeftArmLeftJogFastP = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnLeftArmRightMoveAbsStop = new System.Windows.Forms.Button();
+            this.btnLeftArmRightMoveAbsStart = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBoxLeftArmRightMoveAbsPos = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnLeftArmRightJogSlowN = new System.Windows.Forms.Button();
+            this.btnLeftArmRightJogSlowP = new System.Windows.Forms.Button();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.btnLeftArmRightPowerDisable = new System.Windows.Forms.Button();
+            this.btnLeftArmRightPowerEnable = new System.Windows.Forms.Button();
+            this.btnLeftArmRightJogFastN = new System.Windows.Forms.Button();
+            this.btnLeftArmRightJogFastP = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -141,6 +195,9 @@ namespace TestApp
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -1126,6 +1183,9 @@ namespace TestApp
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox11);
+            this.tabPage2.Controls.Add(this.groupBox10);
+            this.tabPage2.Controls.Add(this.groupBox9);
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Location = new System.Drawing.Point(8, 33);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(6);
@@ -1142,10 +1202,10 @@ namespace TestApp
             this.groupBox8.Controls.Add(this.label14);
             this.groupBox8.Controls.Add(this.label13);
             this.groupBox8.Controls.Add(this.labelLeftArmLeftActVelo);
-            this.groupBox8.Controls.Add(this.button11);
-            this.groupBox8.Controls.Add(this.button10);
+            this.groupBox8.Controls.Add(this.btnLeftArmLeftMoveAbsStop);
+            this.groupBox8.Controls.Add(this.btnLeftArmLeftMoveAbsStart);
             this.groupBox8.Controls.Add(this.label11);
-            this.groupBox8.Controls.Add(this.textBox2);
+            this.groupBox8.Controls.Add(this.textBoxLeftArmLeftMoveAbsPos);
             this.groupBox8.Controls.Add(this.labelLeftArmLeftActPos);
             this.groupBox8.Controls.Add(this.btnLeftArmLeftJogSlowN);
             this.groupBox8.Controls.Add(this.btnLeftArmLeftJogSlowP);
@@ -1157,7 +1217,7 @@ namespace TestApp
             this.groupBox8.Controls.Add(this.btnLeftArmLeftJogFastP);
             this.groupBox8.Font = new System.Drawing.Font("钉钉进步体", 10F);
             this.groupBox8.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.groupBox8.Location = new System.Drawing.Point(716, 105);
+            this.groupBox8.Location = new System.Drawing.Point(28, 22);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(6);
@@ -1210,29 +1270,33 @@ namespace TestApp
             this.labelLeftArmLeftActVelo.TabIndex = 19;
             this.labelLeftArmLeftActVelo.Text = "0.00";
             // 
-            // button11
+            // btnLeftArmLeftMoveAbsStop
             // 
-            this.button11.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button11.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.button11.Location = new System.Drawing.Point(445, 322);
-            this.button11.Margin = new System.Windows.Forms.Padding(6);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(120, 60);
-            this.button11.TabIndex = 18;
-            this.button11.Text = "停止";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnLeftArmLeftMoveAbsStop.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmLeftMoveAbsStop.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmLeftMoveAbsStop.Location = new System.Drawing.Point(445, 322);
+            this.btnLeftArmLeftMoveAbsStop.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmLeftMoveAbsStop.Name = "btnLeftArmLeftMoveAbsStop";
+            this.btnLeftArmLeftMoveAbsStop.Size = new System.Drawing.Size(120, 60);
+            this.btnLeftArmLeftMoveAbsStop.TabIndex = 18;
+            this.btnLeftArmLeftMoveAbsStop.Text = "停止";
+            this.btnLeftArmLeftMoveAbsStop.UseVisualStyleBackColor = true;
+            this.btnLeftArmLeftMoveAbsStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftMoveAbsStop_MouseDown);
+            this.btnLeftArmLeftMoveAbsStop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftMoveAbsStop_MouseUp);
             // 
-            // button10
+            // btnLeftArmLeftMoveAbsStart
             // 
-            this.button10.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button10.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.button10.Location = new System.Drawing.Point(303, 322);
-            this.button10.Margin = new System.Windows.Forms.Padding(6);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(120, 60);
-            this.button10.TabIndex = 17;
-            this.button10.Text = "开始";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnLeftArmLeftMoveAbsStart.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmLeftMoveAbsStart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmLeftMoveAbsStart.Location = new System.Drawing.Point(303, 322);
+            this.btnLeftArmLeftMoveAbsStart.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmLeftMoveAbsStart.Name = "btnLeftArmLeftMoveAbsStart";
+            this.btnLeftArmLeftMoveAbsStart.Size = new System.Drawing.Size(120, 60);
+            this.btnLeftArmLeftMoveAbsStart.TabIndex = 17;
+            this.btnLeftArmLeftMoveAbsStart.Text = "开始";
+            this.btnLeftArmLeftMoveAbsStart.UseVisualStyleBackColor = true;
+            this.btnLeftArmLeftMoveAbsStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftMoveAbsStart_MouseDown);
+            this.btnLeftArmLeftMoveAbsStart.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftMoveAbsStart_MouseUp);
             // 
             // label11
             // 
@@ -1246,16 +1310,16 @@ namespace TestApp
             this.label11.TabIndex = 16;
             this.label11.Text = "位置:";
             // 
-            // textBox2
+            // textBoxLeftArmLeftMoveAbsPos
             // 
-            this.textBox2.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox2.Location = new System.Drawing.Point(125, 327);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 49);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "1.0-5.0";
+            this.textBoxLeftArmLeftMoveAbsPos.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxLeftArmLeftMoveAbsPos.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBoxLeftArmLeftMoveAbsPos.Location = new System.Drawing.Point(125, 327);
+            this.textBoxLeftArmLeftMoveAbsPos.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxLeftArmLeftMoveAbsPos.Name = "textBoxLeftArmLeftMoveAbsPos";
+            this.textBoxLeftArmLeftMoveAbsPos.Size = new System.Drawing.Size(150, 49);
+            this.textBoxLeftArmLeftMoveAbsPos.TabIndex = 15;
+            this.textBoxLeftArmLeftMoveAbsPos.Text = "0.00";
             // 
             // labelLeftArmLeftActPos
             // 
@@ -1264,9 +1328,9 @@ namespace TestApp
             this.labelLeftArmLeftActPos.ForeColor = System.Drawing.SystemColors.ControlText;
             this.labelLeftArmLeftActPos.Location = new System.Drawing.Point(101, 58);
             this.labelLeftArmLeftActPos.Name = "labelLeftArmLeftActPos";
-            this.labelLeftArmLeftActPos.Size = new System.Drawing.Size(180, 52);
+            this.labelLeftArmLeftActPos.Size = new System.Drawing.Size(122, 52);
             this.labelLeftArmLeftActPos.TabIndex = 14;
-            this.labelLeftArmLeftActPos.Text = "0.0000";
+            this.labelLeftArmLeftActPos.Text = "0.00";
             // 
             // btnLeftArmLeftJogSlowN
             // 
@@ -1375,6 +1439,693 @@ namespace TestApp
             this.btnLeftArmLeftJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftJogFastP_MouseDown);
             this.btnLeftArmLeftJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmLeftJogFastP_MouseUp);
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label8);
+            this.groupBox9.Controls.Add(this.label12);
+            this.groupBox9.Controls.Add(this.label16);
+            this.groupBox9.Controls.Add(this.label17);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightMoveAbsStop);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightMoveAbsStart);
+            this.groupBox9.Controls.Add(this.label18);
+            this.groupBox9.Controls.Add(this.textBoxLeftArmRightMoveAbsPos);
+            this.groupBox9.Controls.Add(this.label19);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightJogSlowN);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightJogSlowP);
+            this.groupBox9.Controls.Add(this.checkBox5);
+            this.groupBox9.Controls.Add(this.button6);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightPowerDisable);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightPowerEnable);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightJogFastN);
+            this.groupBox9.Controls.Add(this.btnLeftArmRightJogFastP);
+            this.groupBox9.Font = new System.Drawing.Font("钉钉进步体", 10F);
+            this.groupBox9.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupBox9.Location = new System.Drawing.Point(688, 22);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox9.Size = new System.Drawing.Size(590, 498);
+            this.groupBox9.TabIndex = 23;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "左臂右电机";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("钉钉进步体", 11F);
+            this.label8.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label8.Location = new System.Drawing.Point(400, 414);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 36);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Status: OK";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label12.Location = new System.Drawing.Point(324, 72);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 34);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "速度:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label16.Location = new System.Drawing.Point(14, 72);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(81, 34);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "位置:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label17.Location = new System.Drawing.Point(411, 58);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(122, 52);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "0.00";
+            // 
+            // btnLeftArmRightMoveAbsStop
+            // 
+            this.btnLeftArmRightMoveAbsStop.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightMoveAbsStop.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightMoveAbsStop.Location = new System.Drawing.Point(445, 322);
+            this.btnLeftArmRightMoveAbsStop.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightMoveAbsStop.Name = "btnLeftArmRightMoveAbsStop";
+            this.btnLeftArmRightMoveAbsStop.Size = new System.Drawing.Size(120, 60);
+            this.btnLeftArmRightMoveAbsStop.TabIndex = 18;
+            this.btnLeftArmRightMoveAbsStop.Text = "停止";
+            this.btnLeftArmRightMoveAbsStop.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightMoveAbsStart
+            // 
+            this.btnLeftArmRightMoveAbsStart.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightMoveAbsStart.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightMoveAbsStart.Location = new System.Drawing.Point(303, 322);
+            this.btnLeftArmRightMoveAbsStart.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightMoveAbsStart.Name = "btnLeftArmRightMoveAbsStart";
+            this.btnLeftArmRightMoveAbsStart.Size = new System.Drawing.Size(120, 60);
+            this.btnLeftArmRightMoveAbsStart.TabIndex = 17;
+            this.btnLeftArmRightMoveAbsStart.Text = "开始";
+            this.btnLeftArmRightMoveAbsStart.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label18.Location = new System.Drawing.Point(24, 330);
+            this.label18.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(89, 42);
+            this.label18.TabIndex = 16;
+            this.label18.Text = "位置:";
+            // 
+            // textBoxLeftArmRightMoveAbsPos
+            // 
+            this.textBoxLeftArmRightMoveAbsPos.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxLeftArmRightMoveAbsPos.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBoxLeftArmRightMoveAbsPos.Location = new System.Drawing.Point(125, 327);
+            this.textBoxLeftArmRightMoveAbsPos.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxLeftArmRightMoveAbsPos.Name = "textBoxLeftArmRightMoveAbsPos";
+            this.textBoxLeftArmRightMoveAbsPos.Size = new System.Drawing.Size(150, 49);
+            this.textBoxLeftArmRightMoveAbsPos.TabIndex = 15;
+            this.textBoxLeftArmRightMoveAbsPos.Text = "0.00";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label19.Location = new System.Drawing.Point(101, 58);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(122, 52);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "0.00";
+            // 
+            // btnLeftArmRightJogSlowN
+            // 
+            this.btnLeftArmRightJogSlowN.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightJogSlowN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightJogSlowN.Location = new System.Drawing.Point(211, 140);
+            this.btnLeftArmRightJogSlowN.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightJogSlowN.Name = "btnLeftArmRightJogSlowN";
+            this.btnLeftArmRightJogSlowN.Size = new System.Drawing.Size(172, 75);
+            this.btnLeftArmRightJogSlowN.TabIndex = 13;
+            this.btnLeftArmRightJogSlowN.Text = "慢速反转";
+            this.btnLeftArmRightJogSlowN.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightJogSlowP
+            // 
+            this.btnLeftArmRightJogSlowP.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightJogSlowP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightJogSlowP.Location = new System.Drawing.Point(20, 140);
+            this.btnLeftArmRightJogSlowP.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightJogSlowP.Name = "btnLeftArmRightJogSlowP";
+            this.btnLeftArmRightJogSlowP.Size = new System.Drawing.Size(172, 75);
+            this.btnLeftArmRightJogSlowP.TabIndex = 12;
+            this.btnLeftArmRightJogSlowP.Text = "慢速正转";
+            this.btnLeftArmRightJogSlowP.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.checkBox5.Location = new System.Drawing.Point(211, 411);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(161, 44);
+            this.checkBox5.TabIndex = 11;
+            this.checkBox5.Text = "标定使能";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button6.Location = new System.Drawing.Point(27, 400);
+            this.button6.Margin = new System.Windows.Forms.Padding(6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(172, 64);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "标定";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightPowerDisable
+            // 
+            this.btnLeftArmRightPowerDisable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightPowerDisable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightPowerDisable.Location = new System.Drawing.Point(404, 229);
+            this.btnLeftArmRightPowerDisable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightPowerDisable.Name = "btnLeftArmRightPowerDisable";
+            this.btnLeftArmRightPowerDisable.Size = new System.Drawing.Size(163, 75);
+            this.btnLeftArmRightPowerDisable.TabIndex = 7;
+            this.btnLeftArmRightPowerDisable.Text = "失能";
+            this.btnLeftArmRightPowerDisable.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightPowerEnable
+            // 
+            this.btnLeftArmRightPowerEnable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightPowerEnable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightPowerEnable.Location = new System.Drawing.Point(404, 140);
+            this.btnLeftArmRightPowerEnable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightPowerEnable.Name = "btnLeftArmRightPowerEnable";
+            this.btnLeftArmRightPowerEnable.Size = new System.Drawing.Size(163, 75);
+            this.btnLeftArmRightPowerEnable.TabIndex = 6;
+            this.btnLeftArmRightPowerEnable.Text = "使能";
+            this.btnLeftArmRightPowerEnable.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightJogFastN
+            // 
+            this.btnLeftArmRightJogFastN.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightJogFastN.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightJogFastN.Location = new System.Drawing.Point(211, 227);
+            this.btnLeftArmRightJogFastN.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightJogFastN.Name = "btnLeftArmRightJogFastN";
+            this.btnLeftArmRightJogFastN.Size = new System.Drawing.Size(172, 79);
+            this.btnLeftArmRightJogFastN.TabIndex = 5;
+            this.btnLeftArmRightJogFastN.Text = "快速反转";
+            this.btnLeftArmRightJogFastN.UseVisualStyleBackColor = true;
+            // 
+            // btnLeftArmRightJogFastP
+            // 
+            this.btnLeftArmRightJogFastP.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArmRightJogFastP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArmRightJogFastP.Location = new System.Drawing.Point(20, 227);
+            this.btnLeftArmRightJogFastP.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArmRightJogFastP.Name = "btnLeftArmRightJogFastP";
+            this.btnLeftArmRightJogFastP.Size = new System.Drawing.Size(172, 79);
+            this.btnLeftArmRightJogFastP.TabIndex = 4;
+            this.btnLeftArmRightJogFastP.Text = "快速正转";
+            this.btnLeftArmRightJogFastP.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label20);
+            this.groupBox10.Controls.Add(this.label21);
+            this.groupBox10.Controls.Add(this.label22);
+            this.groupBox10.Controls.Add(this.label23);
+            this.groupBox10.Controls.Add(this.button2);
+            this.groupBox10.Controls.Add(this.button3);
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Controls.Add(this.textBox2);
+            this.groupBox10.Controls.Add(this.label25);
+            this.groupBox10.Controls.Add(this.button4);
+            this.groupBox10.Controls.Add(this.button5);
+            this.groupBox10.Controls.Add(this.checkBox6);
+            this.groupBox10.Controls.Add(this.button9);
+            this.groupBox10.Controls.Add(this.button10);
+            this.groupBox10.Controls.Add(this.button11);
+            this.groupBox10.Controls.Add(this.button12);
+            this.groupBox10.Controls.Add(this.button19);
+            this.groupBox10.Font = new System.Drawing.Font("钉钉进步体", 10F);
+            this.groupBox10.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupBox10.Location = new System.Drawing.Point(1343, 22);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox10.Size = new System.Drawing.Size(590, 498);
+            this.groupBox10.TabIndex = 23;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "左臂腕电机";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("钉钉进步体", 11F);
+            this.label20.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label20.Location = new System.Drawing.Point(400, 414);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(167, 36);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Status: OK";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label21.Location = new System.Drawing.Point(324, 72);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 34);
+            this.label21.TabIndex = 21;
+            this.label21.Text = "速度:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label22.Location = new System.Drawing.Point(14, 72);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(81, 34);
+            this.label22.TabIndex = 20;
+            this.label22.Text = "位置:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label23.Location = new System.Drawing.Point(411, 58);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(122, 52);
+            this.label23.TabIndex = 19;
+            this.label23.Text = "0.00";
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button2.Location = new System.Drawing.Point(445, 322);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 60);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "停止";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button3.Location = new System.Drawing.Point(303, 322);
+            this.button3.Margin = new System.Windows.Forms.Padding(6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(120, 60);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "开始";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label24.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label24.Location = new System.Drawing.Point(24, 330);
+            this.label24.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(89, 42);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "位置:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox2.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox2.Location = new System.Drawing.Point(125, 327);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(150, 49);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.Text = "0.00";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label25.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label25.Location = new System.Drawing.Point(101, 58);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(122, 52);
+            this.label25.TabIndex = 14;
+            this.label25.Text = "0.00";
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button4.Location = new System.Drawing.Point(211, 140);
+            this.button4.Margin = new System.Windows.Forms.Padding(6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(172, 75);
+            this.button4.TabIndex = 13;
+            this.button4.Text = "慢速反转";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button5.Location = new System.Drawing.Point(20, 140);
+            this.button5.Margin = new System.Windows.Forms.Padding(6);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(172, 75);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "慢速正转";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.checkBox6.Location = new System.Drawing.Point(211, 411);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(161, 44);
+            this.checkBox6.TabIndex = 11;
+            this.checkBox6.Text = "标定使能";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button9.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button9.Location = new System.Drawing.Point(27, 400);
+            this.button9.Margin = new System.Windows.Forms.Padding(6);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(172, 64);
+            this.button9.TabIndex = 8;
+            this.button9.Text = "标定";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button10.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button10.Location = new System.Drawing.Point(404, 229);
+            this.button10.Margin = new System.Windows.Forms.Padding(6);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(163, 75);
+            this.button10.TabIndex = 7;
+            this.button10.Text = "失能";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button11.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button11.Location = new System.Drawing.Point(404, 140);
+            this.button11.Margin = new System.Windows.Forms.Padding(6);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(163, 75);
+            this.button11.TabIndex = 6;
+            this.button11.Text = "使能";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button12.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button12.Location = new System.Drawing.Point(211, 227);
+            this.button12.Margin = new System.Windows.Forms.Padding(6);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(172, 79);
+            this.button12.TabIndex = 5;
+            this.button12.Text = "快速反转";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // button19
+            // 
+            this.button19.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button19.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button19.Location = new System.Drawing.Point(20, 227);
+            this.button19.Margin = new System.Windows.Forms.Padding(6);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(172, 79);
+            this.button19.TabIndex = 4;
+            this.button19.Text = "快速正转";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.label26);
+            this.groupBox11.Controls.Add(this.label27);
+            this.groupBox11.Controls.Add(this.label28);
+            this.groupBox11.Controls.Add(this.label29);
+            this.groupBox11.Controls.Add(this.button20);
+            this.groupBox11.Controls.Add(this.button21);
+            this.groupBox11.Controls.Add(this.label30);
+            this.groupBox11.Controls.Add(this.textBox3);
+            this.groupBox11.Controls.Add(this.label31);
+            this.groupBox11.Controls.Add(this.button22);
+            this.groupBox11.Controls.Add(this.button25);
+            this.groupBox11.Controls.Add(this.checkBox7);
+            this.groupBox11.Controls.Add(this.button26);
+            this.groupBox11.Controls.Add(this.button27);
+            this.groupBox11.Controls.Add(this.button28);
+            this.groupBox11.Controls.Add(this.button30);
+            this.groupBox11.Controls.Add(this.button31);
+            this.groupBox11.Font = new System.Drawing.Font("钉钉进步体", 10F);
+            this.groupBox11.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupBox11.Location = new System.Drawing.Point(1975, 22);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox11.Size = new System.Drawing.Size(590, 498);
+            this.groupBox11.TabIndex = 24;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "左臂升电机";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("钉钉进步体", 11F);
+            this.label26.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label26.Location = new System.Drawing.Point(400, 414);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(167, 36);
+            this.label26.TabIndex = 22;
+            this.label26.Text = "Status: OK";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label27.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label27.Location = new System.Drawing.Point(324, 72);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(81, 34);
+            this.label27.TabIndex = 21;
+            this.label27.Text = "速度:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("钉钉进步体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label28.Location = new System.Drawing.Point(14, 72);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(81, 34);
+            this.label28.TabIndex = 20;
+            this.label28.Text = "位置:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label29.Location = new System.Drawing.Point(411, 58);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(122, 52);
+            this.label29.TabIndex = 19;
+            this.label29.Text = "0.00";
+            // 
+            // button20
+            // 
+            this.button20.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button20.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button20.Location = new System.Drawing.Point(445, 322);
+            this.button20.Margin = new System.Windows.Forms.Padding(6);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(120, 60);
+            this.button20.TabIndex = 18;
+            this.button20.Text = "停止";
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button21.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button21.Location = new System.Drawing.Point(303, 322);
+            this.button21.Margin = new System.Windows.Forms.Padding(6);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(120, 60);
+            this.button21.TabIndex = 17;
+            this.button21.Text = "开始";
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label30.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label30.Location = new System.Drawing.Point(24, 330);
+            this.label30.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(89, 42);
+            this.label30.TabIndex = 16;
+            this.label30.Text = "位置:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox3.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.textBox3.Location = new System.Drawing.Point(125, 327);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(150, 49);
+            this.textBox3.TabIndex = 15;
+            this.textBox3.Text = "0.00";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("钉钉进步体", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label31.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label31.Location = new System.Drawing.Point(101, 58);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(122, 52);
+            this.label31.TabIndex = 14;
+            this.label31.Text = "0.00";
+            // 
+            // button22
+            // 
+            this.button22.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button22.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button22.Location = new System.Drawing.Point(211, 140);
+            this.button22.Margin = new System.Windows.Forms.Padding(6);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(172, 75);
+            this.button22.TabIndex = 13;
+            this.button22.Text = "慢速反转";
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // button25
+            // 
+            this.button25.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button25.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button25.Location = new System.Drawing.Point(20, 140);
+            this.button25.Margin = new System.Windows.Forms.Padding(6);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(172, 75);
+            this.button25.TabIndex = 12;
+            this.button25.Text = "慢速正转";
+            this.button25.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox7.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.checkBox7.Location = new System.Drawing.Point(211, 411);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(6);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(161, 44);
+            this.checkBox7.TabIndex = 11;
+            this.checkBox7.Text = "标定使能";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // button26
+            // 
+            this.button26.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button26.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button26.Location = new System.Drawing.Point(27, 400);
+            this.button26.Margin = new System.Windows.Forms.Padding(6);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(172, 64);
+            this.button26.TabIndex = 8;
+            this.button26.Text = "标定";
+            this.button26.UseVisualStyleBackColor = true;
+            // 
+            // button27
+            // 
+            this.button27.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button27.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button27.Location = new System.Drawing.Point(404, 229);
+            this.button27.Margin = new System.Windows.Forms.Padding(6);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(163, 75);
+            this.button27.TabIndex = 7;
+            this.button27.Text = "失能";
+            this.button27.UseVisualStyleBackColor = true;
+            // 
+            // button28
+            // 
+            this.button28.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button28.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button28.Location = new System.Drawing.Point(404, 140);
+            this.button28.Margin = new System.Windows.Forms.Padding(6);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(163, 75);
+            this.button28.TabIndex = 6;
+            this.button28.Text = "使能";
+            this.button28.UseVisualStyleBackColor = true;
+            // 
+            // button30
+            // 
+            this.button30.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button30.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button30.Location = new System.Drawing.Point(211, 227);
+            this.button30.Margin = new System.Windows.Forms.Padding(6);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(172, 79);
+            this.button30.TabIndex = 5;
+            this.button30.Text = "快速反转";
+            this.button30.UseVisualStyleBackColor = true;
+            // 
+            // button31
+            // 
+            this.button31.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button31.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.button31.Location = new System.Drawing.Point(20, 227);
+            this.button31.Margin = new System.Windows.Forms.Padding(6);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(172, 79);
+            this.button31.TabIndex = 4;
+            this.button31.Text = "快速正转";
+            this.button31.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
@@ -1415,6 +2166,12 @@ namespace TestApp
             this.tabPage2.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1506,13 +2263,67 @@ namespace TestApp
         private System.Windows.Forms.Button btnLeftArmLeftJogFastP;
         private System.Windows.Forms.Label labelLeftArmLeftActPos;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox textBoxLeftArmLeftMoveAbsPos;
+        private System.Windows.Forms.Button btnLeftArmLeftMoveAbsStop;
+        private System.Windows.Forms.Button btnLeftArmLeftMoveAbsStart;
         private System.Windows.Forms.Label labelLeftArmLeftActVelo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnLeftArmRightMoveAbsStop;
+        private System.Windows.Forms.Button btnLeftArmRightMoveAbsStart;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBoxLeftArmRightMoveAbsPos;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnLeftArmRightJogSlowN;
+        private System.Windows.Forms.Button btnLeftArmRightJogSlowP;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnLeftArmRightPowerDisable;
+        private System.Windows.Forms.Button btnLeftArmRightPowerEnable;
+        private System.Windows.Forms.Button btnLeftArmRightJogFastN;
+        private System.Windows.Forms.Button btnLeftArmRightJogFastP;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button31;
     }
 }
 

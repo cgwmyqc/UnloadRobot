@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisAbs" Id="{e09c7cd3-7a67-4bf0-8215-dcda5e249eef}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisAbs
+VAR
+	nSpeed_MoveAbs						:LREAL:=3;
+	
+	nTargetPos_LeftArm_Left				:LREAL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF bManualCtrl_Part_LeftArm_Left THEN
+axis_LeftArm_Left_MoveAbs(
+	Axis:= axis_LeftArm_Left, 
+	Execute:= bAxis_LeftArm_Left_MoveAbs, 
+	Position:= nTargetPos_LeftArm_Left, 
+	Velocity:= nSpeed_MoveAbs, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="AxisAbs">
+      <LineId Id="25" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="28" Count="14" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

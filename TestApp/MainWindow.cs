@@ -448,6 +448,10 @@ namespace TestApp
             }
         }
 
+
+
+        /********************************************************************* 左臂左轴单轴手动控制 ***************************************************************************/
+
         // 左臂左电机使能
         private void btnLeftArmLeftPowerEnable_Click(object sender, EventArgs e)
         {
@@ -545,6 +549,59 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_JogN", false, false);
             }
         }
+
+
+        // 左臂左绝对位置运动
+        private void btnLeftArmLeftMoveAbsStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nLeftArm_Left_TargetPos = double.Parse(textBoxLeftArmLeftMoveAbsPos.Text);
+                    adsClient.WriteSymbol("AxisAbs.nTargetPos_LeftArm_Left", nLeftArm_Left_TargetPos, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_MoveAbs", true, false);
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+        private void btnLeftArmLeftMoveAbsStart_MouseUp(object sender, MouseEventArgs e)
+        {
+            adsClient.WriteSymbol("AxisAbs.nTargetPos_LeftArm_Left", 0, false);
+            adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_MoveAbs", false, false);
+        }
+
+
+        // 左臂左停止运动McStop
+        private void btnLeftArmLeftMoveAbsStop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_McStop", true, false);
+            }
+        }
+        private void btnLeftArmLeftMoveAbsStop_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_McStop", false, false);
+            }
+        }
+
+
+
+
+        /********************************************************************* 左臂右轴单轴手动控制 ***************************************************************************/
+
+
+
+
+
+
     }
 }
 

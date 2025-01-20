@@ -31,6 +31,12 @@
     <PouCall>
       <Name>AxisJog</Name>
     </PouCall>
+    <PouCall>
+      <Name>AxisAbs</Name>
+    </PouCall>
+    <PouCall>
+      <Name>AxisStop</Name>
+    </PouCall>
     <TaskFBGuid>{c1595f60-247e-4d18-9a51-0c48c26ce467}</TaskFBGuid>
     <Fb_init>{06bc8a1e-5d8a-4856-b4d9-40b8592fe8d3}</Fb_init>
     <Fb_exit>{59ce8e0d-74a4-413f-81f0-8fa82f7fdba1}</Fb_exit>

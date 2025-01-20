@@ -19,9 +19,9 @@ IF bManualCtrl_Part_LeftArm_Left THEN
 
 	axis_LeftArm_Left_Jog(
 		Axis:= axis_LeftArm_Left, 
-		JogForward:= bAxis_LeftArm_Left_JogP, 
-		JogBackwards:= bAxis_LeftArm_Left_JogN, 
-		Mode:= , 
+		JogForward:= bAxis_LeftArm_Left_JogP , 			// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		JogBackwards:= bAxis_LeftArm_Left_JogN, 		// 如果想ABS的时候按下JOG按键不停止ABS动作就加上后面的判断AND NOT axis_LeftArm_Left_MoveAbs.Active
+		Mode:= MC_JOGMODE_CONTINOUS, 					//需要设置为MC_JOGMODE_CONTINOUS下面的速度设定才有效
 		Position:= , 
 		Velocity:= lrJogSpeed^, 
 		Acceleration:= , 

@@ -1463,7 +1463,7 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="10" FastManual="10" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -3893,7 +3893,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{B5E37662-1ADC-9530-1DE8-3103C3C2BE29}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{4AAABF4F-C2B6-B3E8-C2F8-F5CC9C317E54}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

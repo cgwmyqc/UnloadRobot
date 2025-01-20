@@ -172,6 +172,67 @@ VAR_GLOBAL
 (*======================================== 机器人各轴 MC_Jog定义 End =====================================*)
 
 
+
+
+(*======================================== 机器人各轴 MC_MoveAbs定义 Start ==================================*)
+	
+	// 左臂电机
+	axis_LeftArm_Wrist_MoveAbs									:MC_MoveAbsolute;			//左臂_腕电机MoveAbs功能块	
+	axis_LeftArm_Left_MoveAbs									:MC_MoveAbsolute;			//左臂_左电机MoveAbs功能块
+	axis_LeftArm_Right_MoveAbs									:MC_MoveAbsolute;			//左臂_右电机MoveAbs功能块
+	axis_LeftArm_Lift_MoveAbs									:MC_MoveAbsolute;			//左臂_升电机MoveAbs功能块
+	                                                                                                
+	// 右臂电机                                                                                         
+	axis_RightArm_Wrist_MoveAbs									:MC_MoveAbsolute;			//右臂_腕电机MoveAbs功能块	
+	axis_RightArm_Left_MoveAbs									:MC_MoveAbsolute;			//右臂_左电机MoveAbs功能块
+	axis_RightArm_Right_MoveAbs									:MC_MoveAbsolute;			//右臂_右电机MoveAbs功能块
+	axis_RightArm_Lift_MoveAbs									:MC_MoveAbsolute;			//右臂_升电机MoveAbs功能块
+	                                                                                               
+	// 小龙门电机                                                                                        
+	axis_SmallGate_Left_MoveAbs									:MC_MoveAbsolute;			//小门_左电机MoveAbs功能块
+	axis_SmallGate_Right_MoveAbs								:MC_MoveAbsolute;			//小门_右电机MoveAbs功能块
+	                                                                                               
+	// 大龙门单电机                                                                                       
+	axis_BigGate_Left_MoveAbs									:MC_MoveAbsolute;			//大门_左电机MoveAbs功能块
+	axis_BigGate_Right_MoveAbs									:MC_MoveAbsolute;			//大门_右电机MoveAbs功能块
+	                                                                                               
+	// 后龙门单电机                                                                                      
+	axis_BackGate_Left_MoveAbs									:MC_MoveAbsolute;			//后门_左电机MoveAbs功能块
+	axis_BackGate_Right_MoveAbs									:MC_MoveAbsolute;			//后门_右电机MoveAbs功能块
+
+(*======================================== 机器人各轴 MC_MoveAbs定义 End =====================================*)
+
+
+
+
+
+(*======================================== 机器人各轴 MC_Stop定义 Start ==================================*)
+	
+	// 左臂电机
+	axis_LeftArm_Wrist_McStop									:MC_Stop;			//左臂_腕电机MC_Stop块	
+	axis_LeftArm_Left_McStop									:MC_Stop;			//左臂_左电机MC_Stop块
+	axis_LeftArm_Right_McStop									:MC_Stop;			//左臂_右电机MC_Stop块
+	axis_LeftArm_Lift_McStop									:MC_Stop;			//左臂_升电机MC_Stop块
+	                                                                                        
+	// 右臂电机                                                                                 
+	axis_RightArm_Wrist_McStop									:MC_Stop;			//右臂_腕电机MC_Stop块	
+	axis_RightArm_Left_McStop									:MC_Stop;			//右臂_左电机MC_Stop块
+	axis_RightArm_Right_McStop									:MC_Stop;			//右臂_右电机MC_Stop块
+	axis_RightArm_Lift_McStop									:MC_Stop;			//右臂_升电机MC_Stop块
+	                                                                                        
+	// 小龙门电机                                                                                
+	axis_SmallGate_Left_McStop									:MC_Stop;			//小门_左电机MC_Stop块
+	axis_SmallGate_Right_McStop									:MC_Stop;			//小门_右电机MC_Stop块
+	                                                                                        
+	// 大龙门单电机                                                                               
+	axis_BigGate_Left_McStop									:MC_Stop;			//大门_左电机MC_Stop块
+	axis_BigGate_Right_McStop									:MC_Stop;			//大门_右电机MC_Stop块
+	                                                                                        
+	// 后龙门单电机                                                                               
+	axis_BackGate_Left_McStop									:MC_Stop;			//后门_左电机MC_Stop块
+	axis_BackGate_Right_McStop									:MC_Stop;			//后门_右电机MC_Stop块
+
+(*======================================== 机器人各轴 Mc_Stop定义 End =====================================*)
 	
 
 END_VAR]]></Declaration>

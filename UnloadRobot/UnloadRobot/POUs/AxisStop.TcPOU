@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisStop" Id="{d8bac268-a103-4f37-a01b-e341c61b0e22}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisStop
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[axis_LeftArm_Left_McStop(
+	Axis:= axis_LeftArm_Left, 
+	Execute:= bAxis_LeftArm_Left_McStop, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+    <LineIds Name="AxisStop">
+      <LineId Id="17" Count="10" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

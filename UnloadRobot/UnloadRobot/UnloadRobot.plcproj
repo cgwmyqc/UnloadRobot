@@ -55,6 +55,9 @@
     <Compile Include="POUs\ArmMove.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\AxisAbs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\AxisJog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -62,6 +65,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\AxisReset.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\AxisStop.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Gate_Back_Move.TcPOU">

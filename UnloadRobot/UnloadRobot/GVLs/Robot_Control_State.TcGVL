@@ -139,6 +139,71 @@ VAR_GLOBAL
 
 
 
+(*======================================== 单电机调试MoveAbs标志位 End ========================================*)	
+	
+	// 左臂电机
+	bAxis_LeftArm_Wrist_MoveAbs									:BOOL;				//左臂_腕电机MoveAbs标志位	
+	bAxis_LeftArm_Left_MoveAbs									:BOOL;				//左臂_左电机MoveAbs标志位
+	bAxis_LeftArm_Right_MoveAbs									:BOOL;				//左臂_右电机MoveAbs标志位	
+	bAxis_LeftArm_Lift_MoveAbs									:BOOL;				//左臂_升电机MoveAbs标志位	
+                                                                                           
+	// 右臂电机                                                                                
+	bAxis_RightArm_Wrist_MoveAbs								:BOOL;				//右臂_腕电机MoveAbs标志位	
+	bAxis_RightArm_Left_MoveAbs									:BOOL;				//右臂_左电机MoveAbs标志位
+	bAxis_RightArm_Right_MoveAbs								:BOOL;				//右臂_右电机MoveAbs标志位
+	bAxis_RightArm_Lift_MoveAbs									:BOOL;				//右臂_升电机MoveAbs标志位
+	                                                                            	       
+	// 小龙门电机                                                                    	       
+	bAxis_SmallGate_Left_MoveAbs								:BOOL;				//小门_左电机MoveAbs标志位
+	bAxis_SmallGate_Right_MoveAbs								:BOOL;				//小门_右电机MoveAbs标志位
+                                                                                	        
+	// 大龙门单电机                                                                   	        
+	bAxis_BigGate_Left_MoveAbs									:BOOL;				//大门_左电机MoveAbs标志位
+	bAxis_BigGate_Right_MoveAbs									:BOOL;				//大门_右电机MoveAbs标志位
+	                                                                            	       
+	// 后龙门单电机                                                                   	       
+	bAxis_BackGate_Left_MoveAbs									:BOOL;				//后门_左电机MoveAbs标志位
+	bAxis_BackGate_Right_MoveAbs								:BOOL;				//后门_右电机MoveAbs标志位
+
+
+(*======================================== 单电机调试MoveAbs标志位  End ========================================*)	
+
+
+
+
+
+(*======================================== 机器人各轴 MC_Stop标志位 Start ==================================*)
+	
+	// 左臂电机
+	bAxis_LeftArm_Wrist_McStop									:BOOL;			//左臂_腕电机MC_Stop标志位	
+	bAxis_LeftArm_Left_McStop									:Bool;			//左臂_左电机MC_Stop标志位
+	bAxis_LeftArm_Right_McStop									:Bool;			//左臂_右电机MC_Stop标志位
+	bAxis_LeftArm_Lift_McStop									:Bool;			//左臂_升电机MC_Stop标志位
+	                                                                                        
+	// 右臂电机                                                                                 
+	bAxis_RightArm_Wrist_McStop									:Bool;			//右臂_腕电机MC_Stop标志位	
+	bAxis_RightArm_Left_McStop									:Bool;			//右臂_左电机MC_Stop标志位
+	bAxis_RightArm_Right_McStop									:Bool;			//右臂_右电机MC_Stop标志位
+	bAxis_RightArm_Lift_McStop									:Bool;			//右臂_升电机MC_Stop标志位
+	                                                                                        
+	// 小龙门电机                                                                                
+	bAxis_SmallGate_Left_McStop									:Bool;			//小门_左电机MC_Stop标志位
+	bAxis_SmallGate_Right_McStop								:Bool;			//小门_右电机MC_Stop标志位
+	                                                                                        
+	// 大龙门单电机                                                                               
+	bAxis_BigGate_Left_McStop									:Bool;			//大门_左电机MC_Stop标志位
+	bAxis_BigGate_Right_McStop									:Bool;			//大门_右电机MC_Stop标志位
+	                                                                                        
+	// 后龙门单电机                                                                               
+	bAxis_BackGate_Left_McStop									:Bool;			//后门_左电机MC_Stop标志位
+	bAxis_BackGate_Right_McStop									:Bool;			//后门_右电机MC_Stop标志位
+
+(*======================================== 机器人各轴 Mc_Stop标志位 End =====================================*)
+
+
+
+
+
 	
 (*======================================== 单电机控制标志位 Start ==================================*)								
 	
