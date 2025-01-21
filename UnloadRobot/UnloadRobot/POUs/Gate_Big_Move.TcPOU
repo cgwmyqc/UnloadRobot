@@ -5,26 +5,49 @@
 VAR
 	bigGateGearIn			:MC_GearIn;				// 大龙门电子齿轮，LeftAxis为Master
 	bigGateGearOut			:MC_GearOut;			// 大龙门电子齿轮取消啮合
-	bigGateLeftAxisJog		:MC_Jog;				// 大龙门左轴(电子齿轮的Master轴)MC_Jog
+	bigGateLeftAxisJog		:MC_Jog;				// 大龙门Jog(实际上电子齿轮的Master轴axis_BigGate_Left的Mc_Jog)
+	bigGateLeftAxisMoveAbs	:MC_MoveAbsolute;		// 大龙门MoveAbs(实际上电子齿轮的Master轴axis_BigGate_Left的Mc_MoveAbsolute)
+	
 	
 	// 当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_BigGate_Left或bManualCtrl_Part_BigGate_Right为True，会把此变量置false
 	bBigGate_Gearin_do				:BOOL:=TRUE;			
-
+	
+	nBigGate_Speed					:LREAL:=5;		// 大龙门移动速度
+	nBigGate_MoveAbs_TarPos			:LREAL;			// 大龙门MoveAbs目标位置
+	
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[	
+      <ST><![CDATA[// BigGate Mc_Jog
 bigGateLeftAxisJog(
 	Axis:= axis_BigGate_Left, 
 	JogForward:= bBigGate_Up, 
 	JogBackwards:= bBigGate_Down, 
-	Mode:= , 
+	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
-	Velocity:= , 
+	Velocity:= nBigGate_Speed, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// BigGate Mc_Absolute	
+bigGateLeftAxisMoveAbs(
+	Axis:= axis_BigGate_Left, 
+	Execute:= bBigGate_MoveAbs, 
+	Position:= nBigGate_MoveAbs_TarPos, 
+	Velocity:= nBigGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
 	Done=> , 
 	Busy=> , 
 	Active=> , 
@@ -65,6 +88,10 @@ bigGateGearOut(
       <LineId Id="31" Count="0" />
       <LineId Id="33" Count="14" />
       <LineId Id="32" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="168" Count="14" />
+      <LineId Id="167" Count="0" />
       <LineId Id="104" Count="0" />
       <LineId Id="125" Count="17" />
       <LineId Id="150" Count="1" />

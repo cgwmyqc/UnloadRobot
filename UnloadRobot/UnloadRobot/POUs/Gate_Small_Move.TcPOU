@@ -6,21 +6,26 @@ VAR
 	smallGateGearIn				:MC_GearIn;				// 小龙门电子齿轮，LeftAxis为Master
 	smallGateGearOut			:MC_GearOut;			// 小龙门电子齿轮取消啮合
 	smallGateLeftAxisJog		:MC_Jog;				// 小龙门左轴(电子齿轮的Master轴)MC_Jog
+	smallGateLeftAxisMoveAbs	:MC_MoveAbsolute;		// 小龙门MoveAbs(实际上电子齿轮的Master轴axis_SmallGate_Left的Mc_MoveAbsolute)
 	
 	// 默认为啮合状态，当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_SmallGate_Left为true
 	//或bManualCtrl_Part_SmallGate_Right为True，会把此变量置false
 	bSmallGate_Gearin_do		:BOOL:=TRUE;
 	
+	nSmallGate_Speed					:LREAL:=5;		// 小龙门移动速度
+	nSmallGate_MoveAbs_TarPos			:LREAL;			// 小龙门MoveAbs目标位置
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[smallGateLeftAxisJog(
+      <ST><![CDATA[// SmallGate Mc_Jog
+smallGateLeftAxisJog(
 	Axis:= axis_SmallGate_Left, 
-	JogForward:= bSmallGate_Down, 
-	JogBackwards:= bSmallGate_Up, 
-	Mode:= , 
+	JogForward:= bSmallGate_Up, 
+	JogBackwards:= bSmallGate_Down, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
-	Velocity:= , 
+	Velocity:= nSmallGate_Speed, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -31,6 +36,23 @@ END_VAR
 	Error=> , 
 	ErrorID=> );
 
+// SmallGate Mc_MoveAbsolute
+smallGateLeftAxisMoveAbs(
+	Axis:= axis_SmallGate_Left, 
+	Execute:= bSmallGate_MoveAbs, 
+	Position:= nSmallGate_MoveAbs_TarPos, 
+	Velocity:= nSmallGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
 	
 smallGateGearIn(
 	Master:= axis_SmallGate_Left, 
@@ -63,9 +85,13 @@ smallGateGearOut(
 ]]></ST>
     </Implementation>
     <LineIds Name="Gate_Small_Move">
+      <LineId Id="131" Count="0" />
       <LineId Id="74" Count="14" />
       <LineId Id="72" Count="0" />
+      <LineId Id="132" Count="0" />
       <LineId Id="113" Count="0" />
+      <LineId Id="134" Count="14" />
+      <LineId Id="133" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="89" Count="15" />
       <LineId Id="26" Count="0" />

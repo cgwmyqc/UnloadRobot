@@ -229,6 +229,17 @@ namespace TestApp
                 nBackGate_Right_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Right.NcToPlc.ActVelo", typeof(double), false);
                 labelBackGateRightActVelo.Text = nBackGate_Right_Velo.ToString("0.00");
 
+                //大龙门实时位置及速度（以大龙门左轴为准）
+                labelBigGateActPos.Text = nBigGate_Left_Pos.ToString("0.00");
+                labelBigGateActVelo.Text = nBigGate_Left_Velo.ToString("0.00");
+
+                //小龙门实时位置及速度（以小龙门左轴为准）
+                labelSmallGateActPos.Text = nSmallGate_Left_Pos.ToString("0.00");
+                labelSmallGateActVelo.Text = nSmallGate_Left_Velo.ToString("0.00");
+
+                //后龙门实时位置及速度（以后龙门左轴为准）
+                labelBackGateActPos.Text = nBackGate_Left_Pos.ToString("0.00");
+                labelBackGateActVelo.Text = nBackGate_Left_Velo.ToString("0.00");
             }
         }
 
@@ -346,6 +357,9 @@ namespace TestApp
 
 
 
+
+        /*********************************************************************          大龙门合成运动           *********************************************************************/
+
         // 大龙门-轴使能
         private void btnBigGatePowerEnable_Click(object sender, EventArgs e)
         {
@@ -403,6 +417,83 @@ namespace TestApp
             }
         }
 
+
+        // 大龙门速度设定
+        private void btnBigGateVeloSet_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetVelo = double.Parse(textBoxBigGateTarVelo.Text);
+                    if (nTargetVelo >= 0 & nTargetVelo <= 15)
+                    {
+                        adsClient.WriteSymbol("Gate_Big_Move.nBigGate_Speed", nTargetVelo, false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=15");
+                    }
+
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+
+        // 大龙门合成MoveAbs
+        private void btnBigGateMoveAbsStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetPos = double.Parse(textBoxBigGateTarPos.Text);
+                    adsClient.WriteSymbol("Gate_Big_Move.nBigGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bBigGate_MoveAbs", true, false);
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+        private void btnBigGateMoveAbsStart_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBigGate_MoveAbs", false, false);
+            }
+        }
+
+        // 大龙门停止
+        private void btnBigGateMoveAbsStop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_McStop", true, false);
+            }
+        }
+        private void btnBigGateMoveAbsStop_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_McStop", false, false);
+            }
+        }
+
+
+
+
+
+
+        /************************************************************          小龙门合成运动           *************************************************************************/
+
+
         // 小龙门-轴使能
         private void btnSmallGatePowerEnable_Click(object sender, EventArgs e)
         {
@@ -458,6 +549,82 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Down", false, false);
             }
         }
+
+        // 小龙门速度设定
+        private void btnSmallGateVeloSet_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetVelo = double.Parse(textBoxSmallGateTarVelo.Text);
+                    if (nTargetVelo >= 0 & nTargetVelo <= 15)
+                    {
+                        adsClient.WriteSymbol("Gate_Small_Move.nSmallGate_Speed", nTargetVelo, false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=15");
+                    }
+
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+
+        // 小龙门合成MoveAbs
+        private void btnSmallGateMoveAbsStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetPos = double.Parse(textBoxSmallGateTarPos.Text);
+                    adsClient.WriteSymbol("Gate_Small_Move.nSmallGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bSmallGate_MoveAbs", true, false);
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+        private void btnSmallGateMoveAbsStart_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bSmallGate_MoveAbs", false, false);
+            }
+        }
+
+        // 小龙门停止
+        private void btnSmallGateMoveAbsStop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_McStop", true, false);
+            }
+        }
+        private void btnSmallGateMoveAbsStop_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_McStop", false, false);
+            }
+        }
+
+
+
+
+
+
+
+        /******************************************************************          后龙门合成运动           ******************************************************************/
 
         //后龙门-轴使能
         private void btnBackGatePowerEnable_Click(object sender, EventArgs e)
@@ -516,6 +683,83 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bBackGate_Down", false, false);
             }
         }
+
+
+
+        // 后龙门速度设定
+        private void btnBackGateVeloSet_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetVelo = double.Parse(textBoxBackGateTarVelo.Text);
+                    if (nTargetVelo >= 0 & nTargetVelo <= 15)
+                    {
+                        adsClient.WriteSymbol("Gate_Back_Move.nBackGate_Speed", nTargetVelo, false);
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=15");
+                    }
+
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+
+        // 后龙门合成MoveAbs
+        private void btnBackGateMoveAbsStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                try
+                {
+                    double nTargetPos = double.Parse(textBoxBackGateTarPos.Text);
+                    adsClient.WriteSymbol("Gate_Back_Move.nBackGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bBackGate_MoveAbs", true, false);
+                }
+                catch (FormatException)
+                {
+
+                    MessageBox.Show("请输入有效的数字！");
+                }
+            }
+        }
+        private void btnBackGateMoveAbsStart_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bBackGate_MoveAbs", false, false);
+            }
+        }
+
+        // 后龙门停止
+        private void btnBackGateMoveAbsStop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_McStop", true, false);
+            }
+        }
+        private void btnBackGateMoveAbsStop_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_McStop", false, false);
+            }
+        }
+
+
+
+
+
+
+
 
         // 所有轴上电（鼠标抬起逻辑）
         private void btnAxisAllPowerEnable_MouseDown(object sender, MouseEventArgs e)
@@ -2663,6 +2907,12 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_McStop", false, false);
             }
         }
+
+
+
+
+
+
 
 
 

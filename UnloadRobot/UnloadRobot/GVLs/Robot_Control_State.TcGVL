@@ -265,17 +265,26 @@ VAR_GLOBAL
 	bRightArm_Left						AT%MX4.2				:BOOL;			//左臂_向左
 	bRightArm_Right						AT%MX4.3				:BOOL;			//左臂_向右
 	
-	//小龙门合成运动
-	bSmallGate_Up						AT%MX4.4				:BOOL;			//小门_升
-	bSmallGate_Down						AT%MX4.5				:BOOL;			//小门_降
+	//小龙门合成运动jog
+	bSmallGate_Up						AT%MX4.4				:BOOL;			//小门_升_jog
+	bSmallGate_Down						AT%MX4.5				:BOOL;			//小门_降_jog
 	
-	//大龙门合成运动
-	bBigGate_Up							AT%MX4.6				:BOOL;			//大门_升
-	bBigGate_Down						AT%MX4.7				:BOOL;			//大门_降
+	//大龙门合成运动jog
+	bBigGate_Up							AT%MX4.6				:BOOL;			//大门_升_jog
+	bBigGate_Down						AT%MX4.7				:BOOL;			//大门_降_jog
 	
-	//后龙门合成运动
-	bBackGate_Up						AT%MX5.0				:BOOL;			//后门_升
-	bBackGate_Down						AT%MX5.1				:BOOL;			//后门_降
+	//后龙门合成运动jog
+	bBackGate_Up						AT%MX5.0				:BOOL;			//后门_升_jog
+	bBackGate_Down						AT%MX5.1				:BOOL;			//后门_降_jog
+	
+	//小龙门合成运动Abs
+	bSmallGate_MoveAbs											:BOOL;			//小门_MoveAbs
+	                                    	                                         
+	//大龙门合成运动Abs                           	                                         
+	bBigGate_MoveAbs											:BOOL;			//大门_MoveAbs
+	                                    	                                         
+	//后龙门合成运动Abs                           	                                         
+	bBackGate_MoveAbs											:BOOL;			//后门_MoveAbs
 	
 (*===================================== 合成运动制标志位 End ========================================*)		
 

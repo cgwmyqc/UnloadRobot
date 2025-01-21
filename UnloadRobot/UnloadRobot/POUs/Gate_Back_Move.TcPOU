@@ -5,24 +5,28 @@
 VAR
 	
 	backGateGearIn					:MC_GearIn;
-	backGateGearOut					:MC_GearOut;
-	                    			
+	backGateGearOut					:MC_GearOut;	                    			
 	backGateLeftAxisJog 			:MC_Jog;
-	                    			
+	backGateLeftAxisMoveAbs			:MC_MoveAbsolute;		// 后龙门MoveAbs(实际上电子齿轮的Master轴axis_BackGate_Left的Mc_MoveAbsolute)                    			
+	
 	bBackGate_Gearin_do				:BOOL:=TRUE;
+
+	nBackGate_Speed					:LREAL:=5;		// 后龙门移动速度
+	nBackGate_MoveAbs_TarPos		:LREAL;			// 后龙门MoveAbs目标位置	
+	
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* 后龙门比较特殊，不是和大小龙门结构不一样，GearRatio需要测试*)
-
+// Mc_Jog
 backGateLeftAxisJog(
 	Axis:= axis_BackGate_Left, 
 	JogForward:= bBackGate_Up, 
 	JogBackwards:= bBackGate_Down, 
-	Mode:= , 
+	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
-	Velocity:= , 
+	Velocity:= nBackGate_Speed, 
 	Acceleration:= , 
 	Deceleration:= , 
 	Jerk:= , 
@@ -32,6 +36,24 @@ backGateLeftAxisJog(
 	CommandAborted=> , 
 	Error=> , 
 	ErrorID=> );
+
+// Mc_MoveAbs
+backGateLeftAxisMoveAbs(
+	Axis:= axis_BackGate_Left, 
+	Execute:= bBackGate_MoveAbs, 
+	Position:= nBackGate_MoveAbs_TarPos, 
+	Velocity:= nBackGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
 
 	
 backGateGearIn(
@@ -68,7 +90,11 @@ backGateGearOut(
       <LineId Id="56" Count="0" />
       <LineId Id="58" Count="14" />
       <LineId Id="57" Count="0" />
+      <LineId Id="115" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="118" Count="14" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="116" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="73" Count="15" />
       <LineId Id="26" Count="0" />
