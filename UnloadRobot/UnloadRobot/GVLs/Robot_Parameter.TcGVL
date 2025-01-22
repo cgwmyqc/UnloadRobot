@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
   <GVL Name="Robot_Parameter" Id="{8552aaf8-67f5-4cf9-b97f-23afdf57a9cd}">
     <Declaration><![CDATA[//{attribute 'qualified_only'}
 VAR_GLOBAL
+	
+(* 测试臂参数
 	
 	//已知量
 	h 						:LREAL:=260;
@@ -14,11 +16,33 @@ VAR_GLOBAL
 	j						:LREAL:=40;
 	n						:LREAL:=290.7497;     	// 余弦定理
 	angle_FCE				:LREAL:=5.3330;			//余弦定理（单位为度）
+*)
+
+	// Left arm parameter
+	LeftArm_h				:LREAL:=584.21;
+	LeftArm_i				:LREAL:=500;
+	LeftArm_g				:LREAL:=418;
+	LeftArm_f				:LREAL:=418;
+	LeftArm_w				:LREAL:=110;
+	LeftArm_angle_a			:LREAL:=134.7;			//数模实测值,单位为度
+	LeftArm_j				:LREAL:=147.73;
+	LeftArm_n				:LREAL:=612.98;			//数模实测值
+	LeftArm_angle_FCE		:LREAL:=9.86;			//数模实测值,单位为度
 	
+	// Right arm parameter
+	RightArm_h				:LREAL:=500;
+	RightArm_i				:LREAL:=584.21;
+	RightArm_g				:LREAL:=418;
+	RightArm_f				:LREAL:=418;
+	RightArm_w				:LREAL:=110;
+	RightArm_angle_a		:LREAL:=137.57;			//单位度
+	RightArm_j				:LREAL:=147.73;
+	RightArm_m				:LREAL:=617.76;
+	RightArm_angle_FDE		:LREAL:=9.29;			//单位度
+
 	//常量
 	PI						:LREAL:=3.1415926;
 	
-	//
 
 END_VAR]]></Declaration>
   </GVL>

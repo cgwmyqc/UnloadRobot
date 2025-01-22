@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisCaliHomePos" Id="{eb4c649f-b337-425e-8072-20a3a253b07a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisCaliHomePos
+VAR
+	writeParam		:MC_WriteParameter;
+	bWriteParam_DO	:BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+writeParam(
+	Axis:= axis_BigGate_Left, 
+	Execute:= bWriteParam_DO, 
+	ParameterNumber:= AxisEncoderOffset, 
+	Value:= -100, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+    </Implementation>
+    <LineIds Name="AxisCaliHomePos">
+      <LineId Id="9" Count="8" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

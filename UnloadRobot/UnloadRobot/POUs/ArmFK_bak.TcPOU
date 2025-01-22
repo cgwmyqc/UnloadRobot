@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
-  <POU Name="ArmFK" Id="{874f104e-3823-4873-84ee-579597cb6d6e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION ArmFK : Points
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="ArmFK_bak" Id="{0cac72c6-4150-4431-9ced-a9263914cf1c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ArmFK_bak : Points
 VAR_INPUT
 	theta1:LREAL;
 	theta2:LREAL;
@@ -24,7 +24,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[theta1_rad := DEG_TO_RAD(theta1);
+      <ST><![CDATA[(*
+
+theta1_rad := DEG_TO_RAD(theta1);
 theta2_rad := DEG_TO_RAD(theta2);
 
 
@@ -49,11 +51,16 @@ angle_FCI := PI - angle_FCG;
 points.x := w + f*COS(theta1_rad) + n*COS(angle_FCI);
 points.y := f*SIN(theta1_rad) + n*SIN(angle_FCI);
 
-ArmFK := points;]]></ST>
+ArmLeftFK := points;
+
+*)]]></ST>
     </Implementation>
-    <LineIds Name="ArmFK">
+    <LineIds Name="ArmFK_bak">
+      <LineId Id="94" Count="1" />
       <LineId Id="27" Count="24" />
       <LineId Id="7" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="96" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -243,6 +243,11 @@ namespace TestApp
             }
         }
 
+
+
+        /******************************************************************   左臂总成手动控制  **********************************************************/
+
+
         // 左臂上电使能，激活手动控制
         private void btnLeftArmPowerOnEnable_Click(object sender, EventArgs e)
         {
@@ -251,6 +256,7 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable",true,false); 
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable",true,false);
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable",true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Lift_Enable", true, false);
                 adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_LeftArm", true, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_LeftWrist", true, false);     // 左臂腕关节自动控制（随动）
             }
@@ -265,6 +271,7 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", false, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable", false, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Lift_Enable", false, false);
                 adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_LeftWrist", false, false);     // 关闭左臂腕关节自动控制（随动）
 
             }
@@ -352,6 +359,200 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bLeftArm_Backward", false, false);
             }
         }
+
+        // 左臂总成升Jog
+        private void btnLeftArmUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("LeftArmManualCtrlMove.bLeftArm_Lift_Up", true, false);
+            }
+        }
+        private void btnLeftArmUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("LeftArmManualCtrlMove.bLeftArm_Lift_Up", false, false);
+            }
+        }
+
+        // 左臂总成降Jog
+        private void btnLeftArmDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("LeftArmManualCtrlMove.bLeftArm_Lift_Down", true, false);
+            }
+        }
+
+        private void btnLeftArmDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("LeftArmManualCtrlMove.bLeftArm_Lift_Down", false, false);
+            }
+        }
+
+
+
+
+
+
+        /******************************************************************   右臂总成手动控制  **********************************************************/
+
+
+        // 右臂上电使能，激活手动控制
+        private void btnRightArmPowerOnEnable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Left_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Right_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Wrist_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Lift_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_RightArm", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_RightWrist", true, false);     // 右臂腕关节自动控制（随动）
+            }
+        }
+
+        // 右臂下电，取消激活手动控制
+        private void btnRightArmPowerOnDisable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_RightArm", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Left_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Right_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Wrist_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Lift_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAutoCtrl_Part_RightWrist", false, false);     // 关闭右臂腕关节自动控制（随动）
+
+            }
+        }
+
+
+        // 右臂-向前移动（鼠标按下逻辑）
+        private void btnRightArmForward_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Forward", true, false);
+
+            }
+        }
+
+        // 右臂-向前移动（鼠标抬起逻辑）
+        private void btnRightArmForward_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Forward", false, false);
+
+            }
+        }
+
+
+        // 右臂-向左移动（鼠标按下逻辑）
+        private void btnRightArmLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Left", true, false);
+
+            }
+        }
+
+
+        // 右臂-向左移动（鼠标抬起逻辑）
+        private void btnRightArmLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Left", false, false);
+
+            }
+        }
+
+
+        // 右臂-向右移动（鼠标按下逻辑）
+        private void btnRightArmRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Right", true, false);
+
+            }
+        }
+
+        // 右臂-向右移动（鼠标抬起逻辑）
+        private void btnRightArmRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Right", false, false);
+
+            }
+        }
+
+
+        // 右臂-向后移动（鼠标按下逻辑）
+        private void btnRightArmBackward_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Backward", true, false);
+            }
+        }
+
+        // 右臂-向后移动（鼠标抬起逻辑）
+        private void btnRightArmBackward_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_Backward", false, false);
+            }
+        }
+
+        // 右臂总成升Jog
+        private void btnRightArmUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("RightArmManualCtrlMove.bRightArm_Lift_Up", true, false);
+            }
+        }
+        private void btnRightArmUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("RightArmManualCtrlMove.bRightArm_Lift_Up", false, false);
+            }
+        }
+
+        // 右臂总成降Jog
+        private void btnRightArmDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("RightArmManualCtrlMove.bRightArm_Lift_Down", true, false);
+            }
+        }
+
+        private void btnRightArmDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("RightArmManualCtrlMove.bRightArm_Lift_Down", false, false);
+            }
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -2908,9 +3109,227 @@ namespace TestApp
             }
         }
 
+        /**************************************** TEST 轴零位标定*******************************************************/
+        // test cali
+
+        private void btnBigGateCaliDo_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", true, false);
+            }
+        }
+
+        private void btnBigGateCaliDo_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", false, false);
+            }
+        }
 
 
 
+        /*****************************************   电磁阀控制区   ********************************************************/
+        /*****************************************    左臂        *********************************************************/
+        //左臂电磁阀1
+        private void btnLeftArm_SV1_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV1", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀2
+        private void btnLeftArm_SV2_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV2", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀3
+        private void btnLeftArm_SV3_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV3", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀4
+        private void btnLeftArm_SV4_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV4", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀5
+        private void btnLeftArm_SV5_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV5", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀6
+        private void button8btnLeftArm_SV6_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV6", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀7
+        private void btnLeftArm_SV7_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV7", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7", !SVFlag, false);
+            }
+        }
+        //左臂电磁阀8
+        private void btnLeftArm_SV8_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV8", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8", !SVFlag, false);
+            }
+        }
+
+        /*****************************************    右 臂        *********************************************************/
+        //右臂电磁阀1
+        private void btnRightArm_SV1_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV1", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀2
+        private void btnRightArm_SV2_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV2", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀3
+        private void btnRightArm_SV3_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV3", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀4
+        private void btnRightArm_SV4_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV4", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀5
+        private void btnRightArm_SV5_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV5", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀6
+        private void btnRightArm_SV6_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV6", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀7
+        private void btnRightArm_SV7_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV7", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7", !SVFlag, false);
+            }
+        }
+        //右臂电磁阀8
+        private void btnRightArm_SV8_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV8", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8", !SVFlag, false);
+            }
+        }
+
+        // 电磁阀整体控制
+        // 左臂所有电磁阀使能
+        private void btnLeftArm_SV_All_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                for (int i = 1; i <= 8; i++)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString(), true, false);
+                }
+            }
+        }
+        // 左臂所有电磁阀失能
+        private void btnLeftArm_SV_All_Disable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                for (int i = 1; i <= 8; i++)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString(), false, false);
+                }
+            }
+        }
+        //右臂所有电磁阀使能
+        private void btnRightArm_SV_All_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                for (int i = 1; i <= 8; i++)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString(), true, false);
+                }
+            }
+        }
+        //右臂所有电磁阀失能
+        private void btnRightArm_SV_All_Disable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                for (int i = 1; i <= 8; i++)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString(), false, false);
+                }
+            }
+        }
+
+
+
+
+
+        /*****************************************    电磁阀总体控制        *********************************************************/
 
 
 

@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="RightArmManualCtrlMove" Id="{10639ef8-06b4-4b66-8d34-0336c85a3691}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM RightArmManualCtrlMove
+VAR
+	
+	point												:Points;					// 当前腕关节坐标
+	target_angle										:Angles;					// 臂左右电机目标角度
+	manualState											:USINT;						// 手动控制状态标志位，0
+	speed												:REAL := 1;					// 笛卡尔坐标位移速度
+	x													:REAL;						// 腕关节目标位置x
+	y													:REAL;						// 腕关节目标位置y
+	wrist_angle											:REAL;						// 腕电机角度
+	
+	//左臂举升电机
+	RightArm_Lift_Jog									:MC_Jog;
+	bRightArm_Lift_Up									:BOOL;
+	bRightArm_Lift_Down									:BOOL;
+	nRightArmLiftSpeed									:LREAL:=5;
+	
+	
+	RightArm_Right_ExtPosGen_Enable						:MC_ExtSetPointGenEnable;
+	RightArm_Right_ExtPosGen_Disable                     :MC_ExtSetPointGenDisable;
+	RightArm_Left_ExtPosGen_Enable                       :MC_ExtSetPointGenEnable;
+	RightArm_Left_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
+	RightArm_Wrist_ExtPosGen_Enable                      :MC_ExtSetPointGenEnable;
+	RightArm_Wrist_ExtPosGen_Disable	                  :MC_ExtSetPointGenDisable;
+	
+	//串口
+	//fb_SerialCom		:FB_SerialCom;					
+	//wrist_angle_int		:INT;
+	//wrist_angle_byte	:BYTE;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[axis_RightArm_Left();
+axis_RightArm_Right();
+axis_RightArm_Wrist();
+ExtPosGen();
+
+// 外部位置发生器失能
+RightArm_Right_ExtPosGen_Enable.Execute 		:= FALSE;
+RightArm_Right_ExtPosGen_Disable.Execute 		:= FALSE;
+RightArm_Left_ExtPosGen_Enable.Execute 			:= FALSE;
+RightArm_Left_ExtPosGen_Disable.Execute 		:= FALSE;
+RightArm_Wrist_ExtPosGen_Enable.Execute 		:= FALSE;
+RightArm_Wrist_ExtPosGen_Disable.Execute 		:= FALSE;
+
+IF bManualCtrl_Asm_RightArm THEN
+	
+	// 右臂举升电机Jog
+	RightArmLiftJog();
+	
+	// 运动学正解出当前腕关节点坐标
+	point := RightArmFK(axis_RightArm_Right.NcToPlc.ActPos, axis_RightArm_Left.NcToPlc.ActPos);
+	
+	// 用舵机进行程序验证的串口背景通讯
+	//BackgroundSerialCtrl();
+	
+	IF bAutoCtrl_Part_RightWrist THEN
+		
+		wrist_angle := WristIK(point.x, point.y);		// 逆解出腕电机角度
+		
+
+		// 用舵机进行程序验证的串口测试
+		//wrist_angle_int:= TO_INT(wrist_angle);
+		//wrist_angle_byte:= INT_TO_BYTE(wrist_angle_int);
+		//fb_SerialCom(TxBuffer:= TxBuffer, RxBuffer:= RxBuffer, angle:= wrist_angle_byte);	
+		
+
+	END_IF
+	
+
+	IF bRightArm_Forward THEN
+		x := point.x;
+		y := point.y + speed;
+		target_angle := RightArmIK(x, y);
+		manualState := 1;
+		
+	ELSIF bRightArm_Backward THEN
+	
+		x := point.x;
+		y := point.y - speed;
+		target_angle := RightArmIK(x, y);
+		manualState := 1;
+		
+	ELSIF bRightArm_Left THEN
+		
+		x := point.x - speed;
+		y := point.y;
+		target_angle := RightArmIK(x, y);
+		manualState := 1;
+		
+	ELSIF bRightArm_Right THEN
+		
+		x := point.x + speed;
+		y := point.y;
+		target_angle := RightArmIK(x, y);
+		manualState := 1;
+		
+	ELSE
+		manualState := 0;
+	END_IF
+	
+	
+	
+	CASE manualState OF
+		0:
+			RightArm_Right_ExtPosGen_Enable.Execute 		:= FALSE;
+			RightArm_Right_ExtPosGen_Disable.Execute 		:= TRUE;
+			RightArm_Left_ExtPosGen_Enable.Execute 			:= FALSE;
+			RightArm_Left_ExtPosGen_Disable.Execute 		:= TRUE;
+			RightArm_Wrist_ExtPosGen_Enable.Execute 		:= FALSE;
+			RightArm_Wrist_ExtPosGen_Disable.Execute 		:= TRUE;
+		
+		1:
+			RightArm_Right_ExtPosGen_Enable.Execute 		:= TRUE;
+			RightArm_Left_ExtPosGen_Enable.Execute 			:= TRUE;
+			RightArm_Wrist_ExtPosGen_Enable.Execute 		:= TRUE;
+			
+			IF axis_RightArm_Right.Status.ExtSetPointGenEnabled AND axis_RightArm_Left.Status.ExtSetPointGenEnabled AND axis_RightArm_Wrist.Status.ExtSetPointGenEnabled THEN
+				MC_ExtSetPointGenFeed(
+					Position:= target_angle.theta1_right, 
+					Velocity:= 5,  
+					Acceleration:= 10,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_Right);
+		
+				MC_ExtSetPointGenFeed(
+					Position:= target_angle.theta2_left, 
+					Velocity:= 5,  
+					Acceleration:= 10,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_Left);
+					
+				MC_ExtSetPointGenFeed(
+					Position:= wrist_angle, 
+					Velocity:= 5, 
+					Acceleration:= 10, 
+					Direction:= 1, 
+					Axis:= axis_RightArm_Wrist);
+			END_IF
+	END_CASE
+
+//ELSE
+
+END_IF
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Action Name="ExtPosGen" Id="{ad510055-7d56-4a3d-99f1-1541e3eda28e}">
+      <Implementation>
+        <ST><![CDATA[RightArm_Right_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Right, 
+	Execute:= RightArm_Right_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Right_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Right, 
+	Execute:= RightArm_Right_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Left_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Left, 
+	Execute:= RightArm_Left_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Left_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Left, 
+	Execute:= RightArm_Left_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Wrist_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= RightArm_Wrist_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Wrist_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= RightArm_Wrist_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="RightArmLiftJog" Id="{d5375d70-8eb2-46ef-8705-d74467bf52ee}">
+      <Implementation>
+        <ST><![CDATA[RightArm_Lift_Jog(
+	Axis:= axis_RightArm_Lift, 
+	JogForward:= bRightArm_Lift_Up, 
+	JogBackwards:= bRightArm_Lift_Down, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= nRightArmLiftSpeed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="RightArmManualCtrlMove">
+      <LineId Id="365" Count="1" />
+      <LineId Id="477" Count="0" />
+      <LineId Id="367" Count="10" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="378" Count="66" />
+      <LineId Id="476" Count="0" />
+      <LineId Id="445" Count="30" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="RightArmManualCtrlMove.ExtPosGen">
+      <LineId Id="60" Count="58" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="RightArmManualCtrlMove.RightArmLiftJog">
+      <LineId Id="2" Count="14" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

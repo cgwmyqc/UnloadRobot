@@ -46,16 +46,37 @@
     <Compile Include="POUs\AllAxisCtrl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\ArmFK.TcPOU">
+    <Compile Include="POUs\LeftArmFK.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\ArmIK.TcPOU">
+    <Compile Include="POUs\ArmFK_bak.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RightArmManualCtrlMove.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RightArmFK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\LeftArmIK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ArmIK_bak.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ArmMove.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\RightArmIK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\LeftArmManualCtrlMove.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\AxisAbs.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\AxisCaliHomePos.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\AxisJog.TcPOU">

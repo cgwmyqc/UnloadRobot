@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="RightArmIK" Id="{879c9c3d-d24f-434c-b8ba-b9532c8cdbad}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION RightArmIK : Angles
+VAR_INPUT
+	x:LREAL;
+	y:LREAL;
+END_VAR
+VAR
+	
+	// 中间量
+	p:LREAL;
+	q:LREAL;
+	k:LREAL;
+	l:LREAL;
+	angle_DBF:LREAL;	
+	angle_OBF:LREAL;
+	theta1:LREAL;
+	theta2:LREAL;
+	angle_BDF:LREAL;
+	angle_BDE:LREAL;
+	angle_DBE:LREAL;
+	angle_EBA:LREAL;
+	angle_EAB:LREAL;
+	angle_CAE:LREAL;
+	
+	// 输出
+	angles		:Angles;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TWINCAT 角度换算以弧度为单位
+
+p := SQRT((x+RightArm_w)*(x+RightArm_w)+y*y);
+q := SQRT(x*x + y*y);
+ 
+angle_DBF := ACOS((RightArm_g*RightArm_g+p*p-RightArm_m*RightArm_m)/(2*RightArm_g*p));
+angle_OBF := ACOS((RightArm_w*RightArm_w+p*p-q*q)/(2*RightArm_w*p));
+theta2 := angle_OBF + angle_DBF;
+
+angle_BDF := ACOS((RightArm_g*RightArm_g+RightArm_m*RightArm_m-p*p)/(2*RightArm_g*RightArm_m));
+//angle_FCE := ACOS((n*n+i*i-j*j)/(2*n*i));
+angle_BDE := angle_BDF - DEG_TO_RAD(RightArm_angle_FDE);
+
+k := SQRT(RightArm_h*RightArm_h+RightArm_g*RightArm_g-2*RightArm_h*RightArm_g*COS(angle_BDE));
+
+angle_DBE := ACOS((RightArm_g*RightArm_g+k*k-RightArm_h*RightArm_h)/(2*RightArm_g*k));
+
+angle_EBA := theta2 - angle_DBE;
+
+l := SQRT(k*k + 4*RightArm_w*RightArm_w - 4*k*RightArm_w*COS(angle_EBA));
+
+angle_EAB := ACOS((l*l+4*RightArm_w*RightArm_w-k*k)/(4*l*RightArm_w));
+
+angle_CAE := ACOS((RightArm_f*RightArm_f+l*l-RightArm_i*RightArm_i)/(2*RightArm_f*l));
+
+theta1 := PI - angle_CAE - angle_EAB;
+
+angles.theta1_right := RAD_TO_DEG(theta1);
+angles.theta2_left := RAD_TO_DEG(theta2);
+
+
+RightArmIK := angles;
+]]></ST>
+    </Implementation>
+    <LineIds Name="RightArmIK">
+      <LineId Id="252" Count="11" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="268" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="269" Count="0" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="270" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="RightArmFK" Id="{47c67b89-2e02-47ec-9668-ff8b30491bd3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION RightArmFK : Points
+VAR_INPUT
+	theta1:LREAL;
+	theta2:LREAL;
+END_VAR
+VAR
+	// 中间变量
+	theta1_rad:LREAL;
+	theta2_rad:LREAL;
+	rr:LREAL;						//r变量被倍福占用了，所以此处用rr
+	u:LREAL;
+	angle_BDC:LREAL;
+	angle_CDE:LREAL;
+	angle_BDF:LREAL;
+	angle_FDG:LREAL;
+	
+	
+	// 输出
+	points : Points;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[theta1_rad := DEG_TO_RAD(theta1);
+theta2_rad := DEG_TO_RAD(theta2);
+
+
+rr := SQRT(EXPT((2*RightArm_w+RightArm_f*COS(theta1_rad)-RightArm_g*COS(theta2_rad)),2) + EXPT((RightArm_f*SIN(theta1_rad)-RightArm_g*SIN(theta2_rad)),2));  
+
+u := SQRT(EXPT((2*RightArm_w+RightArm_f*COS(theta1_rad)),2) + EXPT((RightArm_f*SIN(theta1_rad)),2));
+
+
+angle_BDC := ACOS((rr*rr+RightArm_g*RightArm_g-u*u)/(2*rr*RightArm_g));
+
+
+angle_CDE := ACOS((rr*rr + RightArm_h*RightArm_h -RightArm_i*RightArm_i)/(2*rr*RightArm_h));
+
+
+angle_BDF := angle_BDC + angle_CDE + DEG_TO_RAD(RightArm_angle_FDE);
+
+
+angle_FDG := angle_BDF - (PI - theta2_rad);
+
+
+points.x := -RightArm_w + RightArm_g*COS(theta2_rad) + RightArm_m*COS(angle_FDG);
+points.y := RightArm_g*SIN(theta2_rad) + RightArm_m*SIN(angle_FDG);
+
+RightArmFK := points;
+]]></ST>
+    </Implementation>
+    <LineIds Name="RightArmFK">
+      <LineId Id="207" Count="19" />
+      <LineId Id="228" Count="4" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

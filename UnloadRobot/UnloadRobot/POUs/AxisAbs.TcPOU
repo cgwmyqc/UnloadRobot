@@ -3,7 +3,7 @@
   <POU Name="AxisAbs" Id="{e09c7cd3-7a67-4bf0-8215-dcda5e249eef}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM AxisAbs
 VAR
-	nSpeed_MoveAbs						:LREAL:=3;
+	nSpeed_MoveAbs						:LREAL:=5;
 	
 	nTargetPos_MoveAbs								:LREAL;
 

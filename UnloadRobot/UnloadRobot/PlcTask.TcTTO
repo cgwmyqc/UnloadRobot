@@ -8,9 +8,6 @@
       <Name>MAIN</Name>
     </PouCall>
     <PouCall>
-      <Name>ArmMove</Name>
-    </PouCall>
-    <PouCall>
       <Name>Gate_Big_Move</Name>
     </PouCall>
     <PouCall>
@@ -36,6 +33,15 @@
     </PouCall>
     <PouCall>
       <Name>AxisStop</Name>
+    </PouCall>
+    <PouCall>
+      <Name>AxisCaliHomePos</Name>
+    </PouCall>
+    <PouCall>
+      <Name>LeftArmManualCtrlMove</Name>
+    </PouCall>
+    <PouCall>
+      <Name>RightArmManualCtrlMove</Name>
     </PouCall>
     <TaskFBGuid>{c1595f60-247e-4d18-9a51-0c48c26ce467}</TaskFBGuid>
     <Fb_init>{06bc8a1e-5d8a-4856-b4d9-40b8592fe8d3}</Fb_init>

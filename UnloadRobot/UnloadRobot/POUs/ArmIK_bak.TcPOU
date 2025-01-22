@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
-  <POU Name="ArmIK" Id="{2518ff54-4784-4cc2-b675-9797cc353076}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION ArmIK : Angles
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="ArmIK_bak" Id="{b681388e-f73b-4fac-92b1-9aad88295c62}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION ArmIK_bak : Angles
 VAR_INPUT
 	x:LREAL;
 	y:LREAL;
@@ -31,6 +31,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// TWINCAT 角度换算以弧度为单位
+(*
 
 p := SQRT((x-w)*(x-w)+y*y);
 q := SQRT(x*x + y*y);
@@ -55,11 +56,17 @@ angles.theta1_right := RAD_TO_DEG(theta1);
 angles.theta2_left := RAD_TO_DEG(theta2);
 
 
-ArmIK := angles;]]></ST>
+ArmLeftIK := angles;
+
+*)]]></ST>
     </Implementation>
-    <LineIds Name="ArmIK">
-      <LineId Id="42" Count="24" />
+    <LineIds Name="ArmIK_bak">
+      <LineId Id="42" Count="1" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="44" Count="22" />
       <LineId Id="7" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="121" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -8,10 +8,12 @@ VAR_GLOBAL
 	
 (*======================================== 自定义标志位 Start ======================================*)	
 	bManualCtrl_Asm_LeftArm										:BOOL;			// 手动控制标志位-总成-左臂
+	bManualCtrl_Asm_RightArm									:BOOL;			// 手动控制标志位-总成-右臂
 
 	bAutoCtrl_Part_LeftWrist									:BOOL;			// 自动控制-单体-腕电机
-	
+	bAutoCtrl_Part_RightWrist									:BOOL;			// 自动控制-单体-腕电机	
 
+	
 	bManualCtrl_Part_LeftArm_Left								:BOOL;			// 单轴控制标志位
 	bManualCtrl_Part_LeftArm_Right								:BOOL;			
 	bManualCtrl_Part_LeftArm_Wrist								:BOOL;	
@@ -26,6 +28,8 @@ VAR_GLOBAL
 	bManualCtrl_Part_SmallGate_Right							:BOOL;		
 	bManualCtrl_Part_BackGate_Left								:BOOL;
 	bManualCtrl_Part_BackGate_Right								:BOOL;		
+	
+
 
 (*======================================== 自定义标志位 End ========================================*)	
 
@@ -311,24 +315,44 @@ VAR_GLOBAL
 (*===================================== 电磁阀控制标志位 Start ======================================*)	
 	
 	//左臂电磁阀
-	bLeftArm_SV1						AT%MX7.0				:BOOL;			//左臂_电磁阀1
-	bLeftArm_SV2						AT%MX7.1				:BOOL;			//左臂_电磁阀2	
-	bLeftArm_SV3						AT%MX7.2				:BOOL;			//左臂_电磁阀3
-	bLeftArm_SV4						AT%MX7.3				:BOOL;			//左臂_电磁阀4
-	bLeftArm_SV5						AT%MX7.4				:BOOL;			//左臂_电磁阀5
-	bLeftArm_SV6						AT%MX7.5				:BOOL;			//左臂_电磁阀6
-	bLeftArm_SV7						AT%MX7.6				:BOOL;			//左臂_电磁阀7	
-	bLeftArm_SV8						AT%MX7.7				:BOOL;			//左臂_电磁阀8
+	bLeftArm_SV1						AT%QX2.0				:BOOL;			//左臂_电磁阀1
+	bLeftArm_SV2						AT%QX2.1				:BOOL;			//左臂_电磁阀2	
+	bLeftArm_SV3						AT%QX2.2				:BOOL;			//左臂_电磁阀3
+	bLeftArm_SV4						AT%QX2.3				:BOOL;			//左臂_电磁阀4
+	bLeftArm_SV5						AT%QX2.4				:BOOL;			//左臂_电磁阀5
+	bLeftArm_SV6						AT%QX2.5				:BOOL;			//左臂_电磁阀6
+	bLeftArm_SV7						AT%QX2.6				:BOOL;			//左臂_电磁阀7	
+	bLeftArm_SV8						AT%QX2.7				:BOOL;			//左臂_电磁阀8
 	
 	//左臂电磁阀
-	bRightArm_SV1						AT%MX8.0				:BOOL;			//右臂_电磁阀1
-	bRightArm_SV2						AT%MX8.1				:BOOL;			//右臂_电磁阀2	
-	bRightArm_SV3						AT%MX8.2				:BOOL;			//右臂_电磁阀3
-	bRightArm_SV4						AT%MX8.3				:BOOL;			//右臂_电磁阀4
-	bRightArm_SV5						AT%MX8.4				:BOOL;			//右臂_电磁阀5
-	bRightArm_SV6						AT%MX8.5				:BOOL;			//右臂_电磁阀6
-	bRightArm_SV7						AT%MX8.6				:BOOL;			//右臂_电磁阀7	
-	bRightArm_SV8						AT%MX8.7				:BOOL;			//右臂_电磁阀8
+	bRightArm_SV1						AT%QX3.0				:BOOL;			//右臂_电磁阀1
+	bRightArm_SV2						AT%QX3.1				:BOOL;			//右臂_电磁阀2	
+	bRightArm_SV3						AT%QX3.2				:BOOL;			//右臂_电磁阀3
+	bRightArm_SV4						AT%QX3.3				:BOOL;			//右臂_电磁阀4
+	bRightArm_SV5						AT%QX3.4				:BOOL;			//右臂_电磁阀5
+	bRightArm_SV6						AT%QX3.5				:BOOL;			//右臂_电磁阀6
+	bRightArm_SV7						AT%QX3.6				:BOOL;			//右臂_电磁阀7	
+	bRightArm_SV8						AT%QX3.7				:BOOL;			//右臂_电磁阀8
+	
+	aLeftArm_SV_Array					:ARRAY[1..8] OF BOOL:=[bLeftArm_SV1,
+                                                               bLeftArm_SV2,
+                                                               bLeftArm_SV3,
+                                                               bLeftArm_SV4,
+                                                               bLeftArm_SV5,
+                                                               bLeftArm_SV6,
+                                                               bLeftArm_SV7,
+                                                               bLeftArm_SV8	
+																];
+																
+	aRightArm_SV_Array					:ARRAY[1..8] OF BOOL:=[bRightArm_SV1,
+                                                               bRightArm_SV2,
+                                                               bRightArm_SV3,
+                                                               bRightArm_SV4,
+                                                               bRightArm_SV5,
+                                                               bRightArm_SV6,
+                                                               bRightArm_SV7,
+                                                               bRightArm_SV8	
+																];
 	
 (*===================================== 电磁阀控制标志位 End ========================================*)	
 	
@@ -420,6 +444,9 @@ VAR_GLOBAL
 	
 
 (*====================================== 状态显示字段  End ==========================================*)	
+
+
+
 
 
 END_VAR

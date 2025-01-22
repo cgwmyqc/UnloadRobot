@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="LeftArmFK" Id="{874f104e-3823-4873-84ee-579597cb6d6e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION LeftArmFK : Points
+VAR_INPUT
+	theta1:LREAL;
+	theta2:LREAL;
+END_VAR
+VAR
+	// 中间变量
+	theta1_rad:LREAL;
+	theta2_rad:LREAL;
+	rr:LREAL;						//r变量被倍福占用了，所以此处用rr
+	u:LREAL;
+	angle_ACD:LREAL;
+	angle_DCE:LREAL;
+	angle_ACF:LREAL;
+	angle_FCG:LREAL;
+	angle_FCI:LREAL;
+	
+	// 输出
+	points : Points;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[theta1_rad := DEG_TO_RAD(theta1);
+theta2_rad := DEG_TO_RAD(theta2);
+
+
+rr := SQRT(EXPT((2*LeftArm_w+LeftArm_f*COS(theta1_rad)-LeftArm_g*COS(theta2_rad)),2) + EXPT((LeftArm_f*SIN(theta1_rad)-LeftArm_g*SIN(theta2_rad)),2));  
+
+u := SQRT(EXPT((2*LeftArm_w-LeftArm_g*COS(theta2_rad)),2) + EXPT((-LeftArm_g*SIN(theta2_rad)),2));
+
+
+angle_ACD := ACOS((rr*rr+LeftArm_f*LeftArm_f-u*u)/(2*rr*LeftArm_f));
+
+
+angle_DCE := ACOS((rr*rr + LeftArm_i*LeftArm_i -LeftArm_h*LeftArm_h)/(2*rr*LeftArm_i));
+
+
+angle_ACF := angle_ACD + angle_DCE + DEG_TO_RAD(LeftArm_angle_FCE);
+
+
+angle_FCG := angle_ACF - theta1_rad;
+
+
+angle_FCI := PI - angle_FCG;
+points.x := LeftArm_w + LeftArm_f*COS(theta1_rad) + LeftArm_n*COS(angle_FCI);
+points.y := LeftArm_f*SIN(theta1_rad) + LeftArm_n*SIN(angle_FCI);
+
+LeftArmFK := points;]]></ST>
+    </Implementation>
+    <LineIds Name="LeftArmFK">
+      <LineId Id="161" Count="24" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
