@@ -35,7 +35,16 @@ ELSE
 	END_FOR	
 END_IF
 
-]]></ST>
+// 所有轴停止
+IF bAxis_All_Stop THEN
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Stop_Group[i]^ := TRUE;
+	END_FOR
+ELSE
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Stop_Group[i]^ := FALSE;
+	END_FOR
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="AllAxisCtrl">
       <LineId Id="6" Count="4" />
@@ -55,6 +64,13 @@ END_IF
       <LineId Id="68" Count="1" />
       <LineId Id="40" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="107" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

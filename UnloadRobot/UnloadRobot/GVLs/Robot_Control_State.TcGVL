@@ -200,7 +200,29 @@ VAR_GLOBAL
 	                                                                                        
 	// 后龙门单电机                                                                               
 	bAxis_BackGate_Left_McStop									:Bool;			//后门_左电机MC_Stop标志位
-	bAxis_BackGate_Right_McStop									:Bool;			//后门_右电机MC_Stop标志位
+	bAxis_BackGate_Right_McStop									:BOOL;			//后门_右电机MC_Stop标志位
+	
+		// 所有轴
+	bAxis_All_Stop												:BOOL;			//所有电机使能
+
+	// 所有轴停止标志位的地址交给此Group来管理
+	aAxis_All_Stop_Group 										:ARRAY[1..23] OF POINTER TO BOOL:=[
+																									ADR(bAxis_LeftArm_Wrist_McStop),	
+																									ADR(bAxis_LeftArm_Left_McStop),	
+																									ADR(bAxis_LeftArm_Right_McStop),
+																									ADR(bAxis_LeftArm_Lift_McStop),
+																									ADR(bAxis_RightArm_Wrist_McStop),	
+																									ADR(bAxis_RightArm_Left_McStop),	
+																									ADR(bAxis_RightArm_Right_McStop),	
+																									ADR(bAxis_RightArm_Lift_McStop),
+																									ADR(bAxis_SmallGate_Left_McStop),
+																									ADR(bAxis_SmallGate_Right_McStop),
+																									ADR(bAxis_BigGate_Left_McStop),	
+																									ADR(bAxis_BigGate_Right_McStop),
+																									ADR(bAxis_BackGate_Left_McStop),	
+																									ADR(bAxis_BackGate_Right_McStop)
+																				 				 ];
+
 
 (*======================================== 机器人各轴 Mc_Stop标志位 End =====================================*)
 
@@ -295,18 +317,44 @@ VAR_GLOBAL
 
 
 
-(*===================================== 示教盒相关 Start ============================================*)	
-	
-	bTeachBox_Stop						AT%MX5.2				:BOOL;			//示教盒STOP键
-	bTeachBox_Run						AT%MX5.3				:BOOL;			//示教盒Run键
-	bTeachBox_Hand00					AT%MX5.4				:BOOL;			//示教盒HAND00键
-	bTeachBox_Hand01					AT%MX5.5				:BOOL;			//示教盒HAND01键
-	bTeachBox_Led1						AT%MX6.0				:BOOL;			//示教盒LED1点亮
-	bTeachBox_Led2						AT%MX6.1				:BOOL;			//示教盒LED2点亮
-	bTeachBox_Buzzer_continuous			AT%MX6.2				:BOOL;			//示教盒蜂鸣器长蜂鸣	
-	bTeachBox_Buzzer_Short				AT%MX6.2				:BOOL;			//示教盒蜂鸣器短蜂鸣
 
-(*===================================== 示教盒相关 End ==============================================*)	
+
+(*===================================== IO Input  ===================================================*)	
+	bTeachBoxRemote						AT%IX0.0				:BOOL;			//示教盒旋钮Remote档
+	bTeachBoxAuto						AT%IX0.1				:BOOL;			//示教盒旋钮Auto档
+    bEmergencyStopBtn					AT%IX0.2				:BOOL;			//急停按钮
+    bGreenBtn							AT%IX0.3				:BOOL;			//绿色按钮
+    bYellowBtn							AT%IX0.4				:BOOL;			//黄色按钮
+    bRedBtn								AT%IX0.5				:BOOL;			//红色按钮
+    bRemoteCtrl_Online					AT%IX0.6				:BOOL;			//遥控器Online成功
+	bRemoteCtrl_Up						AT%IX0.7				:BOOL;			//遥控器“上”按钮
+	bRemoteCtrl_Down					AT%IX1.0				:BOOL;			//遥控器“下”按钮
+	bRemoteCtrl_East					AT%IX1.1				:BOOL;			//遥控器“东”按钮
+    bRemoteCtrl_West					AT%IX1.2				:BOOL;			//遥控器“西”按钮
+    bRemoteCtrl_South					AT%IX1.3				:BOOL;			//遥控器“南”按钮
+    bRemoteCtrl_North					AT%IX1.4				:BOOL;			//遥控器“北”按钮
+    bRemoteCtrl_1btn					AT%IX1.5				:BOOL;			//遥控器“1”按钮
+    bRemoteCtrl_2btn					AT%IX1.6				:BOOL;			//遥控器“2”按钮
+	b_BackBeltCtrlBoxWarning			AT%IX1.7				:BOOL;			//长皮带变频器报警
+	bLeftArm_Sucker1_Completed			AT%IX2.0				:BOOL;			//左吸盘组传感器1压力到达
+	bLeftArm_Sucker2_Completed			AT%IX2.1				:BOOL;			//左吸盘组传感器2压力到达
+    bLeftArm_Sucker3_Completed			AT%IX2.2				:BOOL;			//左吸盘组传感器3压力到达
+    bLeftArm_Sucker4_Completed			AT%IX2.3				:BOOL;			//左吸盘组传感器4压力到达
+    bLeftArm_Sucker5_Completed			AT%IX2.4				:BOOL;			//左吸盘组传感器5压力到达
+    bLeftArm_Sucker6_Completed			AT%IX2.5				:BOOL;			//左吸盘组传感器6压力到达
+    bLeftArm_Sucker7_Completed			AT%IX2.6				:BOOL;			//左吸盘组传感器7压力到达
+	bLeftArm_Sucker8_Completed			AT%IX2.7				:BOOL;			//左吸盘组传感器8压力到达
+	bRightArm_Sucker1_Completed			AT%IX3.0				:BOOL;			//右吸盘组传感器1压力到达
+	bRightArm_Sucker2_Completed			AT%IX3.1				:BOOL;			//右吸盘组传感器2压力到达
+	bRightArm_Sucker3_Completed			AT%IX3.2				:BOOL;			//右吸盘组传感器3压力到达
+	bRightArm_Sucker4_Completed			AT%IX3.3				:BOOL;			//右吸盘组传感器4压力到达
+	bRightArm_Sucker5_Completed			AT%IX3.4				:BOOL;			//右吸盘组传感器5压力到达
+	bRightArm_Sucker6_Completed			AT%IX3.5				:BOOL;			//右吸盘组传感器6压力到达
+	bRightArm_Sucker7_Completed			AT%IX3.6				:BOOL;			//右吸盘组传感器7压力到达
+	bRightArm_Sucker8_Completed			AT%IX3.7				:BOOL;			//右吸盘组传感器8压力到达
+	bCrash_Sensor_Front					AT%IX4.0				:BOOL;			//前防撞条动作
+	bCrash_Sensor_Back					AT%IX4.0				:BOOL;			//后防撞条动作	
+(*===================================== IO Input ====================================================*)	
 
 
 
@@ -355,31 +403,80 @@ VAR_GLOBAL
 																];
 	
 (*===================================== 电磁阀控制标志位 End ========================================*)	
+
+
+
+
+
+
+
+(*===================================== 灯光 Start ========================================*)
 	
+	bTriColorLed_Green_Enable					AT%QX0.0				:BOOL;			//三色灯-绿色-点亮
+	bTriColorLed_Yellow_Enable					AT%QX0.1				:BOOL;			//三色灯-黄色-点亮
+	bTriColorLed_Red_Enable						AT%QX0.2				:BOOL;			//三色灯-红色-点亮
+	bBtnLed_Green_Enable						AT%QX0.3				:BOOL;			//按钮灯-绿色-点亮
+	bBtnLed_Yellow_Enable						AT%QX0.4				:BOOL;			//按钮灯-黄色-点亮
+	bBtnLed_Red_Enable							AT%QX0.5				:BOOL;			//按钮灯-红色-点亮
+	bFrontLight_Left_Enable						AT%QX0.6				:BOOL;			//前部照明灯-左-点亮
+	bFrontLight_Right_Enable					AT%QX0.7				:BOOL;			//前部照明灯-右-点亮	
 	
+(*===================================== 灯光 End ==========================================*)	
+
+
+
+
+
+(*===================================== 真空泵 Start ========================================*)
+	
+	bPumpMotor_Enable					AT%MX1.0				:BOOL;			//真空泵电机上电
+
+(*===================================== 真空泵 End ==========================================*)
+
+
+
 
 
 (*===================================== 滚筒控制标志位 Start ========================================*)
-
-	bAxis_GunTong_Left					AT%MX9.0				:BOOL;			//左滚筒_电机
-	bAxis_GunTong_Middle				AT%MX9.1				:BOOL;			//中滚筒_电机
-	bAxis_GunTong_Right					AT%MX9.2				:BOOL;			//右滚筒_电机
-	bAxis_GunTong_Back					AT%MX9.3				:BOOL;			//后滚筒_电机
+	
+	bAxis_GunTong_Back					AT%MX1.1				:BOOL;			//后滚筒_电机
+	bAxis_GunTong_Left					AT%MX1.2				:BOOL;			//左滚筒_电机
+	bAxis_GunTong_Right					AT%MX1.3				:BOOL;			//右滚筒_电机
+	bAxis_GunTong_Middle				AT%QX1.4				:BOOL;			//中滚筒_电机
 
 (*===================================== 滚筒控制标志位 End ==========================================*)
 
 
 
 
+
+(*===================================== 示教盒相关 Start ============================================*)	
+	
+//	bTeachBox_Stop						AT%MX5.2				:BOOL;			//示教盒STOP键
+//	bTeachBox_Run						AT%MX5.3				:BOOL;			//示教盒Run键
+//	bTeachBox_Hand00					AT%MX5.4				:BOOL;			//示教盒HAND00键
+//	bTeachBox_Hand01					AT%MX5.5				:BOOL;			//示教盒HAND01键
+//	bTeachBox_Led1						AT%MX6.0				:BOOL;			//示教盒LED1点亮
+//	bTeachBox_Led2						AT%MX6.1				:BOOL;			//示教盒LED2点亮
+//	bTeachBox_Buzzer_continuous			AT%MX6.2				:BOOL;			//示教盒蜂鸣器长蜂鸣	
+//	bTeachBox_Buzzer_Short				AT%MX6.2				:BOOL;			//示教盒蜂鸣器短蜂鸣
+
+(*===================================== 示教盒相关 End ==============================================*)	
+
+
+
+
+
+
 (*===================================== 运行速度设置区 Start ========================================*)	
 	
-	//手动模式速度及加速度设置
-	fManualCtrl_Velo					AT%MD20					:REAL;			//手动控制_运行速度
-	fManualCtrl_Acc						AT%MD24					:REAL;			//手动控制_运行速度
+//	//手动模式速度及加速度设置
+//	fManualCtrl_Velo					AT%MD20					:REAL;			//手动控制_运行速度
+//	fManualCtrl_Acc						AT%MD24					:REAL;			//手动控制_运行速度
 	
-	//自动模式速度及加速度设置
-	fAutoCtrl_Velo						AT%MD28					:REAL;			//自动控制_运行速度
-	fAutoCtrl_Acc						AT%MD32					:REAL;			//自动控制_运行速度			
+//	//自动模式速度及加速度设置
+//	fAutoCtrl_Velo						AT%MD28					:REAL;			//自动控制_运行速度
+//	fAutoCtrl_Acc						AT%MD32					:REAL;			//自动控制_运行速度			
 
 (*===================================== 运行速度设置区 End ==========================================*)	
 
@@ -388,57 +485,57 @@ VAR_GLOBAL
 
 (*====================================== 状态显示字段 Start =========================================*)	
 	
-	//左臂电机状态
-	fAxis_LeftArm_Wrist_ActPos			AT%MD100				:REAL;			//左臂_腕电机_实时位置
-	fAxis_LeftArm_Wrist_ActVelo			AT%MD104				:REAL;			//左臂_腕电机_实时速度
-	fAxis_LeftArm_Wrist_ActTorq			AT%MD108				:REAL;			//左臂_腕电机_实时力矩	
-	fAxis_LeftArm_Left_ActPos			AT%MD112				:REAL;			//左臂_左电机_实时位置
-	fAxis_LeftArm_Left_ActVelo			AT%MD116				:REAL;			//左臂_左电机_实时速度
-	fAxis_LeftArm_Left_ActTorq			AT%MD120				:REAL;			//左臂_左电机_实时力矩		
-	fAxis_LeftArm_Right_ActPos			AT%MD124				:REAL;			//左臂_右电机_实时位置
-	fAxis_LeftArm_Right_ActVelo			AT%MD128				:REAL;			//左臂_右电机_实时速度
-	fAxis_LeftArm_Right_ActTorq			AT%MD132				:REAL;			//左臂_右电机_实时力矩
-	fAxis_LeftArm_Lift_ActPos			AT%MD136				:REAL;			//左臂_升电机_实时位置
-	fAxis_LeftArm_Lift_ActVelo			AT%MD140				:REAL;			//左臂_升电机_实时速度
-	fAxis_LeftArm_Lift_ActTorq			AT%MD144				:REAL;			//左臂_升电机_实时力矩
+//	//左臂电机状态
+//	fAxis_LeftArm_Wrist_ActPos			AT%MD100				:REAL;			//左臂_腕电机_实时位置
+//	fAxis_LeftArm_Wrist_ActVelo			AT%MD104				:REAL;			//左臂_腕电机_实时速度
+//	fAxis_LeftArm_Wrist_ActTorq			AT%MD108				:REAL;			//左臂_腕电机_实时力矩	
+//	fAxis_LeftArm_Left_ActPos			AT%MD112				:REAL;			//左臂_左电机_实时位置
+//	fAxis_LeftArm_Left_ActVelo			AT%MD116				:REAL;			//左臂_左电机_实时速度
+//	fAxis_LeftArm_Left_ActTorq			AT%MD120				:REAL;			//左臂_左电机_实时力矩		
+//	fAxis_LeftArm_Right_ActPos			AT%MD124				:REAL;			//左臂_右电机_实时位置
+//	fAxis_LeftArm_Right_ActVelo			AT%MD128				:REAL;			//左臂_右电机_实时速度
+//	fAxis_LeftArm_Right_ActTorq			AT%MD132				:REAL;			//左臂_右电机_实时力矩
+//	fAxis_LeftArm_Lift_ActPos			AT%MD136				:REAL;			//左臂_升电机_实时位置
+//	fAxis_LeftArm_Lift_ActVelo			AT%MD140				:REAL;			//左臂_升电机_实时速度
+//	fAxis_LeftArm_Lift_ActTorq			AT%MD144				:REAL;			//左臂_升电机_实时力矩
 
-	//右臂电机状态
-	fAxis_RightArm_Wrist_ActPos			AT%MD184				:REAL;			//右臂_腕电机_实时位置
-	fAxis_RightArm_Wrist_ActVelo		AT%MD188				:REAL;			//右臂_腕电机_实时速度
-	fAxis_RightArm_Wrist_ActTorq		AT%MD192				:REAL;			//右臂_腕电机_实时力矩	
-	fAxis_RightArm_Left_ActPos			AT%MD196				:REAL;			//右臂_左电机_实时位置
-	fAxis_RightArm_Left_ActVelo			AT%MD200				:REAL;			//右臂_左电机_实时速度
-	fAxis_RightArm_Left_ActTorq			AT%MD204				:REAL;			//右臂_左电机_实时力矩		
-	fAxis_RightArm_Right_ActPos			AT%MD208				:REAL;			//右臂_右电机_实时位置
-	fAxis_RightArm_Right_ActVelo		AT%MD212				:REAL;			//右臂_右电机_实时速度
-	fAxis_RightArm_Right_ActTorq		AT%MD216				:REAL;			//右臂_右电机_实时力矩
-	fAxis_RightArm_Lift_ActPos			AT%MD220				:REAL;			//右臂_升电机_实时位置
-	fAxis_RightArm_Lift_ActVelo			AT%MD224				:REAL;			//右臂_升电机_实时速度
-	fAxis_RightArm_Lift_ActTorq			AT%MD228				:REAL;			//右臂_升电机_实时力矩				
+//	//右臂电机状态
+//	fAxis_RightArm_Wrist_ActPos			AT%MD184				:REAL;			//右臂_腕电机_实时位置
+//	fAxis_RightArm_Wrist_ActVelo		AT%MD188				:REAL;			//右臂_腕电机_实时速度
+//	fAxis_RightArm_Wrist_ActTorq		AT%MD192				:REAL;			//右臂_腕电机_实时力矩	
+//	fAxis_RightArm_Left_ActPos			AT%MD196				:REAL;			//右臂_左电机_实时位置
+//	fAxis_RightArm_Left_ActVelo			AT%MD200				:REAL;			//右臂_左电机_实时速度
+//	fAxis_RightArm_Left_ActTorq			AT%MD204				:REAL;			//右臂_左电机_实时力矩		
+//	fAxis_RightArm_Right_ActPos			AT%MD208				:REAL;			//右臂_右电机_实时位置
+//	fAxis_RightArm_Right_ActVelo		AT%MD212				:REAL;			//右臂_右电机_实时速度
+//	fAxis_RightArm_Right_ActTorq		AT%MD216				:REAL;			//右臂_右电机_实时力矩
+//	fAxis_RightArm_Lift_ActPos			AT%MD220				:REAL;			//右臂_升电机_实时位置
+//	fAxis_RightArm_Lift_ActVelo			AT%MD224				:REAL;			//右臂_升电机_实时速度
+//	fAxis_RightArm_Lift_ActTorq			AT%MD228				:REAL;			//右臂_升电机_实时力矩				
 	
-	//小龙门电机状态
-	fAxis_SmallGate_Left_ActPos			AT%MD148				:REAL;			//小龙门_左电机_实时位置
-	fAxis_SmallGate_Left_ActVelo		AT%MD152				:REAL;			//小龙门_左电机_实时速度
-	fAxis_SmallGate_Left_ActTorq		AT%MD156				:REAL;			//小龙门_左电机_实时力矩
-	fAxis_SmallGate_Right_ActPos		AT%MD232				:REAL;			//小龙门_右电机_实时位置
-	fAxis_SmallGate_Right_ActVelo		AT%MD236				:REAL;			//小龙门_右电机_实时速度
-	fAxis_SmallGate_Right_ActTorq		AT%MD240				:REAL;			//小龙门_右电机_实时力矩
+//	//小龙门电机状态
+//	fAxis_SmallGate_Left_ActPos			AT%MD148				:REAL;			//小龙门_左电机_实时位置
+//	fAxis_SmallGate_Left_ActVelo		AT%MD152				:REAL;			//小龙门_左电机_实时速度
+//	fAxis_SmallGate_Left_ActTorq		AT%MD156				:REAL;			//小龙门_左电机_实时力矩
+//	fAxis_SmallGate_Right_ActPos		AT%MD232				:REAL;			//小龙门_右电机_实时位置
+//	fAxis_SmallGate_Right_ActVelo		AT%MD236				:REAL;			//小龙门_右电机_实时速度
+//	fAxis_SmallGate_Right_ActTorq		AT%MD240				:REAL;			//小龙门_右电机_实时力矩
 
-	//大龙门电机状态
-	fAxis_BigGate_Left_ActPos			AT%MD160				:REAL;			//大龙门_左电机_实时位置
-	fAxis_BigGate_Left_ActVelo			AT%MD164				:REAL;			//大龙门_左电机_实时速度
-	fAxis_BigGate_Left_ActTorq			AT%MD168				:REAL;			//大龙门_左电机_实时力矩
-	fAxis_BigGate_Right_ActPos			AT%MD244				:REAL;			//大龙门_右电机_实时位置
-	fAxis_BigGate_Right_ActVelo			AT%MD248				:REAL;			//大龙门_右电机_实时速度
-	fAxis_BigGate_Right_ActTorq			AT%MD252				:REAL;			//大龙门_右电机_实时力矩
+//	//大龙门电机状态
+//	fAxis_BigGate_Left_ActPos			AT%MD160				:REAL;			//大龙门_左电机_实时位置
+//	fAxis_BigGate_Left_ActVelo			AT%MD164				:REAL;			//大龙门_左电机_实时速度
+//	fAxis_BigGate_Left_ActTorq			AT%MD168				:REAL;			//大龙门_左电机_实时力矩
+//	fAxis_BigGate_Right_ActPos			AT%MD244				:REAL;			//大龙门_右电机_实时位置
+//	fAxis_BigGate_Right_ActVelo			AT%MD248				:REAL;			//大龙门_右电机_实时速度
+//	fAxis_BigGate_Right_ActTorq			AT%MD252				:REAL;			//大龙门_右电机_实时力矩
 
-	//后龙门电机状态
-	fAxis_BackGate_Left_ActPos			AT%MD172				:REAL;			//后龙门_左电机_实时位置
-	fAxis_BackGate_Left_ActVelo			AT%MD176				:REAL;			//后龙门_左电机_实时速度
-	fAxis_BackGate_Left_ActTorq			AT%MD180				:REAL;			//后龙门_左电机_实时力矩
-	fAxis_BackGate_Right_ActPos			AT%MD256				:REAL;			//后龙门_右电机_实时位置
-	fAxis_BackGate_Right_ActVelo		AT%MD260				:REAL;			//后龙门_右电机_实时速度
-	fAxis_BackGate_Right_ActTorq		AT%MD264				:REAL;			//后龙门_右电机_实时力矩
+//	//后龙门电机状态
+//	fAxis_BackGate_Left_ActPos			AT%MD172				:REAL;			//后龙门_左电机_实时位置
+//	fAxis_BackGate_Left_ActVelo			AT%MD176				:REAL;			//后龙门_左电机_实时速度
+//	fAxis_BackGate_Left_ActTorq			AT%MD180				:REAL;			//后龙门_左电机_实时力矩
+//	fAxis_BackGate_Right_ActPos			AT%MD256				:REAL;			//后龙门_右电机_实时位置
+//	fAxis_BackGate_Right_ActVelo		AT%MD260				:REAL;			//后龙门_右电机_实时速度
+//	fAxis_BackGate_Right_ActTorq		AT%MD264				:REAL;			//后龙门_右电机_实时力矩
 	
 	
 	
