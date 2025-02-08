@@ -12,7 +12,7 @@ VAR
 	// 当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_BigGate_Left或bManualCtrl_Part_BigGate_Right为True，会把此变量置false
 	bBigGate_Gearin_do				:BOOL:=TRUE;			
 	
-	nBigGate_Speed					:LREAL:=5;		// 大龙门移动速度
+	nBigGate_Speed					:LREAL:=2;		// 大龙门移动速度
 	nBigGate_MoveAbs_TarPos			:LREAL;			// 大龙门MoveAbs目标位置
 	
 	

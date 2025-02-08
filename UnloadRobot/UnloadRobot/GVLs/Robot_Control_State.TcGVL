@@ -13,6 +13,7 @@ VAR_GLOBAL
 	bAutoCtrl_Part_LeftWrist									:BOOL;			// 自动控制-单体-腕电机
 	bAutoCtrl_Part_RightWrist									:BOOL;			// 自动控制-单体-腕电机	
 
+
 	
 	bManualCtrl_Part_LeftArm_Left								:BOOL;			// 单轴控制标志位
 	bManualCtrl_Part_LeftArm_Right								:BOOL;			
@@ -29,12 +30,23 @@ VAR_GLOBAL
 	bManualCtrl_Part_BackGate_Left								:BOOL;
 	bManualCtrl_Part_BackGate_Right								:BOOL;		
 	
+	
 
 
 (*======================================== 自定义标志位 End ========================================*)	
 
 
 
+(*=================================================    走位置演示    =======================================*)
+
+	bAutoMovePosSet												:BOOL;			// 走位置演示
+	
+	
+(*=================================================    走位置演示    =======================================*)
+
+
+
+	
 
 (*========================================电机使能标志位 Start =====================================*)	
 	
@@ -429,7 +441,7 @@ VAR_GLOBAL
 
 (*===================================== 真空泵 Start ========================================*)
 	
-	bPumpMotor_Enable					AT%MX1.0				:BOOL;			//真空泵电机上电
+	bPumpMotor_Enable					AT%QX1.0				:BOOL;			//真空泵电机上电
 
 (*===================================== 真空泵 End ==========================================*)
 
@@ -439,9 +451,9 @@ VAR_GLOBAL
 
 (*===================================== 滚筒控制标志位 Start ========================================*)
 	
-	bAxis_GunTong_Back					AT%MX1.1				:BOOL;			//后滚筒_电机
-	bAxis_GunTong_Left					AT%MX1.2				:BOOL;			//左滚筒_电机
-	bAxis_GunTong_Right					AT%MX1.3				:BOOL;			//右滚筒_电机
+	bAxis_GunTong_Back					AT%QX1.1				:BOOL;			//后滚筒_电机
+	bAxis_GunTong_Left					AT%QX1.2				:BOOL;			//左滚筒_电机
+	bAxis_GunTong_Right					AT%QX1.3				:BOOL;			//右滚筒_电机
 	bAxis_GunTong_Middle				AT%QX1.4				:BOOL;			//中滚筒_电机
 
 (*===================================== 滚筒控制标志位 End ==========================================*)

@@ -11,10 +11,10 @@ END_VAR
     <Implementation>
       <ST><![CDATA[
 writeParam(
-	Axis:= axis_BigGate_Left, 
+	Axis:= axis_RightArm_Wrist, 
 	Execute:= bWriteParam_DO, 
 	ParameterNumber:= AxisEncoderOffset, 
-	Value:= -100, 
+	Value:= -2, 
 	Done=> , 
 	Busy=> , 
 	Error=> , 

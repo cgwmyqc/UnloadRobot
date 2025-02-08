@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="LeftArmWristIK" Id="{8ee3b6f6-a74e-422b-af29-e9a006f70863}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION LeftArmWristIK : REAL
+VAR_INPUT
+	theta1:LREAL;
+	theta2:LREAL;	
+END_VAR
+VAR
+	// 中间变量
+	theta1_rad:LREAL;
+	theta2_rad:LREAL;
+	rr:LREAL;						//r变量被倍福占用了，所以此处用rr
+	u:LREAL;
+	angle_ACD:LREAL;
+	angle_DCE:LREAL;
+	angle_ACE:LREAL;
+	angle_ECG:LREAL;
+	angle_ECI:LREAL;
+	
+	point_E:Points;
+	point_F:Points;
+	
+	jx:REAL;				//EF向量的横坐标
+	jy:REAL;				//EF向量的纵坐标
+	vx:REAL:=0;				//+y单位向量的横坐标
+	vy:REAL:=1;				//+y单位向量的纵坐标
+	result_cross:REAL;		//EF向量和+y向量的叉乘结果
+	
+	angle_Beta:REAL;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[theta1_rad := DEG_TO_RAD(theta1);
+theta2_rad := DEG_TO_RAD(theta2);
+
+point_F := LeftArmFK(theta1, theta2);
+
+rr := SQRT(EXPT((2*LeftArm_w+LeftArm_f*COS(theta1_rad)-LeftArm_g*COS(theta2_rad)),2) + EXPT((LeftArm_f*SIN(theta1_rad)-LeftArm_g*SIN(theta2_rad)),2));  
+
+u := SQRT(EXPT((2*LeftArm_w-LeftArm_g*COS(theta2_rad)),2) + EXPT((-LeftArm_g*SIN(theta2_rad)),2));
+
+angle_ACD := ACOS((rr*rr+LeftArm_f*LeftArm_f-u*u)/(2*rr*LeftArm_f));
+
+angle_DCE := ACOS((rr*rr + LeftArm_i*LeftArm_i -LeftArm_h*LeftArm_h)/(2*rr*LeftArm_i));
+
+angle_ACE := angle_ACD + angle_DCE;
+
+angle_ECG := angle_ACE - theta1_rad;
+    
+angle_ECI := PI - angle_ECG;
+
+point_E.x := LeftArm_w + LeftArm_f*COS(theta1_rad) + LeftArm_i*COS(angle_ECI);
+point_E.y := LeftArm_f*SIN(theta1_rad) + LeftArm_i*SIN(angle_ECI);
+
+jx := point_F.x - point_E.x;
+jy := point_F.y - point_E.y;
+
+result_cross := jx*vy - jy*vx;
+
+IF result_cross > 0 THEN
+	angle_Beta := ACOS((jx*vx+jy*vy)/(SQRT(jx*jx+jy*jy)*SQRT(vx*vx+vy*vy)));
+ELSIF result_cross < 0 THEN
+	angle_Beta := -ACOS((jx*vx+jy*vy)/(SQRT(jx*jx+jy*jy)*SQRT(vx*vx+vy*vy)));
+ELSE
+	angle_Beta := 0;
+END_IF
+
+LeftArmWristIK := RAD_TO_DEG(angle_Beta);]]></ST>
+    </Implementation>
+    <LineIds Name="LeftArmWristIK">
+      <LineId Id="34" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="36" Count="5" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="73" Count="6" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="72" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="RightArmWristIK" Id="{27608a3b-9bbd-4337-b5fc-8e03a5ac4b52}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION RightArmWristIK : REAL
+VAR_INPUT
+	theta1:LREAL;			//右电机角度值
+	theta2:LREAL;	        //左电机角度值
+END_VAR                             
+VAR                                 
+	// 中间变量                         
+	theta1_rad:LREAL;       //右电机弧度值
+	theta2_rad:LREAL;       //左电机弧度值
+	rr:LREAL;						//r变量被倍福占用了，所以此处用rr
+	u:LREAL;
+	angle_BDC:LREAL;
+	angle_CDE:LREAL;
+	angle_BDE:LREAL;
+	angle_EDG:LREAL;
+
+	
+	point_E:Points;
+	point_F:Points;
+	
+	jx:REAL;				//EF向量的横坐标
+	jy:REAL;				//EF向量的纵坐标
+	vx:REAL:=0;				//+y单位向量的横坐标
+	vy:REAL:=1;				//+y单位向量的纵坐标
+	result_cross:REAL;		//EF向量和+y向量的叉乘结果
+	
+	angle_Beta:REAL;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[theta1_rad := DEG_TO_RAD(theta1);
+theta2_rad := DEG_TO_RAD(theta2);
+
+point_F := RightArmFK(theta1, theta2);
+
+rr := SQRT(EXPT((2*RightArm_w+RightArm_f*COS(theta1_rad)-RightArm_g*COS(theta2_rad)),2) + EXPT((RightArm_f*SIN(theta1_rad)-RightArm_g*SIN(theta2_rad)),2));  
+
+u := SQRT(EXPT((2*RightArm_w+RightArm_f*COS(theta1_rad)),2) + EXPT((RightArm_f*SIN(theta1_rad)),2));
+
+angle_BDC := ACOS((rr*rr+RightArm_g*RightArm_g-u*u)/(2*rr*RightArm_g));
+
+angle_CDE := ACOS((rr*rr + RightArm_h*RightArm_h -RightArm_i*RightArm_i)/(2*rr*RightArm_h));
+
+angle_BDE := angle_BDC + angle_CDE;
+
+angle_EDG := angle_BDE - (PI - theta2_rad);
+
+point_E.x := -RightArm_w + RightArm_g*COS(theta2_rad) + RightArm_h*COS(angle_EDG);
+point_E.y := RightArm_g*SIN(theta2_rad) + RightArm_h*SIN(angle_EDG);
+
+
+jx := point_F.x - point_E.x;
+jy := point_F.y - point_E.y;
+
+
+result_cross := jx*vy - jy*vx;
+
+IF result_cross > 0 THEN
+	angle_Beta := ACOS((jx*vx+jy*vy)/(SQRT(jx*jx+jy*jy)*SQRT(vx*vx+vy*vy)));
+ELSIF result_cross < 0 THEN
+	angle_Beta := -ACOS((jx*vx+jy*vy)/(SQRT(jx*jx+jy*jy)*SQRT(vx*vx+vy*vy)));
+ELSE
+	angle_Beta := 0;
+END_IF
+
+RightArmWristIK := RAD_TO_DEG(angle_Beta);]]></ST>
+    </Implementation>
+    <LineIds Name="RightArmWristIK">
+      <LineId Id="38" Count="4" />
+      <LineId Id="135" Count="2" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="140" Count="1" />
+      <LineId Id="50" Count="3" />
+      <LineId Id="56" Count="2" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="59" Count="2" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="62" Count="9" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

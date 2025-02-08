@@ -7,7 +7,7 @@ VAR
 	point												:Points;					// 当前腕关节坐标
 	target_angle										:Angles;					// 臂左右电机目标角度
 	manualState											:USINT;						// 手动控制状态标志位，0
-	speed												:REAL := 1;					// 笛卡尔坐标位移速度
+	speed												:REAL := 0.5;					// 笛卡尔坐标位移速度
 	x													:REAL;						// 腕关节目标位置x
 	y													:REAL;						// 腕关节目标位置y
 	wrist_angle											:REAL;						// 腕电机角度
@@ -16,7 +16,7 @@ VAR
 	LeftArm_Lift_Jog									:MC_Jog;
 	bLeftArm_Lift_Up									:BOOL;
 	bLeftArm_Lift_Down									:BOOL;
-	nLeftArmLiftSpeed									:LREAL:=5;
+	nLeftArmLiftSpeed									:LREAL:=3;					//举升电机速度
 	
 	LeftArm_Right_ExtPosGen_Enable						:MC_ExtSetPointGenEnable;
 	LeftArm_Right_ExtPosGen_Disable                     :MC_ExtSetPointGenDisable;
@@ -121,22 +121,22 @@ IF bManualCtrl_Asm_LeftArm THEN
 			IF axis_LeftArm_Right.Status.ExtSetPointGenEnabled AND axis_LeftArm_Left.Status.ExtSetPointGenEnabled AND axis_LeftArm_Wrist.Status.ExtSetPointGenEnabled THEN
 				MC_ExtSetPointGenFeed(
 					Position:= target_angle.theta1_right, 
-					Velocity:= 5,  
-					Acceleration:= 10,  
+					Velocity:= 1,  
+					Acceleration:= 3,  
 					Direction:= 1, 
 					Axis:= axis_LeftArm_Right);
 		
 				MC_ExtSetPointGenFeed(
 					Position:= target_angle.theta2_left, 
-					Velocity:= 5,  
-					Acceleration:= 10,  
+					Velocity:= 1,  
+					Acceleration:= 3,  
 					Direction:= 1, 
 					Axis:= axis_LeftArm_Left);
 					
 				MC_ExtSetPointGenFeed(
 					Position:= wrist_angle, 
-					Velocity:= 5, 
-					Acceleration:= 10, 
+					Velocity:= 1, 
+					Acceleration:= 3, 
 					Direction:= 1, 
 					Axis:= axis_LeftArm_Wrist);
 			END_IF
@@ -218,8 +218,8 @@ LeftArm_Wrist_ExtPosGen_Disable(
       <Implementation>
         <ST><![CDATA[LeftArm_Lift_Jog(
 	Axis:= axis_LeftArm_Lift, 
-	JogForward:= bLeftArm_Lift_Down, 
-	JogBackwards:= bLeftArm_Lift_Up, 
+	JogForward:= bLeftArm_Lift_Up, 
+	JogBackwards:= bLeftArm_Lift_Down, 
 	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
 	Velocity:= nLeftArmLiftSpeed, 

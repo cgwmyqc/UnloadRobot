@@ -52,6 +52,12 @@
     <Compile Include="POUs\ArmFK_bak.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\LeftArmWristIK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MoveExtPos.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\RightArmManualCtrlMove.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -101,6 +107,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RightArmWristIK.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Serial\BackgroundSerialCtrl.TcPOU">

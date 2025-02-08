@@ -12,7 +12,7 @@ VAR
 	//或bManualCtrl_Part_SmallGate_Right为True，会把此变量置false
 	bSmallGate_Gearin_do		:BOOL:=TRUE;
 	
-	nSmallGate_Speed					:LREAL:=5;		// 小龙门移动速度
+	nSmallGate_Speed					:LREAL:=2;		// 小龙门移动速度
 	nSmallGate_MoveAbs_TarPos			:LREAL;			// 小龙门MoveAbs目标位置
 	
 END_VAR

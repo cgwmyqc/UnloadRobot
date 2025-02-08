@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="MoveExtPos" Id="{14b2fa12-99b5-447e-ad50-13da07e623f6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MoveExtPos
+VAR
+	armState	:UINT:=0;
+	chabustate	:UINT:=0;
+	
+	LeftArm_Right_ExtPosGen_Enable						:MC_ExtSetPointGenEnable;
+	LeftArm_Right_ExtPosGen_Disable                     :MC_ExtSetPointGenDisable;
+	LeftArm_Left_ExtPosGen_Enable                       :MC_ExtSetPointGenEnable;
+	LeftArm_Left_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
+	LeftArm_Wrist_ExtPosGen_Enable                      :MC_ExtSetPointGenEnable;
+	LeftArm_Wrist_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
+	
+	RightArm_Right_ExtPosGen_Enable						:MC_ExtSetPointGenEnable;
+	RightArm_Right_ExtPosGen_Disable                     :MC_ExtSetPointGenDisable;
+	RightArm_Left_ExtPosGen_Enable                       :MC_ExtSetPointGenEnable;
+	RightArm_Left_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
+	RightArm_Wrist_ExtPosGen_Enable                      :MC_ExtSetPointGenEnable;
+	RightArm_Wrist_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
+	
+	currentPosition_LeftArm				:Points;
+	currentPosition_RightArm				:Points;
+
+	//leftpoints						:ARRAY[0..5,0..1] OF LREAL:=[[-80,390],[390,880],[-80,390],[-80,880],[-80,390],[-400,830]];
+	//rightpoints						:ARRAY[0..5,0..1] OF LREAL:=[[-80,390],[390,880],[-80,390],[-80,880],[-80,390],[-400,830]];	
+	left_wrist_angle_target				:REAL;
+	right_wrist_angle_target			:REAL;	
+	
+	t			:LREAL:=0;
+	delta_t		:LREAL:=0.0005;
+	lx:LREAL;
+	ly:LREAL;
+	rx:LREAL;
+	ry:LREAL;
+	
+	LeftArmAngle			:Angles;
+	RightArmAngle			:Angles;
+
+	    bEnable : BOOL := TRUE;       // 使能信号，用于启动定时器
+    bOutput : BOOL := FALSE;      // 输出信号，每 500 ms 切换一次
+    tTimer : TON;   
+	
+	
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[axis_LeftArm_Left();
+axis_LeftArm_Right();
+axis_LeftArm_Wrist();
+axis_RightArm_Left();
+axis_RightArm_Right();
+axis_RightArm_Wrist();
+ACT_ExtGen();
+ACT_WristMoveAbs();
+
+// 配置 TON 定时器
+tTimer(IN := bEnable, PT := T#2S);
+
+// 定时器计时完成后切换 bOutput 的状态
+IF tTimer.Q THEN
+    bOutput := NOT bOutput;       // 切换输出状态
+    tTimer(IN := FALSE);          // 复位定时器
+END_IF
+
+// 重新启动定时器
+IF NOT tTimer.IN THEN
+    tTimer(IN := TRUE);
+END_IF
+
+// 外部位置发生器失能
+LeftArm_Right_ExtPosGen_Enable.Execute 		:= FALSE;
+LeftArm_Right_ExtPosGen_Disable.Execute 	:= FALSE;
+LeftArm_Left_ExtPosGen_Enable.Execute 		:= FALSE;
+LeftArm_Left_ExtPosGen_Disable.Execute 		:= FALSE;
+LeftArm_Wrist_ExtPosGen_Enable.Execute 		:= FALSE;
+LeftArm_Wrist_ExtPosGen_Disable.Execute 	:= FALSE;	
+
+RightArm_Right_ExtPosGen_Enable.Execute 		:= FALSE;
+RightArm_Right_ExtPosGen_Disable.Execute 	:= FALSE;
+RightArm_Left_ExtPosGen_Enable.Execute 		:= FALSE;
+RightArm_Left_ExtPosGen_Disable.Execute 		:= FALSE;
+RightArm_Wrist_ExtPosGen_Enable.Execute 		:= FALSE;
+RightArm_Wrist_ExtPosGen_Disable.Execute 	:= FALSE;	
+
+
+IF bAutoMovePosSet THEN
+
+	
+	CASE armState OF
+		
+		0:// 运动学正解出当前腕关节点坐标
+			currentPosition_LeftArm := LeftArmFK(axis_LeftArm_Right.NcToPlc.ActPos, axis_LeftArm_Left.NcToPlc.ActPos);
+			currentPosition_RightArm := RightArmFK(axis_RightArm_Right.NcToPlc.ActPos, axis_RightArm_Left.NcToPlc.ActPos);
+			armState:=1;
+		1:
+			
+			MC_ExtSetPointGenFeed(
+				Position:= axis_LeftArm_Right.NcToPlc.ActPos, 
+				Velocity:= 0.5,  
+				Acceleration:= 1,  
+				Direction:= 1, 
+				Axis:= axis_LeftArm_Right);
+	
+			MC_ExtSetPointGenFeed(
+				Position:= axis_LeftArm_Left.NcToPlc.ActPos, 
+				Velocity:= 0.5,  
+				Acceleration:= 1,  
+				Direction:= 1, 
+				Axis:= axis_LeftArm_Left);
+				
+//			MC_ExtSetPointGenFeed(
+//				Position:= axis_LeftArm_Wrist.NcToPlc.ActPos, 
+//				Velocity:= 0.5, 
+//				Acceleration:= 1, 
+//				Direction:= 1, 
+//				Axis:= axis_LeftArm_Wrist);
+			
+			MC_ExtSetPointGenFeed(
+				Position:= axis_RightArm_Right.NcToPlc.ActPos, 
+				Velocity:= 0.5,  
+				Acceleration:= 1,  
+				Direction:= 1, 
+				Axis:= axis_RightArm_Right);
+	
+			MC_ExtSetPointGenFeed(
+				Position:= axis_RightArm_Left.NcToPlc.ActPos, 
+				Velocity:= 0.5,  
+				Acceleration:= 1,  
+				Direction:= 1, 
+				Axis:= axis_RightArm_Left);
+				
+//			MC_ExtSetPointGenFeed(
+//				Position:= wrist_angle, 
+//				Velocity:= 1, 
+//				Acceleration:= 10, 
+//				Direction:= 1, 
+//				Axis:= axis_RightArm_Wrist);
+			
+			armState:=2;
+			
+		2:
+			LeftArm_Right_ExtPosGen_Enable.Execute := TRUE;
+			LeftArm_Left_ExtPosGen_Enable.Execute := TRUE;
+			
+			RightArm_Right_ExtPosGen_Enable.Execute := TRUE;
+			RightArm_Left_ExtPosGen_Enable.Execute := TRUE;
+			//LeftArm_Wrist_ExtPosGen_Enable.Execute := TRUE;
+			
+			IF axis_LeftArm_Right.Status.ExtSetPointGenEnabled AND axis_LeftArm_Left.Status.ExtSetPointGenEnabled AND axis_RightArm_Right.Status.ExtSetPointGenEnabled AND axis_RightArm_Left.Status.ExtSetPointGenEnabled (*AND axis_LeftArm_Wrist.Status.ExtSetPointGenEnabled  AND axis_RightArm_Wrist.Status.ExtSetPointGenEnabled *)THEN
+				
+				
+				CASE  chabustate OF
+					0:
+						lx	:=currentPosition_LeftArm.x+t*(-80-currentPosition_LeftArm.x);
+						ly 	:=currentPosition_LeftArm.y+t*(390-currentPosition_LeftArm.y);
+						rx	:=currentPosition_RightArm.x+t*(120-currentPosition_RightArm.x);
+						ry 	:=currentPosition_RightArm.y+t*(370-currentPosition_RightArm.y);
+						t	:= t+delta_t;
+						IF t>=1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate:=1;
+							t	:=0;
+						END_IF
+
+					1:
+
+						lx	:=t*470-80;
+						ly	:=390+t*490;
+						rx	:=120+250*t;
+						ry	:=370+510*t;
+						t	:= t+delta_t;
+						IF t >=1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate := 2;
+							t:=0;
+						END_IF
+					2:
+						lx	:=390-t*470;
+						ly	:=880-t*490;
+						rx	:=370-250*t;
+						ry	:=880-510*t;
+						t	:= t+delta_t;
+						IF t>=1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate := 3;
+							t:=0;
+						END_IF
+					3:
+						lx := -80;
+						ly := 390+490*t;
+						rx := 120;
+						ry := 370+510*t;
+						t:=t+delta_t;
+						IF t>= 1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate	:=4;
+							t:=0;
+						END_IF
+					4:
+						lx := -80;
+						ly := 880-490*t;
+						rx := 120;
+						ry := 880-510*t;
+						t:= t+delta_t;
+						IF t>=1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate := 5;
+							t:=0;
+						END_IF
+					5:
+						lx := -80-320*t;
+						ly := 390+440*t;
+						rx := 120-450*t;
+						ry := 370+480*t;
+						t:=t+delta_t;
+						IF t>= 1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate	:=6;
+							t:=0;
+						END_IF
+					6:
+						lx := -400+320*t;
+						ly := 830-440*t;
+						rx := -330+450*t;
+						ry := 850-480*t;
+						t:= t+delta_t;
+						IF t>=1 THEN
+							LeftArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							LeftArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Right_ExtPosGen_Enable.Execute := FALSE;
+							RightArm_Left_ExtPosGen_Enable.Execute := FALSE;
+							chabustate := 1;
+							t:=0;
+						END_IF
+
+				END_CASE
+				
+				LeftArmAngle := LeftArmIK(lx,ly);
+				left_wrist_angle_target := WristIK(lx, ly);
+				
+				RightArmAngle := RightArmIK(rx,ry);
+				Right_wrist_angle_target := WristIK(rx, ry);
+					
+
+				
+				LeftArm_Right_ExtPosGen_Enable.Execute := TRUE;
+				LeftArm_Left_ExtPosGen_Enable.Execute := TRUE;
+				RightArm_Right_ExtPosGen_Enable.Execute := TRUE;
+				RightArm_Left_ExtPosGen_Enable.Execute := TRUE;
+				
+				MC_ExtSetPointGenFeed(
+					Position:= LeftArmAngle.theta1_right, 
+					Velocity:= 0.005,  
+					Acceleration:= 0.01,  
+					Direction:= 1, 
+					Axis:= axis_LeftArm_Right);
+		
+				MC_ExtSetPointGenFeed(
+					Position:= LeftArmAngle.theta2_left, 
+					Velocity:= 0.005,  
+					Acceleration:= 0.001,  
+					Direction:= 1, 
+					Axis:= axis_LeftArm_Left);
+				
+				MC_ExtSetPointGenFeed(
+					Position:= RightArmAngle.theta1_right, 
+					Velocity:= 0.005,  
+					Acceleration:= 0.01,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_Right);
+		
+				MC_ExtSetPointGenFeed(
+					Position:= RightArmAngle.theta2_left, 
+					Velocity:= 0.005,  
+					Acceleration:= 0.001,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_left);
+								
+
+	
+	
+				
+					
+					
+//				MC_ExtSetPointGenFeed(
+//					Position:= wrist_angle, 
+//					Velocity:= 0.5, 
+//					Acceleration:= 1, 
+//					Direction:= 1, 
+//					Axis:= axis_LeftArm_Wrist);
+				(*	
+				MC_ExtSetPointGenFeed(
+					Position:= RightArmAngle.theta1_right, 
+					Velocity:= 5,  
+					Acceleration:= 10,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_Right);
+		
+				MC_ExtSetPointGenFeed(
+					Position:= RightArmAngle.theta2_left, 
+					Velocity:= 5,  
+					Acceleration:= 10,  
+					Direction:= 1, 
+					Axis:= axis_RightArm_Left);
+					
+				MC_ExtSetPointGenFeed(
+					Position:= wrist_angle, 
+					Velocity:= 5, 
+					Acceleration:= 10, 
+					Direction:= 1, 
+					Axis:= axis_RightArm_Wrist);
+				*)
+
+			END_IF
+	
+	END_CASE
+
+
+
+
+END_IF]]></ST>
+    </Implementation>
+    <Action Name="ACT_ExtGen" Id="{497ad5f0-c9f3-4530-aa78-af8a1b8cb86f}">
+      <Implementation>
+        <ST><![CDATA[LeftArm_Right_ExtPosGen_Enable(
+	Axis:= axis_LeftArm_Right, 
+	Execute:= LeftArm_Right_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+LeftArm_Right_ExtPosGen_Disable(
+	Axis:= axis_LeftArm_Right, 
+	Execute:= LeftArm_Right_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+LeftArm_Left_ExtPosGen_Enable(
+	Axis:= axis_LeftArm_Left, 
+	Execute:= LeftArm_Left_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+LeftArm_Left_ExtPosGen_Disable(
+	Axis:= axis_LeftArm_Left, 
+	Execute:= LeftArm_Left_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+LeftArm_Wrist_ExtPosGen_Enable(
+	Axis:= axis_LeftArm_Wrist, 
+	Execute:= LeftArm_Wrist_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+LeftArm_Wrist_ExtPosGen_Disable(
+	Axis:= axis_LeftArm_Wrist, 
+	Execute:= LeftArm_Wrist_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Right_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Right, 
+	Execute:= RightArm_Right_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Right_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Right, 
+	Execute:= RightArm_Right_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Left_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Left, 
+	Execute:= RightArm_Left_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Left_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Left, 
+	Execute:= RightArm_Left_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Wrist_ExtPosGen_Enable(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= RightArm_Wrist_ExtPosGen_Enable.Execute, 
+	Position:= , 
+	PositionType:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+	
+RightArm_Wrist_ExtPosGen_Disable(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= RightArm_Wrist_ExtPosGen_Disable.Execute, 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> , 
+	Enabled=> );
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="ACT_WristMoveAbs" Id="{f8a10bc3-ac8d-4263-9392-d546cc6ad58c}">
+      <Implementation>
+        <ST><![CDATA[IF LeftArm_Right_ExtPosGen_Enable.Execute AND LeftArm_Left_ExtPosGen_Enable.Execute THEN
+
+axis_LeftArm_Wrist_MoveAbs(
+	Axis:= axis_LeftArm_Wrist, 
+	Execute:= bOutput, 
+	Position:= left_wrist_angle_target, 
+	Velocity:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightArm_Wrist_MoveAbs(
+	Axis:= axis_RightArm_Wrist, 
+	Execute:= bOutput, 
+	Position:= right_wrist_angle_target, 
+	Velocity:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+END_IF
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="MoveExtPos">
+      <LineId Id="42" Count="2" />
+      <LineId Id="561" Count="1" />
+      <LineId Id="560" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="466" Count="0" />
+      <LineId Id="495" Count="11" />
+      <LineId Id="458" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="407" Count="5" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="509" Count="5" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="95" Count="18" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="124" Count="18" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="92" Count="1" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="517" Count="0" />
+      <LineId Id="516" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="355" Count="0" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="520" Count="0" />
+      <LineId Id="519" Count="0" />
+      <LineId Id="356" Count="0" />
+      <LineId Id="358" Count="0" />
+      <LineId Id="362" Count="1" />
+      <LineId Id="521" Count="1" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="380" Count="0" />
+      <LineId Id="360" Count="0" />
+      <LineId Id="354" Count="0" />
+      <LineId Id="352" Count="0" />
+      <LineId Id="357" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="368" Count="1" />
+      <LineId Id="523" Count="1" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="381" Count="0" />
+      <LineId Id="275" Count="1" />
+      <LineId Id="388" Count="2" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="277" Count="1" />
+      <LineId Id="370" Count="1" />
+      <LineId Id="525" Count="1" />
+      <LineId Id="279" Count="0" />
+      <LineId Id="382" Count="0" />
+      <LineId Id="280" Count="5" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="372" Count="1" />
+      <LineId Id="527" Count="1" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="383" Count="0" />
+      <LineId Id="290" Count="1" />
+      <LineId Id="392" Count="2" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="292" Count="0" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="374" Count="1" />
+      <LineId Id="529" Count="1" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="384" Count="0" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="286" Count="0" />
+      <LineId Id="296" Count="0" />
+      <LineId Id="298" Count="1" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="376" Count="0" />
+      <LineId Id="532" Count="2" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="385" Count="0" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="305" Count="0" />
+      <LineId Id="396" Count="2" />
+      <LineId Id="395" Count="0" />
+      <LineId Id="307" Count="1" />
+      <LineId Id="378" Count="1" />
+      <LineId Id="535" Count="1" />
+      <LineId Id="309" Count="0" />
+      <LineId Id="386" Count="0" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="168" Count="1" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="563" Count="0" />
+      <LineId Id="538" Count="0" />
+      <LineId Id="537" Count="0" />
+      <LineId Id="540" Count="2" />
+      <LineId Id="366" Count="1" />
+      <LineId Id="543" Count="2" />
+      <LineId Id="214" Count="12" />
+      <LineId Id="546" Count="0" />
+      <LineId Id="559" Count="0" />
+      <LineId Id="547" Count="11" />
+      <LineId Id="413" Count="0" />
+      <LineId Id="437" Count="0" />
+      <LineId Id="436" Count="0" />
+      <LineId Id="433" Count="2" />
+      <LineId Id="227" Count="26" />
+      <LineId Id="213" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveExtPos.ACT_ExtGen">
+      <LineId Id="2" Count="57" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="62" Count="58" />
+      <LineId Id="61" Count="0" />
+    </LineIds>
+    <LineIds Name="MoveExtPos.ACT_WristMoveAbs">
+      <LineId Id="31" Count="1" />
+      <LineId Id="16" Count="14" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="42" Count="14" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

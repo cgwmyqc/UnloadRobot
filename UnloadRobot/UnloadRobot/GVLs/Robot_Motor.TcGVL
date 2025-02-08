@@ -143,7 +143,7 @@ VAR_GLOBAL
 (*======================================== 机器人各轴 MC_Jog定义 Start ==================================*)
 	
 	bJogFast												:BOOL;									// 快速Jog标志位
-	aAxis_Jog_Speed											:ARRAY[0..1] OF LREAL:=[5,10];			// JOG speed
+	aAxis_Jog_Speed											:ARRAY[0..1] OF LREAL:=[1,5];			// JOG speed
 
 	// 左臂电机
 	axis_LeftArm_Wrist_Jog									:MC_Jog;			//左臂_腕电机Jog功能块	

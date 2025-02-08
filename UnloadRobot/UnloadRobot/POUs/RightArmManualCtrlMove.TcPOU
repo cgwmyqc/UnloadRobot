@@ -7,7 +7,7 @@ VAR
 	point												:Points;					// 当前腕关节坐标
 	target_angle										:Angles;					// 臂左右电机目标角度
 	manualState											:USINT;						// 手动控制状态标志位，0
-	speed												:REAL := 1;					// 笛卡尔坐标位移速度
+	speed												:REAL := 0.5;					// 笛卡尔坐标位移速度
 	x													:REAL;						// 腕关节目标位置x
 	y													:REAL;						// 腕关节目标位置y
 	wrist_angle											:REAL;						// 腕电机角度
@@ -16,7 +16,7 @@ VAR
 	RightArm_Lift_Jog									:MC_Jog;
 	bRightArm_Lift_Up									:BOOL;
 	bRightArm_Lift_Down									:BOOL;
-	nRightArmLiftSpeed									:LREAL:=5;
+	nRightArmLiftSpeed									:LREAL:=3;
 	
 	
 	RightArm_Right_ExtPosGen_Enable						:MC_ExtSetPointGenEnable;
@@ -221,8 +221,8 @@ RightArm_Wrist_ExtPosGen_Disable(
       <Implementation>
         <ST><![CDATA[RightArm_Lift_Jog(
 	Axis:= axis_RightArm_Lift, 
-	JogForward:= bRightArm_Lift_Up, 
-	JogBackwards:= bRightArm_Lift_Down, 
+	JogForward:= bRightArm_Lift_Down, 
+	JogBackwards:= bRightArm_Lift_Up, 
 	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
 	Velocity:= nRightArmLiftSpeed, 

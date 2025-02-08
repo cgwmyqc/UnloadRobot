@@ -3163,26 +3163,6 @@ namespace TestApp
             }
         }
 
-        /**************************************** TEST 轴零位标定*******************************************************/
-        // test cali
-
-        private void btnBigGateCaliDo_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (adsClientStateInfo.AdsState == AdsState.Run)
-            {
-                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", true, false);
-            }
-        }
-
-        private void btnBigGateCaliDo_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (adsClientStateInfo.AdsState == AdsState.Run)
-            {
-                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", false, false);
-            }
-        }
-
-
 
         /*****************************************   电磁阀控制区   ********************************************************/
         /*****************************************    左臂        *********************************************************/
@@ -3384,7 +3364,7 @@ namespace TestApp
             }
         }
 
-        /*********************************************                       **********************************************/
+        /*********************************************         LED控制              **********************************************/
 
         // 三色灯绿灯手动控制
         private void btnTriColorGreenEnable_Click(object sender, EventArgs e)
@@ -3495,6 +3475,109 @@ namespace TestApp
             }
         }
 
+
+        /********************************************************           滚筒             **************************************************************/
+
+        private void btnLeftBeltMotor_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool GunTongRunFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_GunTong_Left", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_GunTong_Left", !GunTongRunFlag, false);
+            }
+        }
+
+        private void btnMidBeltMotor_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool GunTongRunFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_GunTong_Middle", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_GunTong_Middle", !GunTongRunFlag, false);
+            }
+        }
+
+        private void btnRightBeltMotor_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool GunTongRunFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_GunTong_Right", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_GunTong_Right", !GunTongRunFlag, false);
+            }
+        }
+
+        private void btnBackBeltMotor_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool GunTongRunFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_GunTong_Back", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_GunTong_Back", !GunTongRunFlag, false);
+            }
+        }
+
+
+        /**************************************** TEST 轴零位标定*******************************************************/
+        // test cali
+
+        private void btnBigGateCaliDo_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnBigGateCaliDo_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
+
+        private void btnRightArmWristCali_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", true, false);
+            }
+        }
+
+        private void btnRightArmWristCali_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("AxisCaliHomePos.bWriteParam_Do", false, false);
+            }
+        }
+
+
+        //move pos poweron
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool LeftArm_Left_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", typeof(bool), false);
+                bool LeftArm_Right_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable", typeof(bool), false);
+                bool LeftArm_Wrist_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable", typeof(bool), false);
+                bool RightArm_Left_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_RightArm_Left_Enable", typeof(bool), false);
+                bool RightArm_Right_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_RightArm_Right_Enable", typeof(bool), false);
+                bool RightArm_Wrist_Enable_Flag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAxis_RightArm_Wrist_Enable", typeof(bool), false);
+
+
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_Enable", !LeftArm_Left_Enable_Flag, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Right_Enable", !LeftArm_Right_Enable_Flag, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Wrist_Enable", !LeftArm_Wrist_Enable_Flag, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Left_Enable", !RightArm_Left_Enable_Flag, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Right_Enable", !RightArm_Right_Enable_Flag, false);
+                adsClient.WriteSymbol("Robot_Control_State.bAxis_RightArm_Wrist_Enable", !RightArm_Wrist_Enable_Flag, false);
+
+            }
+        }
+
+        private void btnMovePosSet_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                bool bAutoMovePosFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAutoMovePosSet", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bAutoMovePosSet", !bAutoMovePosFlag, false);
+            }
+        }
     }
 
 }

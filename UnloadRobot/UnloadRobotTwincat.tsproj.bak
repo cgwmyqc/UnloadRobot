@@ -1432,6 +1432,11 @@ External Setpoint Generation:
 	</ImageDatas>
 	<Project ProjectGUID="{37D82863-27F5-477C-AA6A-B7B05D5460F0}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</ManualSelect>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="5" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -1463,11 +1468,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="10" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" Offset="122.6484" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -1606,11 +1611,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" Offset="68.5837" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -1749,11 +1754,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="30"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.97520661157025" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.97520661157025" ScaleFactorDenominator="8388608" Offset="-37" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -1868,6 +1873,7 @@ External Setpoint Generation:
 					</Drive>
 					<Controller Name="Ctrl" CtrType="1">
 						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Enable="false"/>
 							<Observer BandWidth="20"/>
 						</CtrPara>
 					</Controller>
@@ -1890,11 +1896,11 @@ External Setpoint Generation:
 					<Name>Axis4_LeftArm_Lift</Name>
 					<AxisPara>
 						<Dynamic Acceleration="30"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="-3" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2032,11 +2038,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" Offset="113" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2175,11 +2181,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.35294117647059" ScaleFactorDenominator="8388608" Offset="58" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2318,11 +2324,11 @@ External Setpoint Generation:
 					<AxisPara>
 						<General UnitName="°"/>
 						<Dynamic Acceleration="30"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="2.97520661157025" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="2.97520661157025" ScaleFactorDenominator="8388608" Offset="-81.77" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2459,11 +2465,11 @@ External Setpoint Generation:
 					<Name>Axis8_RightArm_Lift</Name>
 					<AxisPara>
 						<Dynamic Acceleration="30"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="6" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2600,7 +2606,7 @@ External Setpoint Generation:
 					<Name>Axis9_BigGate_Left</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -2741,7 +2747,7 @@ External Setpoint Generation:
 					<Name>Axis10_BigGate_Right</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -2882,7 +2888,7 @@ External Setpoint Generation:
 					<Name>Axis11_SmallGate_Left</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -3023,7 +3029,7 @@ External Setpoint Generation:
 					<Name>Axis12_SmallGate_Right</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -3164,7 +3170,7 @@ External Setpoint Generation:
 					<Name>Axis13_BackGate_Left</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -3305,7 +3311,7 @@ External Setpoint Generation:
 					<Name>Axis14_BackGate_Right</Name>
 					<AxisPara>
 						<Dynamic Acceleration="100"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="5" FastManual="10" Maximum="3000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
@@ -3897,7 +3903,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{1F1CFB23-3A0B-985D-1715-1F6A69211F7A}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{2DBD2608-E6F1-F6A9-F67B-7572D066D458}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -4169,6 +4175,26 @@ External Setpoint Generation:
 						<Var>
 							<Name>Robot_Control_State.bFrontLight_Right_Enable</Name>
 							<Comment><![CDATA[前部照明灯-右-点亮	]]></Comment>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Control_State.bPumpMotor_Enable</Name>
+							<Comment><![CDATA[真空泵电机上电]]></Comment>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Control_State.bAxis_GunTong_Back</Name>
+							<Comment><![CDATA[后滚筒_电机]]></Comment>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Control_State.bAxis_GunTong_Left</Name>
+							<Comment><![CDATA[左滚筒_电机]]></Comment>
+							<Type>BIT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Control_State.bAxis_GunTong_Right</Name>
+							<Comment><![CDATA[右滚筒_电机]]></Comment>
 							<Type>BIT</Type>
 						</Var>
 						<Var>
@@ -8216,6 +8242,21 @@ External Setpoint Generation:
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^UnloadRobot^UnloadRobot Instance">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2809)">
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bAxis_GunTong_Back" VarB="Channel 10^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bAxis_GunTong_Left" VarB="Channel 11^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bAxis_GunTong_Middle" VarB="Channel 13^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bAxis_GunTong_Right" VarB="Channel 12^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bBtnLed_Green_Enable" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bBtnLed_Red_Enable" VarB="Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bBtnLed_Yellow_Enable" VarB="Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bFrontLight_Left_Enable" VarB="Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bFrontLight_Right_Enable" VarB="Channel 8^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bPumpMotor_Enable" VarB="Channel 9^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bTriColorLed_Green_Enable" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bTriColorLed_Red_Enable" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^Robot_Control_State.bTriColorLed_Yellow_Enable" VarB="Channel 2^Output"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL2809)">
 				<Link VarA="PlcTask Outputs^Robot_Control_State.bLeftArm_SV1" VarB="Channel 1^Output"/>
 				<Link VarA="PlcTask Outputs^Robot_Control_State.bLeftArm_SV2" VarB="Channel 2^Output"/>
