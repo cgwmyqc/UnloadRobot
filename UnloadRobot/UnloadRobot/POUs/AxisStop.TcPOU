@@ -3,10 +3,22 @@
   <POU Name="AxisStop" Id="{d8bac268-a103-4f37-a01b-e341c61b0e22}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM AxisStop
 VAR
+	i				:USINT := 1;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// LeftArm_Left_McStop
+      <ST><![CDATA[// 所有轴停止
+IF bAxis_All_Stop THEN
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Stop_Group[i]^ := TRUE;
+	END_FOR
+ELSE
+	FOR i:=1 TO nAxisNum DO
+		aAxis_All_Stop_Group[i]^ := FALSE;
+	END_FOR
+END_IF
+
+// LeftArm_Left_McStop
 axis_LeftArm_Left_McStop(
 	Axis:= axis_LeftArm_Left, 
 	Execute:= bAxis_LeftArm_Left_McStop, 
@@ -205,6 +217,8 @@ axis_BackGate_Right_McStop(
 	ErrorID=> );]]></ST>
     </Implementation>
     <LineIds Name="AxisStop">
+      <LineId Id="220" Count="8" />
+      <LineId Id="218" Count="1" />
       <LineId Id="67" Count="0" />
       <LineId Id="17" Count="10" />
       <LineId Id="5" Count="0" />

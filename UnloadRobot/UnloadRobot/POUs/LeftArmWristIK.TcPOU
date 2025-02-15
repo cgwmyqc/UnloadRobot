@@ -3,8 +3,8 @@
   <POU Name="LeftArmWristIK" Id="{8ee3b6f6-a74e-422b-af29-e9a006f70863}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION LeftArmWristIK : REAL
 VAR_INPUT
-	theta1:LREAL;
-	theta2:LREAL;	
+	theta1:LREAL;					// 左臂右电机角度
+	theta2:LREAL;					// 左臂左电机角度
 END_VAR
 VAR
 	// 中间变量

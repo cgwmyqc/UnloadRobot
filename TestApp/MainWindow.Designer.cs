@@ -622,7 +622,7 @@ namespace TestApp
             this.adsNetIDTextBox.Name = "adsNetIDTextBox";
             this.adsNetIDTextBox.Size = new System.Drawing.Size(298, 50);
             this.adsNetIDTextBox.TabIndex = 7;
-            this.adsNetIDTextBox.Text = "5.157.110.80.1.1";
+            this.adsNetIDTextBox.Text = "192.168.1.20.1.1";
             // 
             // adsStatusPicBox
             // 
@@ -2593,7 +2593,7 @@ namespace TestApp
             this.tabPage2.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage2.Size = new System.Drawing.Size(3152, 3139);
+            this.tabPage2.Size = new System.Drawing.Size(3148, 3139);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "单体控制1";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -3929,6 +3929,7 @@ namespace TestApp
             this.btnLeftArmWristMoveAbsStop.TabIndex = 18;
             this.btnLeftArmWristMoveAbsStop.Text = "停止";
             this.btnLeftArmWristMoveAbsStop.UseVisualStyleBackColor = true;
+            this.btnLeftArmWristMoveAbsStop.Click += new System.EventHandler(this.btnLeftArmWristMoveAbsStop_Click);
             this.btnLeftArmWristMoveAbsStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmWristMoveAbsStop_MouseDown);
             this.btnLeftArmWristMoveAbsStop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmWristMoveAbsStop_MouseUp);
             // 
@@ -4596,7 +4597,7 @@ namespace TestApp
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(3152, 3139);
+            this.tabPage3.Size = new System.Drawing.Size(3148, 3139);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "单体控制2";
             this.tabPage3.UseVisualStyleBackColor = true;

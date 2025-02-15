@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="BmsSerialBackground" Id="{4d331f7a-e7eb-479b-8d03-52bcd0d98811}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM BmsSerialBackground
+VAR
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[BMSSerialCtrl(
+	Mode:= SERIALLINEMODE_PC_COM_PORT, 
+	pComIn:= ADR(pComIn), 
+	pComOut:= ADR(pComOut), 
+	SizeComIn:= SIZEOF(pComIN), 
+	Error=> , 
+	ErrorID=> , 
+	TxBuffer:= TxBuffer, 
+	RxBuffer:= RxBuffer);]]></ST>
+    </Implementation>
+    <LineIds Name="BmsSerialBackground">
+      <LineId Id="15" Count="7" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

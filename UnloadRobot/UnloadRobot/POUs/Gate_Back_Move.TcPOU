@@ -22,8 +22,8 @@ END_VAR
 // Mc_Jog
 backGateLeftAxisJog(
 	Axis:= axis_BackGate_Left, 
-	JogForward:= bBackGate_Up, 
-	JogBackwards:= bBackGate_Down, 
+	JogForward:= bBackGate_Down, 
+	JogBackwards:= bBackGate_Up, 
 	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
 	Velocity:= nBackGate_Speed, 

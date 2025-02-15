@@ -5,7 +5,7 @@
 VAR
 	
 	a1			:INT		:=100;
-	b2			:BOOL		:=TRUE;
+	b2			:BOOL		:=FALSE;
 	d 			:LREAL 		:= 0;
 	
 

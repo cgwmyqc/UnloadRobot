@@ -1207,7 +1207,16 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_McStop", true, false);
+                try
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_LeftArm_Left_McStop", true, false);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
             }
         }
         private void btnLeftArmLeftMoveAbsStop_MouseUp(object sender, MouseEventArgs e)
@@ -3577,6 +3586,11 @@ namespace TestApp
                 bool bAutoMovePosFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bAutoMovePosSet", typeof(bool), false);
                 adsClient.WriteSymbol("Robot_Control_State.bAutoMovePosSet", !bAutoMovePosFlag, false);
             }
+        }
+
+        private void btnLeftArmWristMoveAbsStop_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

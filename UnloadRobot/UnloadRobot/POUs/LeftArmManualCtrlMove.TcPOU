@@ -60,7 +60,7 @@ IF bManualCtrl_Asm_LeftArm THEN
 	
 	IF bAutoCtrl_Part_LeftWrist THEN
 		
-		wrist_angle := WristIK(point.x, point.y);		// 逆解出腕电机角度
+		wrist_angle := LeftArmWristIK(axis_LeftArm_Right.NcToPlc.ActPos, axis_LeftArm_Left.NcToPlc.ActPos);		// 逆解出腕电机角度
 		
 
 		// 用舵机进行程序验证的串口测试

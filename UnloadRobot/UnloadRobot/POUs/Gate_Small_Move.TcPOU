@@ -21,8 +21,8 @@ END_VAR
       <ST><![CDATA[// SmallGate Mc_Jog
 smallGateLeftAxisJog(
 	Axis:= axis_SmallGate_Left, 
-	JogForward:= bSmallGate_Up, 
-	JogBackwards:= bSmallGate_Down, 
+	JogForward:= bSmallGate_Down, 
+	JogBackwards:= bSmallGate_Up, 
 	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
 	Velocity:= nSmallGate_Speed, 

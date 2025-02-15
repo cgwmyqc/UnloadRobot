@@ -30,8 +30,6 @@ VAR_GLOBAL
 	axis_BackGate_Left											:AXIS_REF;			//后门_左电机
 	axis_BackGate_Right											:AXIS_REF;			//后门_右电机
 
-(*======================================== 机器人各轴定义 End =============================================*)	
-
 	nAxisNum							: USINT:=14;						// 轴组管理的轴的数量
 	
 	// 轴组
@@ -52,6 +50,35 @@ VAR_GLOBAL
 																	  ADR(axis_BackGate_Right)
 																	 ];			
 
+
+	
+
+(*======================================== 机器人各轴定义 End =============================================*)	
+
+
+
+
+(*======================================== 机器人各轴力矩 Start =============================================*)	
+	
+	axis_RightArm_Left_Torque				AT%I*				:INT;
+	axis_RightArm_Right_Torque				AT%I*				:INT;
+	axis_RightArm_Wrist_Torque				AT%I*				:INT;
+	axis_RightArm_Lift_Torque				AT%I*				:INT;
+	axis_LeftArm_Left_Torque				AT%I*				:INT;
+	axis_LeftArm_Right_Torque				AT%I*				:INT;
+	axis_LeftArm_Wrist_Torque				AT%I*				:INT;
+	axis_LeftArm_Lift_Torque				AT%I*				:INT;	
+	axis_SmallGate_Left_Torque				AT%I*				:INT;
+	axis_SmallGate_Right_Torque				AT%I*				:INT;
+	axis_BigGate_Left_Torque				AT%I*				:INT;
+	axis_BigGate_Right_Torque				AT%I*				:INT;	
+	axis_BackGate_Left_Torque				AT%I*				:INT;
+	axis_BackGate_Right_Torque				AT%I*				:INT;	
+	
+(*======================================== 机器人各轴力矩  End =============================================*)	
+
+
+	
 
 (*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
 	
@@ -104,6 +131,7 @@ VAR_GLOBAL
 	axis_BackGate_Right_Power_Output								:ST_McOutputs;			//后门_右电机Power功能块	
 	
 (*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
+
 
 
 

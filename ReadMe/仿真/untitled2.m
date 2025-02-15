@@ -7,8 +7,8 @@
 % disp("LeftArm_x:"+x)
 % disp("LeftArm_y:"+y)
 
-% leftbeta = LeftArmWristFK(78.13,175);
-% disp("LeftArm_Wrist:"+leftbeta);
+leftbeta = LeftArmWristFK(32.68,158.3);
+disp("LeftArm_Wrist:"+leftbeta);
 
 
 % [theta1,theta2] = RightArmIK(0,200);
@@ -20,5 +20,5 @@
 disp("RightArm_x:"+x)
 disp("RightArm_y:"+y)
 
-rightbeta = RightArmWristFK(3.16,106.09);
+rightbeta = RightArmWristFK(-4.02,145.58);
 disp("RightArm_Wrist:"+rightbeta);

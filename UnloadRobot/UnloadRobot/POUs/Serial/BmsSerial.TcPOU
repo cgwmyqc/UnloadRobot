@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="BmsSerial" Id="{05f6f46d-2b6d-4e5e-8e3b-f5b01cfdb962}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM BmsSerial
+VAR
+		// 发送命令
+	sendCmdBms 			:SendData;
+	
+	// 定时器5s触发一次
+	timer1				:TON;
+	timer1Trigger		:BOOL		:= TRUE;
+	time5s				:TIME 		:=T#5S;
+
+	
+	// 接收命令
+	recvDataFromBms		:ReceiveData;
+	prefixRecvData		:ARRAY[1..2] OF BYTE		:=[16#DD,16#03];
+	suffixRecvData		:BYTE						:=16#77;
+	receivedData		:ARRAY[1..45] OF BYTE;
+	bReceived			:BOOL;
+	
+	//test
+	i:int:=0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// 发送查询bms命令
+sendCmdBms(
+	pSendData:= ADR(queryBmsStatusCmd), 
+	Length:= queryBmsStatusCmdLen, 
+	Busy=> , 
+	Error=> , 
+	TXbuffer:= TxBuffer);
+
+//定时器
+timer1(IN:= timer1Trigger, PT:= time5s, Q=> , ET=> );
+IF timer1.Q THEN
+	timer1Trigger:= FALSE;
+	
+	// 发送查询bms命令
+	sendCmdBms(
+		pSendData:= ADR(queryBmsStatusCmd), 
+		Length:= queryBmsStatusCmdLen, 
+		Busy=> , 
+		Error=> , 
+		TXbuffer:= TxBuffer);
+		
+		
+	// 接收bms数据
+	recvDataFromBms(
+		pPrefix:= ADR(prefixRecvData), 
+		LenPrefix:= 2, 
+		pSuffix:= ADR(suffixRecvData), 
+		LenSuffix:= 1, 
+		pReceiveData:= ADR(receivedData), 
+		SizeReceiveData:= SIZEOF(receivedData), 
+		Timeout:= T#2S, 
+		Reset:= , 
+		DataReceived=> bReceived, 
+		busy=> , 
+		Error=> , 
+		RxTimeout=> , 
+		LenReceiveData=> , 
+		RXbuffer:= RxBuffer);
+		
+	i:=i+1;
+
+ELSE
+	timer1Trigger:= TRUE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="BmsSerial">
+      <LineId Id="23" Count="38" />
+      <LineId Id="67" Count="1" />
+      <LineId Id="62" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

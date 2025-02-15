@@ -195,7 +195,7 @@ IF bManualCtrl_Part_RightArm_Lift THEN
 END_IF
 
 
-// BigGate_Left_Jog
+// BigGate_Left_Jog(正转升，反转降)
 IF bManualCtrl_Part_BigGate_Left THEN
 
 	axis_BigGate_Left_Jog(
@@ -217,7 +217,7 @@ IF bManualCtrl_Part_BigGate_Left THEN
 
 END_IF
 
-// BigGate_Right_Jog
+// BigGate_Right_Jog(正转降反转升)
 IF bManualCtrl_Part_BigGate_Right THEN
 
 	axis_BigGate_Right_Jog(

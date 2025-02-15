@@ -24,6 +24,10 @@
     <Compile Include="DUTs\Points.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL_SerialComunication.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\Robot_Control_State.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -36,14 +40,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="GVLs\Serial_GVL.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\AllAxisCtrl.TcPOU">
+    <Compile Include="POUs\AxisAllCtrl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\LeftArmFK.TcPOU">
@@ -112,13 +112,10 @@
     <Compile Include="POUs\RightArmWristIK.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Serial\BackgroundSerialCtrl.TcPOU">
+    <Compile Include="POUs\Serial\BmsSerial.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Serial\FB_SerialCom.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\WristIK.TcPOU">
+    <Compile Include="POUs\Serial\BmsSerialBackground.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
