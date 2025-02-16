@@ -6,7 +6,12 @@ VAR
 	
 	a1			:INT		:=100;
 	b2			:BOOL		:=FALSE;
-	d 			:LREAL 		:= 0;
+	c3 			:LREAL 		:= 0;
+	
+	arrLeftBoxStack	:ARRAY[1..50] OF BOX;
+	arrRightBoxStack:ARRAY[1..50] OF BOX;
+	
+	
 	
 
 END_VAR

@@ -3906,7 +3906,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{5DEEBE17-C3EF-7A9B-2959-7E99E565A502}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{E4820077-8D38-ED8A-69FF-D3CDFDAB24F9}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -4072,13 +4072,13 @@ External Setpoint Generation:
 							<Type>BIT</Type>
 						</Var>
 						<Var>
-							<Name>Robot_Control_State.bCrash_Sensor_Front</Name>
-							<Comment><![CDATA[前防撞条动作]]></Comment>
+							<Name>Robot_Control_State.bCrash_Sensor_Back</Name>
+							<Comment><![CDATA[后防撞条动作	]]></Comment>
 							<Type>BIT</Type>
 						</Var>
 						<Var>
-							<Name>Robot_Control_State.bCrash_Sensor_Back</Name>
-							<Comment><![CDATA[后防撞条动作	]]></Comment>
+							<Name>Robot_Control_State.bCrash_Sensor_Front</Name>
+							<Comment><![CDATA[前防撞条动作]]></Comment>
 							<Type>BIT</Type>
 						</Var>
 						<Var>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <DUT Name="Box" Id="{9517058c-139b-42c3-8125-e8fc5d29678a}">
+    <Declaration><![CDATA[TYPE Box :
+STRUCT
+	x				:REAL;
+	y				:REAL;
+	w				:REAL;
+	h				:REAL;
+	confidence		:REAL;
+	row_index		:REAL;
+	part			:REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

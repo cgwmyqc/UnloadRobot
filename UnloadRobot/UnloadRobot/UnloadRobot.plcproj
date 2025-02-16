@@ -21,6 +21,9 @@
     <Compile Include="DUTs\Angles.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Box.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Points.TcDUT">
       <SubType>Code</SubType>
     </Compile>
