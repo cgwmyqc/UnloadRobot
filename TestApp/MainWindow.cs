@@ -681,13 +681,13 @@ namespace TestApp
                 try
                 {
                     double nTargetVelo = double.Parse(textBoxBigGateTarVelo.Text);
-                    if (nTargetVelo >= 0 & nTargetVelo <= 15)
+                    if (nTargetVelo >= 0 & nTargetVelo <= 200)
                     {
                         adsClient.WriteSymbol("Gate_Big_Move.nBigGate_Speed", nTargetVelo, false);
                     }
                     else
                     {
-                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=15");
+                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=200");
                     }
 
                 }
@@ -813,13 +813,13 @@ namespace TestApp
                 try
                 {
                     double nTargetVelo = double.Parse(textBoxSmallGateTarVelo.Text);
-                    if (nTargetVelo >= 0 & nTargetVelo <= 15)
+                    if (nTargetVelo >= 0 & nTargetVelo <= 200)
                     {
                         adsClient.WriteSymbol("Gate_Small_Move.nSmallGate_Speed", nTargetVelo, false);
                     }
                     else
                     {
-                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=15");
+                        MessageBox.Show("请输入有效的速度！速度默认值为5，且要满足0<=速度<=200");
                     }
 
                 }

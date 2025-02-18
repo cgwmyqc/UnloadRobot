@@ -4752,7 +4752,7 @@ namespace TestApp
             this.btnBackGateRightJogSlowN.Name = "btnBackGateRightJogSlowN";
             this.btnBackGateRightJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnBackGateRightJogSlowN.TabIndex = 13;
-            this.btnBackGateRightJogSlowN.Text = "慢速反转";
+            this.btnBackGateRightJogSlowN.Text = "慢反转(升)";
             this.btnBackGateRightJogSlowN.UseVisualStyleBackColor = true;
             this.btnBackGateRightJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogSlowN_MouseDown);
             this.btnBackGateRightJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogSlowN_MouseUp);
@@ -4766,7 +4766,7 @@ namespace TestApp
             this.btnBackGateRightJogSlowP.Name = "btnBackGateRightJogSlowP";
             this.btnBackGateRightJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnBackGateRightJogSlowP.TabIndex = 12;
-            this.btnBackGateRightJogSlowP.Text = "慢速正转";
+            this.btnBackGateRightJogSlowP.Text = "慢正转(降)";
             this.btnBackGateRightJogSlowP.UseVisualStyleBackColor = true;
             this.btnBackGateRightJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogSlowP_MouseDown);
             this.btnBackGateRightJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogSlowP_MouseUp);
@@ -4831,7 +4831,7 @@ namespace TestApp
             this.btnBackGateRightJogFastN.Name = "btnBackGateRightJogFastN";
             this.btnBackGateRightJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnBackGateRightJogFastN.TabIndex = 5;
-            this.btnBackGateRightJogFastN.Text = "快速反转";
+            this.btnBackGateRightJogFastN.Text = "快反转(升)";
             this.btnBackGateRightJogFastN.UseVisualStyleBackColor = true;
             this.btnBackGateRightJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogFastN_MouseDown);
             this.btnBackGateRightJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogFastN_MouseUp);
@@ -4845,7 +4845,7 @@ namespace TestApp
             this.btnBackGateRightJogFastP.Name = "btnBackGateRightJogFastP";
             this.btnBackGateRightJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnBackGateRightJogFastP.TabIndex = 4;
-            this.btnBackGateRightJogFastP.Text = "快速正转";
+            this.btnBackGateRightJogFastP.Text = "快正转(降)";
             this.btnBackGateRightJogFastP.UseVisualStyleBackColor = true;
             this.btnBackGateRightJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogFastP_MouseDown);
             this.btnBackGateRightJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateRightJogFastP_MouseUp);
@@ -5000,7 +5000,7 @@ namespace TestApp
             this.btnBackGateLeftJogSlowN.Name = "btnBackGateLeftJogSlowN";
             this.btnBackGateLeftJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnBackGateLeftJogSlowN.TabIndex = 13;
-            this.btnBackGateLeftJogSlowN.Text = "慢速反转";
+            this.btnBackGateLeftJogSlowN.Text = "慢反转(升)";
             this.btnBackGateLeftJogSlowN.UseVisualStyleBackColor = true;
             this.btnBackGateLeftJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogSlowN_MouseDown);
             this.btnBackGateLeftJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogSlowN_MouseUp);
@@ -5014,7 +5014,7 @@ namespace TestApp
             this.btnBackGateLeftJogSlowP.Name = "btnBackGateLeftJogSlowP";
             this.btnBackGateLeftJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnBackGateLeftJogSlowP.TabIndex = 12;
-            this.btnBackGateLeftJogSlowP.Text = "慢速正转";
+            this.btnBackGateLeftJogSlowP.Text = "慢正转(降)";
             this.btnBackGateLeftJogSlowP.UseVisualStyleBackColor = true;
             this.btnBackGateLeftJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogSlowP_MouseDown);
             this.btnBackGateLeftJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogSlowP_MouseUp);
@@ -5079,7 +5079,7 @@ namespace TestApp
             this.btnBackGateLeftJogFastN.Name = "btnBackGateLeftJogFastN";
             this.btnBackGateLeftJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnBackGateLeftJogFastN.TabIndex = 5;
-            this.btnBackGateLeftJogFastN.Text = "快速反转";
+            this.btnBackGateLeftJogFastN.Text = "快反转(升)";
             this.btnBackGateLeftJogFastN.UseVisualStyleBackColor = true;
             this.btnBackGateLeftJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogFastN_MouseDown);
             this.btnBackGateLeftJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogFastN_MouseUp);
@@ -5093,7 +5093,7 @@ namespace TestApp
             this.btnBackGateLeftJogFastP.Name = "btnBackGateLeftJogFastP";
             this.btnBackGateLeftJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnBackGateLeftJogFastP.TabIndex = 4;
-            this.btnBackGateLeftJogFastP.Text = "快速正转";
+            this.btnBackGateLeftJogFastP.Text = "快正转(降)";
             this.btnBackGateLeftJogFastP.UseVisualStyleBackColor = true;
             this.btnBackGateLeftJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogFastP_MouseDown);
             this.btnBackGateLeftJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBackGateLeftJogFastP_MouseUp);
@@ -5248,7 +5248,7 @@ namespace TestApp
             this.btnSmallGateRightJogSlowN.Name = "btnSmallGateRightJogSlowN";
             this.btnSmallGateRightJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnSmallGateRightJogSlowN.TabIndex = 13;
-            this.btnSmallGateRightJogSlowN.Text = "慢速反转";
+            this.btnSmallGateRightJogSlowN.Text = "慢反转(降)";
             this.btnSmallGateRightJogSlowN.UseVisualStyleBackColor = true;
             this.btnSmallGateRightJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogSlowN_MouseDown);
             this.btnSmallGateRightJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogSlowN_MouseUp);
@@ -5262,7 +5262,7 @@ namespace TestApp
             this.btnSmallGateRightJogSlowP.Name = "btnSmallGateRightJogSlowP";
             this.btnSmallGateRightJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnSmallGateRightJogSlowP.TabIndex = 12;
-            this.btnSmallGateRightJogSlowP.Text = "慢速正转";
+            this.btnSmallGateRightJogSlowP.Text = "慢正转(升)";
             this.btnSmallGateRightJogSlowP.UseVisualStyleBackColor = true;
             this.btnSmallGateRightJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogSlowP_MouseDown);
             this.btnSmallGateRightJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogSlowP_MouseUp);
@@ -5327,7 +5327,7 @@ namespace TestApp
             this.btnSmallGateRightJogFastN.Name = "btnSmallGateRightJogFastN";
             this.btnSmallGateRightJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnSmallGateRightJogFastN.TabIndex = 5;
-            this.btnSmallGateRightJogFastN.Text = "快速反转";
+            this.btnSmallGateRightJogFastN.Text = "快反转(降)";
             this.btnSmallGateRightJogFastN.UseVisualStyleBackColor = true;
             this.btnSmallGateRightJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogFastN_MouseDown);
             this.btnSmallGateRightJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogFastN_MouseUp);
@@ -5341,7 +5341,7 @@ namespace TestApp
             this.btnSmallGateRightJogFastP.Name = "btnSmallGateRightJogFastP";
             this.btnSmallGateRightJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnSmallGateRightJogFastP.TabIndex = 4;
-            this.btnSmallGateRightJogFastP.Text = "快速正转";
+            this.btnSmallGateRightJogFastP.Text = "快正转(升)";
             this.btnSmallGateRightJogFastP.UseVisualStyleBackColor = true;
             this.btnSmallGateRightJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogFastP_MouseDown);
             this.btnSmallGateRightJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateRightJogFastP_MouseUp);
@@ -5496,7 +5496,7 @@ namespace TestApp
             this.btnSmallGateLeftJogSlowN.Name = "btnSmallGateLeftJogSlowN";
             this.btnSmallGateLeftJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnSmallGateLeftJogSlowN.TabIndex = 13;
-            this.btnSmallGateLeftJogSlowN.Text = "慢速反转";
+            this.btnSmallGateLeftJogSlowN.Text = "慢反转(升)";
             this.btnSmallGateLeftJogSlowN.UseVisualStyleBackColor = true;
             this.btnSmallGateLeftJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogSlowN_MouseDown);
             this.btnSmallGateLeftJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogSlowN_MouseUp);
@@ -5510,7 +5510,7 @@ namespace TestApp
             this.btnSmallGateLeftJogSlowP.Name = "btnSmallGateLeftJogSlowP";
             this.btnSmallGateLeftJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnSmallGateLeftJogSlowP.TabIndex = 12;
-            this.btnSmallGateLeftJogSlowP.Text = "慢速正转";
+            this.btnSmallGateLeftJogSlowP.Text = "慢正转(降)";
             this.btnSmallGateLeftJogSlowP.UseVisualStyleBackColor = true;
             this.btnSmallGateLeftJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogSlowP_MouseDown);
             this.btnSmallGateLeftJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogSlowP_MouseUp);
@@ -5575,7 +5575,7 @@ namespace TestApp
             this.btnSmallGateLeftJogFastN.Name = "btnSmallGateLeftJogFastN";
             this.btnSmallGateLeftJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnSmallGateLeftJogFastN.TabIndex = 5;
-            this.btnSmallGateLeftJogFastN.Text = "快速反转";
+            this.btnSmallGateLeftJogFastN.Text = "快反转(升)";
             this.btnSmallGateLeftJogFastN.UseVisualStyleBackColor = true;
             this.btnSmallGateLeftJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogFastN_MouseDown);
             this.btnSmallGateLeftJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogFastN_MouseUp);
@@ -5589,7 +5589,7 @@ namespace TestApp
             this.btnSmallGateLeftJogFastP.Name = "btnSmallGateLeftJogFastP";
             this.btnSmallGateLeftJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnSmallGateLeftJogFastP.TabIndex = 4;
-            this.btnSmallGateLeftJogFastP.Text = "快速正转";
+            this.btnSmallGateLeftJogFastP.Text = "快正转(降)";
             this.btnSmallGateLeftJogFastP.UseVisualStyleBackColor = true;
             this.btnSmallGateLeftJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogFastP_MouseDown);
             this.btnSmallGateLeftJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSmallGateLeftJogFastP_MouseUp);
@@ -5744,7 +5744,7 @@ namespace TestApp
             this.btnBigGateRightJogSlowN.Name = "btnBigGateRightJogSlowN";
             this.btnBigGateRightJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnBigGateRightJogSlowN.TabIndex = 13;
-            this.btnBigGateRightJogSlowN.Text = "慢速反转";
+            this.btnBigGateRightJogSlowN.Text = "慢反转(升)";
             this.btnBigGateRightJogSlowN.UseVisualStyleBackColor = true;
             this.btnBigGateRightJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogSlowN_MouseDown);
             this.btnBigGateRightJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogSlowN_MouseUp);
@@ -5758,7 +5758,7 @@ namespace TestApp
             this.btnBigGateRightJogSlowP.Name = "btnBigGateRightJogSlowP";
             this.btnBigGateRightJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnBigGateRightJogSlowP.TabIndex = 12;
-            this.btnBigGateRightJogSlowP.Text = "慢速正转";
+            this.btnBigGateRightJogSlowP.Text = "慢正转(降)";
             this.btnBigGateRightJogSlowP.UseVisualStyleBackColor = true;
             this.btnBigGateRightJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogSlowP_MouseDown);
             this.btnBigGateRightJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogSlowP_MouseUp);
@@ -5823,7 +5823,7 @@ namespace TestApp
             this.btnBigGateRightJogFastN.Name = "btnBigGateRightJogFastN";
             this.btnBigGateRightJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnBigGateRightJogFastN.TabIndex = 5;
-            this.btnBigGateRightJogFastN.Text = "快速反转";
+            this.btnBigGateRightJogFastN.Text = "快反转(升)";
             this.btnBigGateRightJogFastN.UseVisualStyleBackColor = true;
             this.btnBigGateRightJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogFastN_MouseDown);
             this.btnBigGateRightJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogFastN_MouseUp);
@@ -5837,7 +5837,7 @@ namespace TestApp
             this.btnBigGateRightJogFastP.Name = "btnBigGateRightJogFastP";
             this.btnBigGateRightJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnBigGateRightJogFastP.TabIndex = 4;
-            this.btnBigGateRightJogFastP.Text = "快速正转";
+            this.btnBigGateRightJogFastP.Text = "快正转(降)";
             this.btnBigGateRightJogFastP.UseVisualStyleBackColor = true;
             this.btnBigGateRightJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogFastP_MouseDown);
             this.btnBigGateRightJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateRightJogFastP_MouseUp);
@@ -5992,7 +5992,7 @@ namespace TestApp
             this.btnBigGateLeftJogSlowN.Name = "btnBigGateLeftJogSlowN";
             this.btnBigGateLeftJogSlowN.Size = new System.Drawing.Size(172, 76);
             this.btnBigGateLeftJogSlowN.TabIndex = 13;
-            this.btnBigGateLeftJogSlowN.Text = "慢速反转";
+            this.btnBigGateLeftJogSlowN.Text = "慢反转(降)";
             this.btnBigGateLeftJogSlowN.UseVisualStyleBackColor = true;
             this.btnBigGateLeftJogSlowN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogSlowN_MouseDown);
             this.btnBigGateLeftJogSlowN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogSlowN_MouseUp);
@@ -6006,7 +6006,7 @@ namespace TestApp
             this.btnBigGateLeftJogSlowP.Name = "btnBigGateLeftJogSlowP";
             this.btnBigGateLeftJogSlowP.Size = new System.Drawing.Size(172, 76);
             this.btnBigGateLeftJogSlowP.TabIndex = 12;
-            this.btnBigGateLeftJogSlowP.Text = "慢速正转";
+            this.btnBigGateLeftJogSlowP.Text = "慢正转(升)";
             this.btnBigGateLeftJogSlowP.UseVisualStyleBackColor = true;
             this.btnBigGateLeftJogSlowP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogSlowP_MouseDown);
             this.btnBigGateLeftJogSlowP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogSlowP_MouseUp);
@@ -6071,7 +6071,7 @@ namespace TestApp
             this.btnBigGateLeftJogFastN.Name = "btnBigGateLeftJogFastN";
             this.btnBigGateLeftJogFastN.Size = new System.Drawing.Size(172, 80);
             this.btnBigGateLeftJogFastN.TabIndex = 5;
-            this.btnBigGateLeftJogFastN.Text = "快速反转";
+            this.btnBigGateLeftJogFastN.Text = "快反转(降)";
             this.btnBigGateLeftJogFastN.UseVisualStyleBackColor = true;
             this.btnBigGateLeftJogFastN.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogFastN_MouseDown);
             this.btnBigGateLeftJogFastN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogFastN_MouseUp);
@@ -6085,7 +6085,7 @@ namespace TestApp
             this.btnBigGateLeftJogFastP.Name = "btnBigGateLeftJogFastP";
             this.btnBigGateLeftJogFastP.Size = new System.Drawing.Size(172, 80);
             this.btnBigGateLeftJogFastP.TabIndex = 4;
-            this.btnBigGateLeftJogFastP.Text = "快速正转";
+            this.btnBigGateLeftJogFastP.Text = "快正转(升)";
             this.btnBigGateLeftJogFastP.UseVisualStyleBackColor = true;
             this.btnBigGateLeftJogFastP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogFastP_MouseDown);
             this.btnBigGateLeftJogFastP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBigGateLeftJogFastP_MouseUp);
