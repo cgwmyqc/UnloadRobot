@@ -3373,6 +3373,50 @@ namespace TestApp
             }
         }
 
+        private void btnLeftArm_SV_Front_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7", true, false);
+            }
+        }
+
+        private void btnLeftArm_SV_Bottom_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8", true, false);
+            }
+        }
+
+        private void btnRightArm_SV_Front_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7", true, false);
+            }
+        }
+
+        private void btnRightArm_SV_Bottom_Enable_Click(object sender, EventArgs e)
+        {
+            if (adsClientStateInfo.AdsState == AdsState.Run)
+            {
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8", true, false);
+            }
+        }
+
         /*********************************************         LED控制              **********************************************/
 
         // 三色灯绿灯手动控制
@@ -3588,10 +3632,7 @@ namespace TestApp
             }
         }
 
-        private void btnLeftArmWristMoveAbsStop_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 
 }

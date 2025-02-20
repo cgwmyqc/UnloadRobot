@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <GVL Name="Robot_Status_Info" Id="{a44c2923-f89d-4890-ae7d-57a865b65229}">
+    <Declaration><![CDATA[//{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	Battery_TotalVoltage		AT%MW300		:LREAL;			 //voltage, unit: V
+	Battery_TotalCurrent		AT%MW304		:LREAL;			 //current, unit:A
+	Battery_RemainCapacity						:REAL;			 //remain capacitu, unit:Ah
+	Battery_NominalCapacity						:REAL;			 //nominal capacity, unit:Ah
+	Battery_CycleNum							:UINT;			 //cycle number, unit:times
+	Battery_ProtectionMode						:WORD;			 //protection mode word
+	Battery_RSOC								:USINT;			 //remain capacity, unit:%
+	Battery_FETStatus							:BYTE;			 //mos fet status word
+	Battery_humidity							:USINT;			 //humidity, unity:%
+	Battery_WarningStatus						:WORD;			 //warning status word
+	
+	// 自定义标志位
+	bBattery_Charging	   	 	    AT%MX10.0	:BOOL;			 //电池充放电状态标志位，电流正为充电，电流负为放电。
+	bBattery_DisCharging		    AT%MX10.1	:BOOL;			 //电池充放电状态标志位，电流正为充电，电流负为放电。
+	lrBattery_DisChargingCurrent	AT%MW304	:LREAL;			 //放电电流
+	lrBattery_ChargingCurrent		AT%MW308	:LREAL;			 //充电电流
+	lrBattery_RemainCapacity_Pecent AT%MW312	:LREAL;			 //剩余电量百分比，和Battery_RSOC不同，这个是用Battery_RemainCapacity、Battery_NominalCapacity两个参数算出来的。
+	
+	// Battery_ProtectionMode 电池保护状态定义标志位
+	bSingleCellOvervoltageProtection    		: BOOL;			 // bit0: 单体过压保护
+	bSingleCellUndervoltageProtection   		: BOOL;			 // bit1: 单体欠压保护
+	bWholeGroupOvervoltageProtection    		: BOOL;			 // bit2: 整组过压保护
+	bWholeGroupUndervoltageProtection   		: BOOL;			 // bit3: 整组欠压保护
+	bChargingOverTemperatureProtection  		: BOOL;			 // bit4: 充电过温保护
+	bChargingLowTemperatureProtection   		: BOOL;			 // bit5: 充电低温保护
+	bDischargingOverTemperatureProtection		: BOOL;			 // bit6: 放电过温保护
+	bDischargingLowTemperatureProtection		: BOOL;			 // bit7: 放电低温保护
+	bChargingOvercurrentProtection      		: BOOL;			 // bit8: 充电过流保护
+	bDischargingOvercurrentProtection   		: BOOL;			 // bit9: 放电过流保护
+	bShortCircuitProtection             		: BOOL;			 // bit10: 短路保护
+	bFrontEndDetectionICError           		: BOOL;			 // bit11: 前端检测IC错误
+	bSoftwareLockedMOS                  		: BOOL;			 // bit12: 软件锁定MOS
+	bChargingMOSBreakdownFlag           		: BOOL;			 // bit13: 充电MOS击穿标志
+	bDischargingMOSBreakdownFlag        		: BOOL;			 // bit14: 放电MOS击穿标志
+	bReserved                           		: BOOL;			 // bit15: 预留
+
+	// Battery_FETStatus 电池MOS标志位
+	bChargeMOSStatus    						: BOOL; 		// bit0: 充电MOS状态
+	bDischargeMOSStatus 						: BOOL; 		// bit1: 放电MOS状态
+	bCurrentLimitStatus 						: BOOL; 		// bit2: 限流模块状态
+	bHeatingStatus      						: BOOL; 		// bit3: 加热模块状态
+	
+	// Battery Warning Status
+	bSingleCellHighVoltageWarning    			: BOOL; 		// bit0: 单体高压告警
+	bSingleCellLowVoltageWarning     			: BOOL; 		// bit1: 单体低压告警
+	bWholeGroupHighVoltageWarning    			: BOOL; 		// bit2: 整组高压告警
+	bWholeGroupLowVoltageWarning     			: BOOL; 		// bit3: 整组低压告警
+	bChargingHighTemperatureWarning  			: BOOL; 		// bit4: 充电高温告警
+	bChargingLowTemperatureWarning   			: BOOL; 		// bit5: 充电低温告警
+	bDischargingHighTemperatureWarning			: BOOL; 		// bit6: 放电高温告警
+	bDischargingLowTemperatureWarning 			: BOOL; 		// bit7: 放电低温保护
+	bChargingHighCurrentWarning      			: BOOL; 		// bit8: 充电电流大告警
+	bDischargingHighCurrentWarning   			: BOOL; 		// bit9: 放电电流大告警
+	bSingleCellVoltageDifferenceWarning			: BOOL; 		// bit10: 单体压差大告警
+	bLowCapacityWarning              			: BOOL; 		// bit11: 容量低告警
+	bReserved12                      			: BOOL; 		// bit12: 预留
+	bReserved13                      			: BOOL; 		// bit13: 预留
+	bReserved14                      			: BOOL; 		// bit14: 预留
+		
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

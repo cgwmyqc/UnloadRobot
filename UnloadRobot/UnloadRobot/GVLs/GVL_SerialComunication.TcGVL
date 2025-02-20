@@ -4,13 +4,11 @@
     <Declaration><![CDATA[//{attribute 'qualified_only'}
 VAR_GLOBAL
 	//背景通信模块
-	BMSSerialCtrl		:SerialLineControl;
-	pComIn				:PcComInData;
-	pComOut				:PcComOutData;
-	TxBuffer			:combuffer;
-	RxBuffer			:combuffer;
-	
-	// 
+	BMSSerialCtrl										:SerialLineControl;
+	pComIn						AT %I*					:PcComInData;
+	pComOut						AT %Q*					:PcComOutData;
+	TxBuffer											:combuffer;
+	RxBuffer											:combuffer;
 	
 	//查询命令
 	queryBmsStatusCmd			:ARRAY[1..7] OF BYTE	:=[16#DD, 16#A5, 16#03, 16#00, 16#FF, 16#FD, 16#77];

@@ -365,7 +365,8 @@ VAR_GLOBAL
 	bRightArm_Sucker7_Completed			AT%IX3.6				:BOOL;			//右吸盘组传感器7压力到达
 	bRightArm_Sucker8_Completed			AT%IX3.7				:BOOL;			//右吸盘组传感器8压力到达
 	bCrash_Sensor_Front					AT%IX4.0				:BOOL;			//前防撞条动作
-	bCrash_Sensor_Back					AT%IX4.0				:BOOL;			//后防撞条动作	
+	bCrash_Sensor_Back					AT%IX4.1				:BOOL;			//后防撞条动作	
+	bPumpPhaseSequenceProtectionOK		AT%IX5.0				:bool;			//气泵相序保护器OK标志位
 (*===================================== IO Input ====================================================*)	
 
 

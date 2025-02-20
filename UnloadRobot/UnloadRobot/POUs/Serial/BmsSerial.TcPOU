@@ -3,48 +3,43 @@
   <POU Name="BmsSerial" Id="{05f6f46d-2b6d-4e5e-8e3b-f5b01cfdb962}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BmsSerial
 VAR
-		// 发送命令
-	sendCmdBms 			:SendData;
+	// 发送命令
+	sendQueryBmsCmd 			:SendData;
 	
 	// 定时器5s触发一次
-	timer1				:TON;
-	timer1Trigger		:BOOL		:= TRUE;
-	time5s				:TIME 		:=T#5S;
+	timer1						:TON;
+	timer1Trigger				:BOOL		:= TRUE;
+	time5s						:TIME 		:=T#5S;
 
 	
 	// 接收命令
-	recvDataFromBms		:ReceiveData;
-	prefixRecvData		:ARRAY[1..2] OF BYTE		:=[16#DD,16#03];
-	suffixRecvData		:BYTE						:=16#77;
-	receivedData		:ARRAY[1..45] OF BYTE;
-	bReceived			:BOOL;
+	recvDataFromBms				:ReceiveData;
+	prefixRecvData				:ARRAY[1..2] OF BYTE		:=[16#DD,16#03];
+	suffixRecvData				:BYTE						:=16#77;
+	receivedData				:ARRAY[1..45] OF BYTE;
+	bReceived					:BOOL;
 	
 	//test
-	i:int:=0;
+
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-// 发送查询bms命令
-sendCmdBms(
-	pSendData:= ADR(queryBmsStatusCmd), 
-	Length:= queryBmsStatusCmdLen, 
-	Busy=> , 
-	Error=> , 
-	TXbuffer:= TxBuffer);
-
 //定时器
 timer1(IN:= timer1Trigger, PT:= time5s, Q=> , ET=> );
 IF timer1.Q THEN
 	timer1Trigger:= FALSE;
 	
 	// 发送查询bms命令
-	sendCmdBms(
+	sendQueryBmsCmd(
 		pSendData:= ADR(queryBmsStatusCmd), 
 		Length:= queryBmsStatusCmdLen, 
 		Busy=> , 
 		Error=> , 
 		TXbuffer:= TxBuffer);
+		//sendQueryBmsCmd(SendString:='DDA50300FFFD77' , Busy=> , Error=> , TXbuffer:= TxBuffer);
 		
 		
 	// 接收bms数据
@@ -63,18 +58,123 @@ IF timer1.Q THEN
 		RxTimeout=> , 
 		LenReceiveData=> , 
 		RXbuffer:= RxBuffer);
+	
 		
-	i:=i+1;
+		
+		
+	// 串口数据处理	
+	Battery_TotalVoltage 		:=	( BYTE_TO_UINT(receivedData[5]) * 256 + BYTE_TO_UINT(receivedData[6]) ) * 10 * 0.001;				//voltage, receivedData[5][6]，Unit:V
+	Battery_TotalCurrent 		:= UINT_TO_INT( BYTE_TO_UINT(receivedData[7]) * 256 + BYTE_TO_UINT(receivedData[8]) ) * 10 * 0.001;		//current, receivedData[7][8]，Unit:A, minus:discharging, plus:charging
+	Battery_RemainCapacity		:= ( BYTE_TO_UINT(receivedData[9]) * 256 + BYTE_TO_UINT(receivedData[10]) ) * 10 * 0.001;				//remain capacity, receivedData[9][10], Unit:Ah	
+	Battery_NominalCapacity		:= ( BYTE_TO_UINT(receivedData[11]) * 256 + BYTE_TO_UINT(receivedData[12]) ) * 10 * 0.001;				//nominal capacity, receivedData[9][10], Unit:Ah	
+	Battery_CycleNum			:= BYTE_TO_UINT(receivedData[13]) * 256 + BYTE_TO_UINT(receivedData[14]) ;								//cycle num, received[13][14], Unit: number of times
+	Battery_ProtectionMode		:= SHL(TO_WORD(receivedData[21]),8) OR TO_WORD(receivedData[22]);										//protection word, received[21][22], protection word list is in Robot_Status_Info
+	Battery_RSOC	     		:= BYTE_TO_USINT(receivedData[24]);																		//remain soc, receivedData[24], Unit:%
+	Battery_FETStatus			:= receivedData[25];																					//fet status word
+	Battery_humidity			:= BYTE_TO_USINT(receivedData[34]);																		//humidity, unit:%
+	Battery_WarningStatus		:= SHL(TO_WORD(receivedData[35]),8) OR TO_WORD(receivedData[36]);										//warning status word, received[35][36], warning status word list is in Robot_Status_Info
+	
+	// 电池充放电状态判断
+	IF Battery_TotalCurrent > 0 THEN
+		bBattery_Charging 		:= TRUE;
+		bBattery_DisCharging	:= FALSE;
+	ELSIF Battery_TotalCurrent <0 THEN
+		bBattery_Charging := FALSE;
+		bBattery_DisCharging := TRUE;
+	ELSE
+		bBattery_Charging 		:= FALSE;
+		bBattery_DisCharging	:= FALSE;
+	END_IF
+	
+	// 电池剩余百分比计算
+	IF Battery_NominalCapacity <> 0 THEN
+		lrBattery_RemainCapacity_Pecent		:=	(Battery_RemainCapacity/Battery_NominalCapacity)*100;	
+	END_IF
 
+	
+	// Battery_ProtectionMode，电池保护标志位状态处理
+	bSingleCellOvervoltageProtection     := (Battery_ProtectionMode AND 16#0001) <> 0;			// bit0: 单体过压保护    
+	bSingleCellUndervoltageProtection    := (Battery_ProtectionMode AND 16#0002) <> 0;			// bit1: 单体欠压保护    
+	bWholeGroupOvervoltageProtection     := (Battery_ProtectionMode AND 16#0004) <> 0;			// bit2: 整组过压保护    
+	bWholeGroupUndervoltageProtection    := (Battery_ProtectionMode AND 16#0008) <> 0;			// bit3: 整组欠压保护    
+	bChargingOverTemperatureProtection   := (Battery_ProtectionMode AND 16#0010) <> 0;			// bit4: 充电过温保护    
+	bChargingLowTemperatureProtection    := (Battery_ProtectionMode AND 16#0020) <> 0;			// bit5: 充电低温保护    
+	bDischargingOverTemperatureProtection:= (Battery_ProtectionMode AND 16#0040) <> 0;			// bit6: 放电过温保护    
+	bDischargingLowTemperatureProtection := (Battery_ProtectionMode AND 16#0080) <> 0;			// bit7: 放电低温保护    
+	bChargingOvercurrentProtection       := (Battery_ProtectionMode AND 16#0100) <> 0;			// bit8: 充电过流保护    
+	bDischargingOvercurrentProtection    := (Battery_ProtectionMode AND 16#0200) <> 0;			// bit9: 放电过流保护    
+	bShortCircuitProtection              := (Battery_ProtectionMode AND 16#0400) <> 0;			// bit10: 短路保护     
+	bFrontEndDetectionICError            := (Battery_ProtectionMode AND 16#0800) <> 0;			// bit11: 前端检测IC错误 
+	bSoftwareLockedMOS                   := (Battery_ProtectionMode AND 16#1000) <> 0;			// bit12: 软件锁定MOS  
+	bChargingMOSBreakdownFlag            := (Battery_ProtectionMode AND 16#2000) <> 0;			// bit13: 充电MOS击穿标志
+	bDischargingMOSBreakdownFlag         := (Battery_ProtectionMode AND 16#4000) <> 0;			// bit14: 放电MOS击穿标志
+		
+	// Battery_FETStatus, 电池MOSFET状态标志位处理
+	bChargeMOSStatus    				 := (Battery_FETStatus AND 16#01) <> 0; 					// bit0: 充电MOS状态
+	bDischargeMOSStatus 				 := (Battery_FETStatus AND 16#02) <> 0; 					// bit1: 放电MOS状态
+	bCurrentLimitStatus 				 := (Battery_FETStatus AND 16#04) <> 0; 					// bit2: 限流模块状态 
+	bHeatingStatus      				 := (Battery_FETStatus AND 16#08) <> 0; 					// bit3: 加热模块状态 
+	
+	//Battery_WarningStatus, 电池报警状态处理
+	bSingleCellHighVoltageWarning     	 := (Battery_WarningStatus AND 16#0001) <> 0; 			// bit0: 单体高压告警  
+	bSingleCellLowVoltageWarning      	 := (Battery_WarningStatus AND 16#0002) <> 0; 			// bit1: 单体低压告警  
+	bWholeGroupHighVoltageWarning     	 := (Battery_WarningStatus AND 16#0004) <> 0; 			// bit2: 整组高压告警  
+	bWholeGroupLowVoltageWarning      	 := (Battery_WarningStatus AND 16#0008) <> 0; 			// bit3: 整组低压告警  
+	bChargingHighTemperatureWarning   	 := (Battery_WarningStatus AND 16#0010) <> 0; 			// bit4: 充电高温告警  
+	bChargingLowTemperatureWarning    	 := (Battery_WarningStatus AND 16#0020) <> 0; 			// bit5: 充电低温告警  
+	bDischargingHighTemperatureWarning	 := (Battery_WarningStatus AND 16#0040) <> 0; 			// bit6: 放电高温告警  
+	bDischargingLowTemperatureWarning 	 := (Battery_WarningStatus AND 16#0080) <> 0; 			// bit7: 放电低温保护  
+	bChargingHighCurrentWarning       	 := (Battery_WarningStatus AND 16#0100) <> 0; 			// bit8: 充电电流大告警 
+	bDischargingHighCurrentWarning    	 := (Battery_WarningStatus AND 16#0200) <> 0; 			// bit9: 放电电流大告警 
+	bSingleCellVoltageDifferenceWarning  := (Battery_WarningStatus AND 16#0400) <> 0; 			// bit10: 单体压差大告警
+	bLowCapacityWarning               	 := (Battery_WarningStatus AND 16#0800) <> 0; 			// bit11: 容量低告警  
+	bReserved12                       	 := (Battery_WarningStatus AND 16#1000) <> 0; 			// bit12: 预留     
+	bReserved13                       	 := (Battery_WarningStatus AND 16#2000) <> 0; 			// bit13: 预留     
+	bReserved14                       	 := (Battery_WarningStatus AND 16#4000) <> 0; 			// bit14: 预留     
+	
 ELSE
 	timer1Trigger:= TRUE;
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="BmsSerial">
-      <LineId Id="23" Count="38" />
+      <LineId Id="31" Count="12" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="44" Count="17" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="165" Count="2" />
+      <LineId Id="108" Count="0" />
       <LineId Id="67" Count="1" />
-      <LineId Id="62" Count="3" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="140" Count="2" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="194" Count="1" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="196" Count="1" />
+      <LineId Id="199" Count="2" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="204" Count="1" />
+      <LineId Id="207" Count="2" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="149" Count="14" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="170" Count="2" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="176" Count="13" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="64" Count="1" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

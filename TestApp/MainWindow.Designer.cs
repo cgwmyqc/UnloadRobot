@@ -81,6 +81,10 @@ namespace TestApp
             this.btnButtonLedGreenEnable = new System.Windows.Forms.Button();
             this.btnTriColorGreenEnable = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.btnRightArm_SV_Bottom_Enable = new System.Windows.Forms.Button();
+            this.btnRightArm_SV_Front_Enable = new System.Windows.Forms.Button();
+            this.btnLeftArm_SV_Bottom_Enable = new System.Windows.Forms.Button();
+            this.btnLeftArm_SV_Front_Enable = new System.Windows.Forms.Button();
             this.btnRightArm_SV8 = new System.Windows.Forms.Button();
             this.btnLeftArm_SV8 = new System.Windows.Forms.Button();
             this.btnRightArm_SV_All_Disable = new System.Windows.Forms.Button();
@@ -1161,6 +1165,10 @@ namespace TestApp
             // 
             // groupBox16
             // 
+            this.groupBox16.Controls.Add(this.btnRightArm_SV_Bottom_Enable);
+            this.groupBox16.Controls.Add(this.btnRightArm_SV_Front_Enable);
+            this.groupBox16.Controls.Add(this.btnLeftArm_SV_Bottom_Enable);
+            this.groupBox16.Controls.Add(this.btnLeftArm_SV_Front_Enable);
             this.groupBox16.Controls.Add(this.btnRightArm_SV8);
             this.groupBox16.Controls.Add(this.btnLeftArm_SV8);
             this.groupBox16.Controls.Add(this.btnRightArm_SV_All_Disable);
@@ -1192,6 +1200,58 @@ namespace TestApp
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "左右臂电磁阀";
             // 
+            // btnRightArm_SV_Bottom_Enable
+            // 
+            this.btnRightArm_SV_Bottom_Enable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRightArm_SV_Bottom_Enable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnRightArm_SV_Bottom_Enable.Location = new System.Drawing.Point(1002, 252);
+            this.btnRightArm_SV_Bottom_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRightArm_SV_Bottom_Enable.Name = "btnRightArm_SV_Bottom_Enable";
+            this.btnRightArm_SV_Bottom_Enable.Size = new System.Drawing.Size(150, 92);
+            this.btnRightArm_SV_Bottom_Enable.TabIndex = 10;
+            this.btnRightArm_SV_Bottom_Enable.Text = "右阀底开";
+            this.btnRightArm_SV_Bottom_Enable.UseVisualStyleBackColor = true;
+            this.btnRightArm_SV_Bottom_Enable.Click += new System.EventHandler(this.btnRightArm_SV_Bottom_Enable_Click);
+            // 
+            // btnRightArm_SV_Front_Enable
+            // 
+            this.btnRightArm_SV_Front_Enable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRightArm_SV_Front_Enable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnRightArm_SV_Front_Enable.Location = new System.Drawing.Point(838, 252);
+            this.btnRightArm_SV_Front_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRightArm_SV_Front_Enable.Name = "btnRightArm_SV_Front_Enable";
+            this.btnRightArm_SV_Front_Enable.Size = new System.Drawing.Size(150, 92);
+            this.btnRightArm_SV_Front_Enable.TabIndex = 9;
+            this.btnRightArm_SV_Front_Enable.Text = "右阀正开";
+            this.btnRightArm_SV_Front_Enable.UseVisualStyleBackColor = true;
+            this.btnRightArm_SV_Front_Enable.Click += new System.EventHandler(this.btnRightArm_SV_Front_Enable_Click);
+            // 
+            // btnLeftArm_SV_Bottom_Enable
+            // 
+            this.btnLeftArm_SV_Bottom_Enable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArm_SV_Bottom_Enable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArm_SV_Bottom_Enable.Location = new System.Drawing.Point(352, 250);
+            this.btnLeftArm_SV_Bottom_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArm_SV_Bottom_Enable.Name = "btnLeftArm_SV_Bottom_Enable";
+            this.btnLeftArm_SV_Bottom_Enable.Size = new System.Drawing.Size(150, 92);
+            this.btnLeftArm_SV_Bottom_Enable.TabIndex = 8;
+            this.btnLeftArm_SV_Bottom_Enable.Text = "左阀底开";
+            this.btnLeftArm_SV_Bottom_Enable.UseVisualStyleBackColor = true;
+            this.btnLeftArm_SV_Bottom_Enable.Click += new System.EventHandler(this.btnLeftArm_SV_Bottom_Enable_Click);
+            // 
+            // btnLeftArm_SV_Front_Enable
+            // 
+            this.btnLeftArm_SV_Front_Enable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLeftArm_SV_Front_Enable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLeftArm_SV_Front_Enable.Location = new System.Drawing.Point(186, 252);
+            this.btnLeftArm_SV_Front_Enable.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLeftArm_SV_Front_Enable.Name = "btnLeftArm_SV_Front_Enable";
+            this.btnLeftArm_SV_Front_Enable.Size = new System.Drawing.Size(150, 92);
+            this.btnLeftArm_SV_Front_Enable.TabIndex = 7;
+            this.btnLeftArm_SV_Front_Enable.Text = "左阀正开";
+            this.btnLeftArm_SV_Front_Enable.UseVisualStyleBackColor = true;
+            this.btnLeftArm_SV_Front_Enable.Click += new System.EventHandler(this.btnLeftArm_SV_Front_Enable_Click);
+            // 
             // btnRightArm_SV8
             // 
             this.btnRightArm_SV8.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1222,7 +1282,7 @@ namespace TestApp
             // 
             this.btnRightArm_SV_All_Disable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnRightArm_SV_All_Disable.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnRightArm_SV_All_Disable.Location = new System.Drawing.Point(840, 250);
+            this.btnRightArm_SV_All_Disable.Location = new System.Drawing.Point(1160, 252);
             this.btnRightArm_SV_All_Disable.Margin = new System.Windows.Forms.Padding(6);
             this.btnRightArm_SV_All_Disable.Name = "btnRightArm_SV_All_Disable";
             this.btnRightArm_SV_All_Disable.Size = new System.Drawing.Size(150, 92);
@@ -1235,7 +1295,7 @@ namespace TestApp
             // 
             this.btnLeftArm_SV_All_Disable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLeftArm_SV_All_Disable.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnLeftArm_SV_All_Disable.Location = new System.Drawing.Point(516, 250);
+            this.btnLeftArm_SV_All_Disable.Location = new System.Drawing.Point(512, 250);
             this.btnLeftArm_SV_All_Disable.Margin = new System.Windows.Forms.Padding(6);
             this.btnLeftArm_SV_All_Disable.Name = "btnLeftArm_SV_All_Disable";
             this.btnLeftArm_SV_All_Disable.Size = new System.Drawing.Size(150, 92);
@@ -1378,7 +1438,7 @@ namespace TestApp
             // 
             this.btnLeftArm_SV_All_Enable.Font = new System.Drawing.Font("阿里巴巴普惠体 3.0 55 Regular", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLeftArm_SV_All_Enable.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnLeftArm_SV_All_Enable.Location = new System.Drawing.Point(352, 252);
+            this.btnLeftArm_SV_All_Enable.Location = new System.Drawing.Point(24, 252);
             this.btnLeftArm_SV_All_Enable.Margin = new System.Windows.Forms.Padding(6);
             this.btnLeftArm_SV_All_Enable.Name = "btnLeftArm_SV_All_Enable";
             this.btnLeftArm_SV_All_Enable.Size = new System.Drawing.Size(150, 92);
@@ -3929,7 +3989,6 @@ namespace TestApp
             this.btnLeftArmWristMoveAbsStop.TabIndex = 18;
             this.btnLeftArmWristMoveAbsStop.Text = "停止";
             this.btnLeftArmWristMoveAbsStop.UseVisualStyleBackColor = true;
-            this.btnLeftArmWristMoveAbsStop.Click += new System.EventHandler(this.btnLeftArmWristMoveAbsStop_Click);
             this.btnLeftArmWristMoveAbsStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmWristMoveAbsStop_MouseDown);
             this.btnLeftArmWristMoveAbsStop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnLeftArmWristMoveAbsStop_MouseUp);
             // 
@@ -6577,6 +6636,10 @@ namespace TestApp
         private System.Windows.Forms.Button btnRightBeltMotor;
         private System.Windows.Forms.Button btnMidBeltMotor;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnLeftArm_SV_Bottom_Enable;
+        private System.Windows.Forms.Button btnLeftArm_SV_Front_Enable;
+        private System.Windows.Forms.Button btnRightArm_SV_Bottom_Enable;
+        private System.Windows.Forms.Button btnRightArm_SV_Front_Enable;
     }
 }
 
