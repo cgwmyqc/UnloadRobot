@@ -24,7 +24,7 @@ VAR
 	RightArm_Left_ExtPosGen_Enable                       :MC_ExtSetPointGenEnable;
 	RightArm_Left_ExtPosGen_Disable	                    :MC_ExtSetPointGenDisable;
 	RightArm_Wrist_ExtPosGen_Enable                      :MC_ExtSetPointGenEnable;
-	RightArm_Wrist_ExtPosGen_Disable	                  :MC_ExtSetPointGenDisable;
+	RightArm_Wrist_ExtPosGen_Disable	                 :MC_ExtSetPointGenDisable;
 	
 	//串口
 	//fb_SerialCom		:FB_SerialCom;					
@@ -63,7 +63,6 @@ IF bManualCtrl_Asm_RightArm THEN
 		
 		wrist_angle := RightArmWristIK(axis_RightArm_Right.NcToPlc.ActPos, axis_RightArm_Left.NcToPlc.ActPos);		// 逆解出腕电机角度
 		
-
 	END_IF
 	
 
@@ -239,7 +238,8 @@ RightArm_Wrist_ExtPosGen_Disable(
       <LineId Id="486" Count="0" />
       <LineId Id="485" Count="0" />
       <LineId Id="378" Count="9" />
-      <LineId Id="394" Count="50" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="396" Count="48" />
       <LineId Id="476" Count="0" />
       <LineId Id="445" Count="30" />
       <LineId Id="5" Count="0" />

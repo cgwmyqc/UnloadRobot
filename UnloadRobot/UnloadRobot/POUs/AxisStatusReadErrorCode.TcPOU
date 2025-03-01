@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisStatusReadErrorCode" Id="{56bd0b8b-bf7e-4f0f-be75-e05e4890eff8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK AxisStatusReadErrorCode
+VAR_INPUT
+	AxisName				:AXIS_REF;
+
+END_VAR
+VAR_OUTPUT
+	ErrorCode				:STRING;
+	nMainAlarmCode			: USINT;
+	nSubAlarmCode			: USINT;
+END_VAR
+VAR
+	fbReadDriverSDO			: FB_EcCoeSdoRead;
+	receivedAlarmCode		: UDINT;
+//	nMainAlarmCode			: USINT;
+//	nSubAlarmCode			: USINT;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbReadDriverSDO(
+	sNetId:= '192.168.1.20.1.1', 
+	nSlaveAddr:= 1014, 
+	nSubIndex:= 16#02, 
+	nIndex:= 16#4DA0, 
+	pDstBuf:= ADR(receivedAlarmCode), 
+	cbBufLen:= 8, 
+	bExecute:= , 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrId=> , 
+	cbRead=> );
+	
+//0111 1111 1111 1111
+//7F		FF
+//nMainAlarmCode  := receivedAlarmCode AND SHL(16#0000007F, 8);
+//nSubAlarmCode	:= receivedAlarmCode AND SHL(16#000000FF, 0);
+nMainAlarmCode := TO_USINT(SHR(receivedAlarmCode, 8)) AND (16#7F);
+nSubAlarmCode := TO_USINT(receivedAlarmCode) AND (16#FF);
+]]></ST>
+    </Implementation>
+    <LineIds Name="AxisStatusReadErrorCode">
+      <LineId Id="13" Count="11" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="33" Count="2" />
+      <LineId Id="41" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

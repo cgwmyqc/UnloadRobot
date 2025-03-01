@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="GateMove" Id="{d13f1184-948a-47c6-a403-9da76bad7ac5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM GateMove
+VAR
+	
+	(* 大龙门 *)
+	bigGateGearIn			:MC_GearIn;				// 大龙门电子齿轮，LeftAxis为Master
+	bigGateGearOut			:MC_GearOut;			// 大龙门电子齿轮取消啮合
+	bigGateLeftAxisJog		:MC_Jog;				// 大龙门Jog(实际上电子齿轮的Master轴axis_BigGate_Left的Mc_Jog)
+	bigGateLeftAxisMoveAbs	:MC_MoveAbsolute;		// 大龙门MoveAbs(实际上电子齿轮的Master轴axis_BigGate_Left的Mc_MoveAbsolute)
+	
+	// 当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_BigGate_Left或bManualCtrl_Part_BigGate_Right为True，会把此变量置false
+	//bBigGate_Gearin_do				:BOOL:=TRUE;			
+	
+	nBigGate_Speed					:LREAL:=2;		// 大龙门移动速度
+	nBigGate_MoveAbs_TarPos			:LREAL;			// 大龙门MoveAbs目标位置
+	
+	
+	
+	(* 小龙门 *)
+	smallGateGearIn				:MC_GearIn;				// 小龙门电子齿轮，LeftAxis为Master
+	smallGateGearOut			:MC_GearOut;			// 小龙门电子齿轮取消啮合
+	smallGateLeftAxisJog		:MC_Jog;				// 小龙门左轴(电子齿轮的Master轴)MC_Jog
+	smallGateLeftAxisMoveAbs	:MC_MoveAbsolute;		// 小龙门MoveAbs(实际上电子齿轮的Master轴axis_SmallGate_Left的Mc_MoveAbsolute)
+	
+	// 默认为啮合状态，当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_SmallGate_Left为true
+	//或bManualCtrl_Part_SmallGate_Right为True，会把此变量置false
+	//bSmallGate_Gearin_do		:BOOL:=TRUE;
+	
+	nSmallGate_Speed					:LREAL:=2;		// 小龙门移动速度
+	nSmallGate_MoveAbs_TarPos			:LREAL;			// 小龙门MoveAbs目标位置
+	
+	
+	
+	(*后龙门*)
+		backGateGearIn					:MC_GearIn;
+	backGateGearOut					:MC_GearOut;	                    			
+	backGateLeftAxisJog 			:MC_Jog;
+	backGateLeftAxisMoveAbs			:MC_MoveAbsolute;		// 后龙门MoveAbs(实际上电子齿轮的Master轴axis_BackGate_Left的Mc_MoveAbsolute)                    			
+	
+	//bBackGate_Gearin_do				:BOOL:=TRUE;
+
+	nBackGate_Speed					:LREAL:=5;		// 后龙门移动速度
+	nBackGate_MoveAbs_TarPos		:LREAL;			// 后龙门MoveAbs目标位置	
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+// 当恢复停止按钮或者急停时,大小后龙门需要重新啮合一下电子齿轮
+IF bAxis_All_Stop OR NOT bEmergencyStopBtn THEN
+	bSmallGate_Gearin_do	:=	FALSE;
+    bBigGate_Gearin_do		:=	FALSE;
+    bBackGate_Gearin_do		:=	FALSE;
+ELSE
+	bSmallGate_Gearin_do	:=	TRUE;
+    bBigGate_Gearin_do		:=	TRUE;
+    bBackGate_Gearin_do		:=	TRUE;
+END_IF
+
+
+IF bManualCtrl_Part_BigGate_Left OR bManualCtrl_Part_BigGate_Right THEN
+	bBigGate_Gearin_do		:=	FALSE;
+END_IF
+
+IF bManualCtrl_Part_SmallGate_Left OR bManualCtrl_Part_SmallGate_Right THEN
+	bSmallGate_Gearin_do		:=	FALSE;
+END_IF
+
+IF bManualCtrl_Part_BackGate_Left OR bManualCtrl_Part_BackGate_Right THEN
+	bBackGate_Gearin_do		:=	FALSE;
+END_IF
+
+
+// BigGate Mc_Jog
+bigGateLeftAxisJog(
+	Axis:= axis_BigGate_Left, 
+	JogForward:= bBigGate_Up AND bManualCtrl_Asm_BigGate, 
+	JogBackwards:= bBigGate_Down AND bManualCtrl_Asm_BigGate, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= nBigGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+// BigGate Mc_Absolute	
+bigGateLeftAxisMoveAbs(
+	Axis:= axis_BigGate_Left, 
+	Execute:= bBigGate_MoveAbs AND bManualCtrl_Asm_BigGate, 
+	Position:= nBigGate_MoveAbs_TarPos, 
+	Velocity:= nBigGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+bigGateGearIn(
+	Master:= axis_BigGate_Left, 
+	Slave:= axis_BigGate_Right , 
+	Execute:= bBigGate_Gearin_do, 
+	RatioNumerator:=-1 , 
+	RatioDenominator:=1 , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+bigGateGearOut(
+	Slave:=axis_BigGate_Right , 
+	Execute:= NOT bBigGate_Gearin_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+	
+	
+	
+	
+	
+	
+// SmallGate Mc_Jog
+smallGateLeftAxisJog(
+	Axis:= axis_SmallGate_Left, 
+	JogForward:= bSmallGate_Down AND bManualCtrl_Asm_SmallGate, 
+	JogBackwards:= bSmallGate_Up AND bManualCtrl_Asm_SmallGate, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= nSmallGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// SmallGate Mc_MoveAbsolute
+smallGateLeftAxisMoveAbs(
+	Axis:= axis_SmallGate_Left, 
+	Execute:= bSmallGate_MoveAbs AND bManualCtrl_Asm_SmallGate, 
+	Position:= (-1)*nSmallGate_MoveAbs_TarPos, 						// 反转升，所以绝对位置也要反着
+	Velocity:= nSmallGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+smallGateGearIn(
+	Master:= axis_SmallGate_Left, 
+	Slave:= axis_SmallGate_Right, 
+	Execute:= bSmallGate_Gearin_do, 
+	RatioNumerator:= -1, 
+	RatioDenominator:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+smallGateGearOut(
+	Slave:= axis_SmallGate_Right, 
+	Execute:= NOT bSmallGate_Gearin_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );	
+
+	
+	
+	
+	
+	
+	
+// Mc_Jog
+backGateLeftAxisJog(
+	Axis:= axis_BackGate_Left, 
+	JogForward:= bBackGate_Down AND bManualCtrl_Asm_BackGate, 
+	JogBackwards:= bBackGate_Up AND bManualCtrl_Asm_BackGate, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= nBackGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+// Mc_MoveAbs
+backGateLeftAxisMoveAbs(
+	Axis:= axis_BackGate_Left, 
+	Execute:= bBackGate_MoveAbs AND bManualCtrl_Asm_BackGate, 
+	Position:= (-1)*nBackGate_MoveAbs_TarPos, 						// 反转升，所以绝对位置也要反着
+	Velocity:= nBackGate_Speed, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );	
+
+	
+backGateGearIn(
+	Master:= axis_BackGate_Left, 
+	Slave:= axis_BackGate_Right, 
+	Execute:= bBackGate_GearIn_do, 
+	RatioNumerator:= 1, 
+	RatioDenominator:= 1, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	InGear=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+backGateGearOut(
+	Slave:= axis_BackGate_Right, 
+	Execute:= NOT bBackGate_GearIn_do, 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );	
+]]></ST>
+    </Implementation>
+    <LineIds Name="GateMove">
+      <LineId Id="425" Count="7" />
+      <LineId Id="436" Count="1" />
+      <LineId Id="435" Count="0" />
+      <LineId Id="421" Count="0" />
+      <LineId Id="439" Count="0" />
+      <LineId Id="438" Count="0" />
+      <LineId Id="422" Count="0" />
+      <LineId Id="443" Count="4" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="449" Count="2" />
+      <LineId Id="424" Count="0" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="14" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="168" Count="14" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="125" Count="17" />
+      <LineId Id="150" Count="1" />
+      <LineId Id="143" Count="6" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="232" Count="7" />
+      <LineId Id="242" Count="63" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="306" Count="4" />
+      <LineId Id="312" Count="63" />
+      <LineId Id="311" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -14,8 +14,8 @@ VAR_GLOBAL
 	bAutoCtrl_Part_RightWrist									:BOOL;			// 自动控制-单体-腕电机	
 
 
-	
-	bManualCtrl_Part_LeftArm_Left								:BOOL;			// 单轴控制标志位
+	// 单轴控制标志位
+	bManualCtrl_Part_LeftArm_Left								:BOOL;			
 	bManualCtrl_Part_LeftArm_Right								:BOOL;			
 	bManualCtrl_Part_LeftArm_Wrist								:BOOL;	
 	bManualCtrl_Part_LeftArm_Lift								:BOOL;
@@ -28,10 +28,20 @@ VAR_GLOBAL
 	bManualCtrl_Part_SmallGate_Left								:BOOL;
 	bManualCtrl_Part_SmallGate_Right							:BOOL;		
 	bManualCtrl_Part_BackGate_Left								:BOOL;
-	bManualCtrl_Part_BackGate_Right								:BOOL;		
-	
-	
+	bManualCtrl_Part_BackGate_Right								:BOOL;
 
+	// 合成同步运动标志位		
+	bManualCtrl_Asm_BigGate										:BOOL;
+	bManualCtrl_Asm_SmallGate									:BOOL;
+	bManualCtrl_Asm_BackGate									:BOOL;
+	
+	
+	// 急停激活时大龙门、小龙门、后龙门电子齿轮重新啮合标志位
+	// 当Slave轴触发Mc_Stop，会自动取消啮合，需要再次GearIn一下，所以此处设了一个全局变量，恢复急停后统一把三个龙门电子齿轮重新啮合一下。
+	bEStopGearInAgain											:BOOL:=TRUE;
+	bSmallGate_Gearin_do										:BOOL:=TRUE;
+	bBigGate_Gearin_do											:BOOL:=TRUE;
+	bBackGate_Gearin_do											:BOOL:=TRUE;
 
 (*======================================== 自定义标志位 End ========================================*)	
 
@@ -74,6 +84,14 @@ VAR_GLOBAL
 	bAxis_BackGate_Left_Enable									:BOOL;				//后门_左电机使能
 	bAxis_BackGate_Right_Enable									:BOOL;				//后门_右电机使能
 	
+	// 右轮
+	bAxis_RightWheel_Steer_Enable								:BOOL;
+	bAxis_RightWheel_Walk_Enable								:BOOL;
+	
+	// 左轮
+	bAxis_LeftWheel_Steer_Enable								:BOOL;
+	bAxis_LeftWheel_Walk_Enable									:BOOL;
+	
 	
 	// 所有轴
 	bAxis_All_Enable											:BOOL;				//所有电机使能
@@ -95,7 +113,12 @@ VAR_GLOBAL
 																									ADR(bAxis_BigGate_Left_Enable),	
 																									ADR(bAxis_BigGate_Right_Enable),
 																									ADR(bAxis_BackGate_Left_Enable),	
-																									ADR(bAxis_BackGate_Right_Enable)
+																									ADR(bAxis_BackGate_Right_Enable),
+																									ADR(bAxis_RightWheel_Steer_Enable),	
+																									ADR(bAxis_RightWheel_Walk_Enable),	
+																									ADR(bAxis_LeftWheel_Steer_Enable),
+																									ADR(bAxis_LeftWheel_Walk_Enable)	
+																									
 																				 				 ];
 
 (*========================================电机使能标志位 End ======================================*)	
@@ -129,6 +152,20 @@ VAR_GLOBAL
 	bAxis_BackGate_Left_Reset									:BOOL;				//后门_左电机复位
 	bAxis_BackGate_Right_Reset									:BOOL;				//后门_右电机复位
 	
+	// 右轮
+	bAxis_RightWheel_Steer_Reset								:BOOL;
+	bAxis_RightWheel_Walk_Reset								:BOOL;
+	
+	// 左轮
+	bAxis_LeftWheel_Steer_Reset								:BOOL;
+	bAxis_LeftWheel_Walk_Reset									:BOOL;
+	
+	
+	
+	
+	
+	
+	
 	// 所有轴
 	bAxis_All_Reset												:BOOL;				//所有电机使能
 
@@ -147,7 +184,12 @@ VAR_GLOBAL
 																									ADR(bAxis_BigGate_Left_Reset),	
 																									ADR(bAxis_BigGate_Right_Reset),
 																									ADR(bAxis_BackGate_Left_Reset),	
-																									ADR(bAxis_BackGate_Right_Reset)
+																									ADR(bAxis_BackGate_Right_Reset),
+																									ADR(bAxis_RightWheel_Steer_Reset),	
+																									ADR(bAxis_RightWheel_Walk_Reset),	
+																									ADR(bAxis_LeftWheel_Steer_Reset),
+																									ADR(bAxis_LeftWheel_Walk_Reset)	
+																									
 																				 				 ];
 
 
@@ -214,6 +256,14 @@ VAR_GLOBAL
 	bAxis_BackGate_Left_McStop									:Bool;			//后门_左电机MC_Stop标志位
 	bAxis_BackGate_Right_McStop									:BOOL;			//后门_右电机MC_Stop标志位
 	
+	// 右轮
+	bAxis_RightWheel_Steer_McStop								:BOOL;
+	bAxis_RightWheel_Walk_McStop								:BOOL;
+	
+	// 左轮
+	bAxis_LeftWheel_Steer_McStop								:BOOL;
+	bAxis_LeftWheel_Walk_McStop									:BOOL;
+	
 		// 所有轴
 	bAxis_All_Stop												:BOOL;			//所有电机使能
 
@@ -232,7 +282,11 @@ VAR_GLOBAL
 																									ADR(bAxis_BigGate_Left_McStop),	
 																									ADR(bAxis_BigGate_Right_McStop),
 																									ADR(bAxis_BackGate_Left_McStop),	
-																									ADR(bAxis_BackGate_Right_McStop)
+																									ADR(bAxis_BackGate_Right_McStop),
+																									ADR(bAxis_RightWheel_Steer_McStop),
+																									ADR(bAxis_RightWheel_Walk_McStop),
+																									ADR(bAxis_LeftWheel_Steer_McStop),
+																									ADR(bAxis_LeftWheel_Walk_McStop)	
 																				 				 ];
 
 
@@ -414,6 +468,49 @@ VAR_GLOBAL
                                                                bRightArm_SV7,
                                                                bRightArm_SV8	
 																];
+
+	//左臂电磁阀_示教盒标志位
+	bLeftArm_SV1_TBox						AT%MX7.0				:BOOL;			//左臂_电磁阀1_示教盒标志位
+	bLeftArm_SV2_TBox						AT%MX7.1				:BOOL;			//左臂_电磁阀2_示教盒标志位	
+	bLeftArm_SV3_TBox						AT%MX7.2				:BOOL;			//左臂_电磁阀3_示教盒标志位
+	bLeftArm_SV4_TBox						AT%MX7.3				:BOOL;			//左臂_电磁阀4_示教盒标志位
+	bLeftArm_SV5_TBox						AT%MX7.4				:BOOL;			//左臂_电磁阀5_示教盒标志位
+	bLeftArm_SV6_TBox						AT%MX7.5				:BOOL;			//左臂_电磁阀6_示教盒标志位
+	bLeftArm_SV7_TBox						AT%MX7.6				:BOOL;			//左臂_电磁阀7_示教盒标志位	
+	bLeftArm_SV8_TBox						AT%MX7.7				:BOOL;			//左臂_电磁阀8_示教盒标志位
+	
+	//右臂电磁阀_示教盒标志位
+	bRightArm_SV1_TBox						AT%MX8.0				:BOOL;			//右臂_电磁阀1_示教盒标志位
+	bRightArm_SV2_TBox						AT%MX8.1				:BOOL;			//右臂_电磁阀2_示教盒标志位
+	bRightArm_SV3_TBox						AT%MX8.2				:BOOL;			//右臂_电磁阀3_示教盒标志位
+	bRightArm_SV4_TBox						AT%MX8.3				:BOOL;			//右臂_电磁阀4_示教盒标志位
+	bRightArm_SV5_TBox						AT%MX8.4				:BOOL;			//右臂_电磁阀5_示教盒标志位
+	bRightArm_SV6_TBox						AT%MX8.5				:BOOL;			//右臂_电磁阀6_示教盒标志位
+	bRightArm_SV7_TBox						AT%MX8.6				:BOOL;			//右臂_电磁阀7_示教盒标志位
+	bRightArm_SV8_TBox						AT%MX8.7				:BOOL;			//右臂_电磁阀8_示教盒标志位
+
+	
+	//左臂电磁阀_示教盒上位机
+	bLeftArm_SV1_UpperUI											:BOOL;			//左臂_电磁阀1_上位机标志位
+	bLeftArm_SV2_UpperUI											:BOOL;			//左臂_电磁阀2_上位机标志位	
+	bLeftArm_SV3_UpperUI											:BOOL;			//左臂_电磁阀3_上位机标志位
+	bLeftArm_SV4_UpperUI											:BOOL;			//左臂_电磁阀4_上位机标志位
+	bLeftArm_SV5_UpperUI											:BOOL;			//左臂_电磁阀5_上位机标志位
+	bLeftArm_SV6_UpperUI											:BOOL;			//左臂_电磁阀6_上位机标志位
+	bLeftArm_SV7_UpperUI											:BOOL;			//左臂_电磁阀7_上位机标志位	
+	bLeftArm_SV8_UpperUI											:BOOL;			//左臂_电磁阀8_上位机标志位
+	                                            	                                            
+	//左臂电磁阀_示教盒上位机                              	                                            
+	bRightArm_SV1_UpperUI											:BOOL;			//右臂_电磁阀1_上位机标志位
+	bRightArm_SV2_UpperUI											:BOOL;			//右臂_电磁阀2_上位机标志位
+	bRightArm_SV3_UpperUI											:BOOL;			//右臂_电磁阀3_上位机标志位
+	bRightArm_SV4_UpperUI											:BOOL;			//右臂_电磁阀4_上位机标志位
+	bRightArm_SV5_UpperUI											:BOOL;			//右臂_电磁阀5_上位机标志位
+	bRightArm_SV6_UpperUI											:BOOL;			//右臂_电磁阀6_上位机标志位
+	bRightArm_SV7_UpperUI											:BOOL;			//右臂_电磁阀7_上位机标志位
+	bRightArm_SV8_UpperUI											:BOOL;			//右臂_电磁阀8_上位机标志位
+
+
 	
 (*===================================== 电磁阀控制标志位 End ========================================*)	
 
@@ -443,7 +540,9 @@ VAR_GLOBAL
 (*===================================== 真空泵 Start ========================================*)
 	
 	bPumpMotor_Enable					AT%QX1.0				:BOOL;			//真空泵电机上电
-
+	bPumpMotor_Enable_TBox				AT%MX9.4				:BOOL;			//真空泵电机上电_示教盒标志位
+	bPumpMotor_Enable_UpperUI									:BOOL;			//真空泵电机上电_上位机标志位
+	
 (*===================================== 真空泵 End ==========================================*)
 
 

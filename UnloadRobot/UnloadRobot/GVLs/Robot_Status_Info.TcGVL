@@ -4,6 +4,8 @@
     <Declaration><![CDATA[//{attribute 'qualified_only'}
 VAR_GLOBAL
 	
+	(**********************************   电池相关参数    *************************************)
+											
 	Battery_TotalVoltage		AT%MW300		:LREAL;			 //voltage, unit: V
 	Battery_TotalCurrent		AT%MW304		:LREAL;			 //current, unit:A
 	Battery_RemainCapacity						:REAL;			 //remain capacitu, unit:Ah
@@ -62,7 +64,54 @@ VAR_GLOBAL
 	bReserved12                      			: BOOL; 		// bit12: 预留
 	bReserved13                      			: BOOL; 		// bit13: 预留
 	bReserved14                      			: BOOL; 		// bit14: 预留
-		
+	
+	
+	
+
+
+
+	(**********************************   轴相关参数    *************************************)
+	
+	// 伺服驱动器Error标志位
+	bDriverDeviceError_axis_LeftArm_Left				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftArm_Left	
+	bDriverDeviceError_axis_LeftArm_Right				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftArm_Right	
+	bDriverDeviceError_axis_LeftArm_Wrist				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftArm_Wrist	
+	bDriverDeviceError_axis_LeftArm_Lift				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftArm_Lift	
+	bDriverDeviceError_axis_RightArm_Left				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_RightArm_Left	
+	bDriverDeviceError_axis_RightArm_Right				AT%I*					:BOOL;      // 伺服驱动器报警_标志位_RightArm_Right	
+	bDriverDeviceError_axis_RightArm_Wrist				AT%I*					:BOOL;      // 伺服驱动器报警_标志位_RightArm_Wrist	
+	bDriverDeviceError_axis_RightArm_Lift				AT%I*					:BOOL;	    // 伺服驱动器报警_标志位_RightArm_Lift	
+	bDriverDeviceError_axis_BigGate_Left				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_BigGate_Left
+	bDriverDeviceError_axis_BigGate_Right				AT%I*					:BOOL;      // 伺服驱动器报警_标志位_BigGate_Right
+	bDriverDeviceError_axis_SmallGate_Left				AT%I*					:BOOL;      // 伺服驱动器报警_标志位_SmallGate_Left
+	bDriverDeviceError_axis_SmallGate_Right				AT%I*					:BOOL;      // 伺服驱动器报警_标志位_SmallGate_Right
+	bDriverDeviceError_axis_BackGate_Left				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_BackGate_Left
+	bDriverDeviceError_axis_BackGate_Right				AT%I*					:BOOL;	    // 伺服驱动器报警_标志位_BackGate_Right
+	bDriverDeviceError_axis_RightWheel_Steer			AT%I*					:BOOL;      // 伺服驱动器报警_标志位_RightWheel_Steer
+	bDriverDeviceError_axis_RightWheel_Walk				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_RightWheel_Walk
+	bDriverDeviceError_axis_LeftWheel_Steer				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftWheel_Steer
+	bDriverDeviceError_axis_LeftWheel_Walk				AT%I*					:BOOL;		// 伺服驱动器报警_标志位_LeftWheel_Walk
+	
+	// 伺服驱动器ErrorCode
+	bDriverDeviceErrorCode_axis_LeftArm_Left			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftArm_Left	
+	bDriverDeviceErrorCode_axis_LeftArm_Right			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftArm_Right	
+	bDriverDeviceErrorCode_axis_LeftArm_Wrist			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftArm_Wrist	
+	bDriverDeviceErrorCode_axis_LeftArm_Lift			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftArm_Lift	
+	bDriverDeviceErrorCode_axis_RightArm_Left			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_RightArm_Left	
+	bDriverDeviceErrorCode_axis_RightArm_Right			AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_RightArm_Right	
+	bDriverDeviceErrorCode_axis_RightArm_Wrist			AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_RightArm_Wrist	
+	bDriverDeviceErrorCode_axis_RightArm_Lift			AT%I*					:UDINT;	    // 伺服驱动器报警_错误代码_RightArm_Lift	
+	bDriverDeviceErrorCode_axis_BigGate_Left			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_BigGate_Left
+	bDriverDeviceErrorCode_axis_BigGate_Right			AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_BigGate_Right
+	bDriverDeviceErrorCode_axis_SmallGate_Left			AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_SmallGate_Left
+	bDriverDeviceErrorCode_axis_SmallGate_Right			AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_SmallGate_Right
+	bDriverDeviceErrorCode_axis_BackGate_Left			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_BackGate_Left
+	bDriverDeviceErrorCode_axis_BackGate_Right			AT%I*					:UDINT;	    // 伺服驱动器报警_错误代码_BackGate_Right
+	bDriverDeviceErrorCode_axis_RightWheel_Steer		AT%I*					:UDINT;      // 伺服驱动器报警_错误代码_RightWheel_Steer
+	bDriverDeviceErrorCode_axis_RightWheel_Walk			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_RightWheel_Walk
+	bDriverDeviceErrorCode_axis_LeftWheel_Steer			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftWheel_Steer
+	bDriverDeviceErrorCode_axis_LeftWheel_Walk			AT%I*					:UDINT;		// 伺服驱动器报警_错误代码_LeftWheel_Walk
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,1021 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="WheelControl" Id="{2628a4fe-c30c-4cd7-9b36-36177f1fac7b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM WheelControl
+VAR
+	WheelDriver_ModesOfOperation		AT%Q* 	:SINT		:=8;			//手动关联到舵轮驱动器的RxPDO modes of operation标志位，PLC进入运行时将标志位置为8
+
+
+	nWalkSpeed_Left								:LREAL		:=30;			//单位：mm/s
+	nWalkSpeed_Right							:LREAL		:=30;			//单位：mm/s
+	nSteerSpeed									:LREAL		:=5;			//单位：°/s
+	nSteerSpeed_Moving							:LREAL		:=5;			//行进过程中转向速度
+	
+	axis_RightWheel_Steer_Manual_Jog			:Mc_Jog;
+	nAxis_RightWheel_Steer_LimitAngle			:USINT		:=45;			// 舵机最大角度
+	bAxis_RightWheel_Steer_AtLeftLimit			:BOOL;						// 右轮舵机到达左边界
+	bAxis_RightWheel_Steer_AtRightLimit			:BOOL;						// 右轮舵机到达右边界
+	nAxis_RightWheel_Steer_CurrentAngle			:INT;						// 右舵轮当前角度，为下面判断bAxis_RightWheel_Steer_NeedBackToOriginal而准备的，读取当前角度存储用的临时变量
+	bAxis_RightWheel_Steer_NeedBackToOriginal	:BOOL;						// MotionType=7/8的情况下，也需要对右轮舵机的角度进行判断，如果超过nAxis_RightWheel_Steer_LimitAngle限制，则要进行回零操作，如果在限值范围内则直接开始运动
+	
+	MotionType									:USINT;						//大动作分类，0:待机状态；1：前进；2：后退，3：左平移，4：右平移, 5：左旋转，6，右旋转
+	MotionStep									:USINT;						// 分动作，0：先转转向；1：再动行走电机
+	
+	fbRemoteCtrl_Up_Mode						:WheelCtrlButtonModeCheck;	// 判断上键按键模式：单击+hold/双击+hold
+	fbRemoteCtrl_Down_Mode						:WheelCtrlButtonModeCheck;	// 判断下键按键模式：单击+hold/双击+hold
+	fbRemoteCtrl_East_Mode						:WheelCtrlButtonModeCheck;	// 判断East键按键模式：单击+hold/双击+hold
+	fbRemoteCtrl_West_Mode						:WheelCtrlButtonModeCheck;	// 判断West键按键模式：单击+hold/双击+hold
+	fbRemoteCtrl_1Btn_Mode						:WheelCtrlButtonModeCheck;
+	fbRemoteCtrl_2Btn_Mode						:WheelCtrlButtonModeCheck;
+	
+	
+	LeftWheel_Walk_Direction					:MC_Direction;						// 前进标志位
+	RightWheel_Walk_Direction					:MC_Direction;						// 前进标志位
+
+	bPowerOn									:BOOL;								// 手动模式下，行走电机和转向电机上电。
+	bChassisManualCtrl							:BOOL;								// 底盘手动模式
+	bMoveFastMode								:BOOL;								// 底盘快速模式
+	bMoveSlowMode								:BOOL		:=TRUE;					// 底盘慢速模式
+
+	//test
+
+	bAutoCtrl			:BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[WheelPowerOn();	// 上电（目前是手动上电）
+WheelWalkAxisMoveVelo();// 前进 or 后退
+WheelSteerAxisMoveAbs();// 转向轴MoveAbs
+WheelStop();
+
+// 获取指定按键的点击模式	
+fbRemoteCtrl_Up_Mode(bButton:= bRemoteCtrl_Up, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+fbRemoteCtrl_Down_Mode(bButton:= bRemoteCtrl_Down, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+fbRemoteCtrl_East_Mode(bButton:= bRemoteCtrl_East, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+fbRemoteCtrl_West_Mode(bButton:= bRemoteCtrl_West, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+fbRemoteCtrl_1Btn_Mode(bButton:= bRemoteCtrl_1Btn, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+fbRemoteCtrl_2Btn_Mode(bButton:= bRemoteCtrl_2Btn, bDoubleClickAndHold=> , bOnceClickAndHold=> );
+
+
+// 手动模式激活后此标志位置true，转向和行走电机上电
+bPowerOn := FALSE;
+
+
+// 底盘手动模式标志位
+bChassisManualCtrl := FALSE;
+
+
+//当手动遥控Online置位且舵轮上电
+IF bRemoteCtrl_Online THEN
+	
+	// 上电
+	bPowerOn := TRUE;
+	
+	// 底盘手动模式标志位
+	bChassisManualCtrl := TRUE;
+	
+	// 手动调整右轮舵机角度，里面有按键互斥以及到达限位的逻辑
+	RightWheelSteerJog();
+	
+	// 按键都没按下，待机模式
+	IF NOT bRemoteCtrl_Up AND NOT bRemoteCtrl_Down AND NOT bRemoteCtrl_East AND NOT bRemoteCtrl_West AND NOT bRemoteCtrl_South AND NOT bRemoteCtrl_North AND NOT bRemoteCtrl_1btn AND NOT bRemoteCtrl_2btn THEN
+		MotionType 		:= 0;
+		MotionStep		:=0;
+	END_IF
+	
+
+	//MotionType:=1-6时，手动调整右轮舵机的Mc_Jog,判断逻辑再RightWheelSteerJog中
+	// 长按遥控器“上”键，车先把舵转向0度，再前进
+	IF fbRemoteCtrl_Up_Mode.bOnceClickAndHold THEN
+		
+		MotionType := 1;
+		
+	END_IF
+	
+	// 长按遥控器“下”, 车先把舵转向0度，再后退
+	IF fbRemoteCtrl_Down_Mode.bOnceClickAndHold THEN
+		
+		MotionType := 2;
+		
+	END_IF
+	
+	// 长按遥控器“东”,车先把舵转向90度， 车左平移
+	IF fbRemoteCtrl_East_Mode.bOnceClickAndHold THEN
+		
+		MotionType := 3;
+		
+	END_IF
+	
+	// 长按遥控器“西”,车先把舵转向90度， 车右平移
+	IF fbRemoteCtrl_West_Mode.bOnceClickAndHold THEN
+		
+		MotionType := 4;
+		
+	END_IF
+	
+	// 双击+长按遥控器“东”,车先把舵转向54.0903度， 车左旋转
+	IF fbRemoteCtrl_East_Mode.bDoubleClickAndHold THEN
+		
+		MotionType := 5;
+		
+	END_IF
+	
+	// 双击+长按遥控器“西”,车先把舵转向54.0903度，, 车右旋转
+	IF fbRemoteCtrl_West_Mode.bDoubleClickAndHold THEN
+		
+		MotionType := 6;
+		
+	END_IF
+	
+	// 双击+长按遥控器“up”,车以当前舵机角度前进，行进中可以调整舵机
+	IF fbRemoteCtrl_Up_Mode.bDoubleClickAndHold THEN
+		
+		MotionType := 7;
+		
+	END_IF
+	
+	// 双击+长按遥控器“down”,车以当前舵机角度后退，行进中可以调整舵机
+	IF fbRemoteCtrl_Down_Mode.bDoubleClickAndHold THEN
+		
+		MotionType := 8;
+		
+	END_IF
+	
+	
+	// 单击+长按 button_1，激活慢速模式（默认）
+	IF fbRemoteCtrl_1Btn_Mode.bOnceClickAndHold THEN
+	
+		bMoveSlowMode 							:= TRUE;
+		bMoveFastMode 							:= FALSE;
+		nWalkSpeed_Left							:=30;			//单位：mm/s
+		nWalkSpeed_Right						:=30;			//单位：mm/s
+		nSteerSpeed								:=5;			//单位：°/s
+		nSteerSpeed_Moving						:=5;			//行进过程中转向速度
+	END_IF
+	
+	// 单击+长按 button_2，激活快速模式
+	IF fbRemoteCtrl_2Btn_Mode.bOnceClickAndHold THEN
+	
+		bMoveSlowMode 							:= FALSE ;
+		bMoveFastMode 							:= TRUE;
+		nWalkSpeed_Left							:=60;			//单位：mm/s
+		nWalkSpeed_Right						:=60;			//单位：mm/s
+		nSteerSpeed								:=10;			//单位：°/s
+		nSteerSpeed_Moving						:=10;			//行进过程中转向速度
+		
+	END_IF
+	
+END_IF
+
+
+CASE MotionType OF
+	
+	// 激活底盘遥控时待机状态
+	0:
+
+		
+		MotionStep		:=0;
+		
+		
+		axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+		axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+		
+		axis_LeftWheel_Walk_MoveVelo.Execute := FALSE;
+		axis_RightWheel_Walk_MoveVelo.Execute := FALSE;
+		
+
+		axis_RightWheel_Steer_McStop(Axis:= axis_RightWheel_Steer, Execute:= FALSE);
+		axis_RightWheel_Walk_McStop(Axis:= axis_RightWheel_Walk, Execute:= FALSE);
+		axis_LeftWheel_Steer_McStop(Axis:= axis_LeftWheel_Steer, Execute:= FALSE);
+		axis_LeftWheel_Walk_McStop(Axis:= axis_LeftWheel_Walk, Execute:= FALSE);
+		
+		
+		
+		IF axis_LeftWheel_Steer_MoveAbs.Active OR axis_RightWheel_Steer_MoveAbs.Active OR axis_LeftWheel_Walk_MoveVelo.Active OR axis_RightWheel_Walk_MoveVelo.Active THEN
+
+			axis_RightWheel_Steer_McStop(Axis:= axis_RightWheel_Steer, Execute:= TRUE);
+			axis_RightWheel_Walk_McStop(Axis:= axis_RightWheel_Walk, Execute:= TRUE);
+			axis_LeftWheel_Steer_McStop(Axis:= axis_LeftWheel_Steer, Execute:= TRUE);
+			axis_LeftWheel_Walk_McStop(Axis:= axis_LeftWheel_Walk, Execute:= TRUE);
+		END_IF 
+
+		
+		
+	// 前进
+	1:
+		CASE MotionStep OF
+			
+			// 控制舵机旋转到零
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 0;
+				axis_RightWheel_Steer_MoveAbs.Position := 0;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;				
+
+		END_CASE
+
+		
+	// 后退
+	2:
+		CASE MotionStep OF
+		
+			// 控制舵机旋转到零
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 0;
+				axis_RightWheel_Steer_MoveAbs.Position := 0;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;				
+											  
+											  
+		END_CASE
+	
+	// 向右平移	
+	3:
+		CASE MotionStep OF
+		
+			// 控制舵机旋转到90度
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 90;
+				axis_RightWheel_Steer_MoveAbs.Position := 90;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;			
+		END_CASE
+		
+		
+	// 向左平移	
+	4:
+		CASE MotionStep OF
+		
+			// 控制舵机旋转到90度
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 90;
+				axis_RightWheel_Steer_MoveAbs.Position := 90;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;			
+		END_CASE
+	
+		
+	// 原地向左旋转	
+	5:
+		CASE MotionStep OF
+		
+			// 控制舵机旋转到54.0903度
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 54.0903;
+				axis_RightWheel_Steer_MoveAbs.Position := 54.0903;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;
+			
+		END_CASE
+		
+		
+	// 原地向右旋转	
+	6:
+		CASE MotionStep OF
+		
+			// 控制舵机旋转到54.0903度
+			0:
+				axis_LeftWheel_Steer_MoveAbs.Position := 54.0903;
+				axis_RightWheel_Steer_MoveAbs.Position := 54.0903;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;				
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+				axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+				
+				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+					axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+					MotionStep := 1;
+				END_IF
+			1:
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;
+			
+		END_CASE
+		
+
+	// 前进中调整舵机
+	7:
+	
+		CASE MotionStep OF
+			
+			//先判断右舵机是否需要归零位
+			0:
+				nAxis_RightWheel_Steer_CurrentAngle := (TO_INT(axis_RightWheel_Steer.NcToPlc.ActPos*100)/100);	// 读取右舵轮当前角度，判断是否超限制，超限值需要归0位
+				
+				//MotionType=7/8的情况下，也需要对右轮舵机的角度进行判断，如果超过nAxis_RightWheel_Steer_LimitAngle限制，则右舵机要进行回零操作，如果在限值范围内则直接开始运f动
+				IF nAxis_RightWheel_Steer_CurrentAngle >= nAxis_RightWheel_Steer_LimitAngle OR nAxis_RightWheel_Steer_CurrentAngle <= -nAxis_RightWheel_Steer_LimitAngle THEN
+					bAxis_RightWheel_Steer_NeedBackToOriginal := TRUE;
+				ELSE
+					bAxis_RightWheel_Steer_NeedBackToOriginal := FALSE;
+				END_IF
+				
+				MotionStep := 1;
+			
+			//把左前舵机和右后舵机（视情况）旋转置0位
+			1:	
+				// 左舵机置零位
+				axis_LeftWheel_Steer_MoveAbs.Position := 0;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+
+				// 如果右舵轮需要回0
+				IF bAxis_RightWheel_Steer_NeedBackToOriginal THEN
+					axis_RightWheel_Steer_MoveAbs.Position := 0;
+					axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+					axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+					
+					IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+						axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+						axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+						bAxis_RightWheel_Steer_NeedBackToOriginal := FALSE;
+						MotionStep := 2;
+					END_IF
+				ELSE	// 仅需左前舵机归0
+					IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE THEN
+						axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+						MotionStep := 2;
+					END_IF
+				END_IF
+
+
+			//左右轮差速运动，左轮速度为基准，右轮根据右舵的角度实时差速
+			2:
+				// 若要实时更新Mc_MoveVelocity的速度值，需要重新触发一次，Excecute先置False
+				axis_RightWheel_Walk_MoveVelo(Axis:= axis_RightWheel_Walk, 	Execute:= FALSE);
+				
+				// 根据舵机角度实时计算行走电机速度
+				nWalkSpeed_Right := WheelWalkDifferential(TO_INT(axis_RightWheel_Steer.NcToPlc.ActPos*100)/100);	// 保留两位小数
+				
+				// 设置行走电机方向
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+				
+				// 设置左右行走电机速度
+				axis_LeftWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Left;
+				axis_RightWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Right;
+				
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;
+				
+		END_CASE
+		
+
+	
+		
+	// 后退中调整舵机
+	8:
+	
+		CASE MotionStep OF
+			
+//			//先把左前舵机旋转置0位
+//			0:
+//				axis_LeftWheel_Steer_MoveAbs.Position := 0;
+//				axis_LeftWheel_Steer_MoveAbs.Velocity := 5;				
+//				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+
+//				IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE THEN
+					
+//					axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+//					MotionStep := 1;
+//				END_IF
+			
+//			//左右轮差速运动，左轮速度为基准，右轮根据右舵的角度实时差速
+//			1:
+			
+//				// 需要再触发实现速度实时更新
+//				axis_RightWheel_Walk_MoveVelo(Axis:= axis_RightWheel_Walk, 	Execute:= FALSE);
+				
+//				// 根据舵机角度实时计算行走电机速度
+//				nWalkSpeed_Right := WheelWalkDifferential(TO_INT(axis_RightWheel_Steer.NcToPlc.ActPos*100)/100);	// 保留两位小数
+				
+//				// 设置行走电机方向
+//				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Negative_Direction;
+//				axis_RightWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				
+//				// 设置左右行走电机速度
+//				axis_LeftWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Left;
+//				axis_RightWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Right;
+				
+//				// 再次触发
+//				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+//				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;	
+
+			//先判断右舵机是否需要归零位
+			0:
+				nAxis_RightWheel_Steer_CurrentAngle := (TO_INT(axis_RightWheel_Steer.NcToPlc.ActPos*100)/100);	// 读取右舵轮当前角度，判断是否超限制，超限值需要归0位
+				
+				//MotionType=7/8的情况下，也需要对右轮舵机的角度进行判断，如果超过nAxis_RightWheel_Steer_LimitAngle限制，则右舵机要进行回零操作，如果在限值范围内则直接开始运f动
+				IF nAxis_RightWheel_Steer_CurrentAngle >= nAxis_RightWheel_Steer_LimitAngle OR nAxis_RightWheel_Steer_CurrentAngle <= -nAxis_RightWheel_Steer_LimitAngle THEN
+					bAxis_RightWheel_Steer_NeedBackToOriginal := TRUE;
+				ELSE
+					bAxis_RightWheel_Steer_NeedBackToOriginal := FALSE;
+				END_IF
+				
+				MotionStep := 1;
+			
+			//把左前舵机和右后舵机（视情况）旋转置0位
+			1:	
+				// 左舵机置零位
+				axis_LeftWheel_Steer_MoveAbs.Position := 0;
+				axis_LeftWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+				axis_LeftWheel_Steer_MoveAbs.Execute := TRUE;
+
+				// 如果右舵轮需要回0
+				IF bAxis_RightWheel_Steer_NeedBackToOriginal THEN
+					axis_RightWheel_Steer_MoveAbs.Position := 0;
+					axis_RightWheel_Steer_MoveAbs.Velocity := nSteerSpeed;
+					axis_RightWheel_Steer_MoveAbs.Execute := TRUE;
+					
+					IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE AND axis_RightWheel_Steer_MoveAbs.Done = TRUE THEN
+						axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+						axis_RightWheel_Steer_MoveAbs.Execute := FALSE;
+						bAxis_RightWheel_Steer_NeedBackToOriginal := FALSE;
+						MotionStep := 2;
+					END_IF
+				ELSE	// 仅需左前舵机归0
+					IF axis_LeftWheel_Steer_MoveAbs.Done = TRUE THEN
+						axis_LeftWheel_Steer_MoveAbs.Execute := FALSE;
+						MotionStep := 2;
+					END_IF
+				END_IF
+
+
+			//左右轮差速运动，左轮速度为基准，右轮根据右舵的角度实时差速
+			2:
+				// 若要实时更新Mc_MoveVelocity的速度值，需要重新触发一次，Excecute先置False
+				axis_RightWheel_Walk_MoveVelo(Axis:= axis_RightWheel_Walk, 	Execute:= FALSE);
+				
+				// 根据舵机角度实时计算行走电机速度
+				nWalkSpeed_Right := WheelWalkDifferential(TO_INT(axis_RightWheel_Steer.NcToPlc.ActPos*100)/100);	// 保留两位小数
+				
+				// 设置行走电机方向
+				axis_LeftWheel_Walk_MoveVelo.Direction := MC_Negative_Direction; 
+				axis_RightWheel_Walk_MoveVelo.Direction := MC_Positive_Direction;
+				
+				// 设置左右行走电机速度
+				axis_LeftWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Left;
+				axis_RightWheel_Walk_MoveVelo.Velocity := nWalkSpeed_Right;
+				
+				axis_LeftWheel_Walk_MoveVelo.Execute := TRUE;
+				axis_RightWheel_Walk_MoveVelo.Execute := TRUE;
+		
+		END_CASE
+		
+END_CASE
+
+	
+
+// 自动
+//IF bAutoCtrl AND bPowerOn THEN
+	
+//END_IF	
+
+	
+	
+
+
+
+]]></ST>
+    </Implementation>
+    <Action Name="RightWheelSteerJog" Id="{801d03cf-4652-45e1-8080-df4c82e792f2}">
+      <Implementation>
+        <ST><![CDATA[// 到达极限位置后标志位置true，不再Jog，只能向相反的方向jog
+IF axis_RightWheel_Steer.NcToPlc.ActPos >= nAxis_RightWheel_Steer_LimitAngle THEN
+	bAxis_RightWheel_Steer_AtRightLimit := TRUE;										// 右轮舵机>=nAxis_RightWheel_Steer_LimitAngle度时，视为到达右边界，bAxis_RightWheel_Steer_AtRightLimit置位，下方的判断会造成舵机不再右转
+ELSIF axis_RightWheel_Steer.NcToPlc.ActPos <= -nAxis_RightWheel_Steer_LimitAngle THEN
+	bAxis_RightWheel_Steer_AtLeftLimit := TRUE;											// 右轮舵机<=-nAxis_RightWheel_Steer_LimitAngle度时，视为到达左边界,同上
+ELSE
+	bAxis_RightWheel_Steer_AtRightLimit := FALSE;
+	bAxis_RightWheel_Steer_AtLeftLimit := FALSE;
+END_IF
+
+axis_RightWheel_Steer_Manual_Jog(
+	Axis:= axis_RightWheel_Steer, 
+	JogForward:= bRemoteCtrl_South AND NOT bAxis_RightWheel_Steer_AtRightLimit AND NOT fbRemoteCtrl_Up_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_Down_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_East_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_West_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_East_Mode.bDoubleClickAndHold AND NOT fbRemoteCtrl_West_Mode.bDoubleClickAndHold, 
+	JogBackwards:= bRemoteCtrl_North AND NOT bAxis_RightWheel_Steer_AtLeftLimit AND NOT fbRemoteCtrl_Up_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_Down_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_East_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_West_Mode.bOnceClickAndHold AND NOT fbRemoteCtrl_East_Mode.bDoubleClickAndHold AND NOT fbRemoteCtrl_West_Mode.bDoubleClickAndHold, 
+	Mode:= MC_JOGMODE_CONTINOUS, 
+	Position:= , 
+	Velocity:= nSteerSpeed_Moving, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+	
+	
+	
+	]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="WheelPowerOn" Id="{e6208376-3dde-48ad-b145-00494470777c}">
+      <Implementation>
+        <ST><![CDATA[axis_RightWheel_Walk_Power(
+	Axis:= axis_RightWheel_Walk, 
+	Enable:= bPowerOn, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftWheel_Walk_Power(
+	Axis:= axis_LeftWheel_Walk, 
+	Enable:= bPowerOn, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+axis_RightWheel_Steer_Power(
+	Axis:= axis_RightWheel_Steer, 
+	Enable:= bPowerOn, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftWheel_Steer_Power(
+	Axis:= axis_LeftWheel_Steer, 
+	Enable:= bPowerOn, 
+	Enable_Positive:= TRUE, 
+	Enable_Negative:= TRUE, 
+	Override:= , 
+	BufferMode:= , 
+	Options:= , 
+	Status=> , 
+	Busy=> , 
+	Error=> , 
+	ErrorID=> );
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="WheelSteerAxisMoveAbs" Id="{d1379e2a-1033-4ceb-8c8e-7b5c8ee42bb4}">
+      <Implementation>
+        <ST><![CDATA[axis_LeftWheel_Steer_MoveAbs(
+	Axis:= axis_LeftWheel_Steer, 
+	Execute:= axis_LeftWheel_Steer_MoveAbs.Execute, 
+	Position:= axis_LeftWheel_Steer_MoveAbs.Position, 
+	Velocity:= axis_LeftWheel_Steer_MoveAbs.Velocity, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	
+axis_RightWheel_Steer_MoveAbs(
+	Axis:= axis_RightWheel_Steer, 
+	Execute:= axis_RightWheel_Steer_MoveAbs.Execute, 
+	Position:= axis_RightWheel_Steer_MoveAbs.Position, 
+	Velocity:= axis_RightWheel_Steer_MoveAbs.Velocity, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="WheelStop" Id="{5a01bcd5-6a9e-43fe-ba47-aa5380789aa7}">
+      <Implementation>
+        <ST><![CDATA[axis_LeftWheel_Steer_McStop(
+	Axis:= axis_LeftWheel_Steer, 
+	Execute:= axis_LeftWheel_Steer_McStop.Execute, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftWheel_Walk_McStop(
+	Axis:= axis_LeftWheel_Walk, 
+	Execute:= axis_LeftWheel_Walk_McStop.Execute, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightWheel_Steer_McStop(
+	Axis:= axis_RightWheel_Steer, 
+	Execute:= axis_RightWheel_Steer_McStop.Execute, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightWheel_Walk_McStop(
+	Axis:= axis_RightWheel_Walk, 
+	Execute:= axis_RightWheel_Walk_McStop.Execute, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="WheelWalkAxisMoveVelo" Id="{fe0c3be4-961e-4d55-85d2-8944ca7420cf}">
+      <Implementation>
+        <ST><![CDATA[axis_RightWheel_Walk_MoveVelo(
+	Axis:= axis_RightWheel_Walk, 
+	Execute:= axis_RightWheel_Walk_MoveVelo.Execute, 
+	Velocity:= nWalkSpeed_Right, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Direction:= axis_RightWheel_Walk_MoveVelo.Direction, 
+	BufferMode:= , 
+	Options:= , 
+	InVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftWheel_Walk_MoveVelo(
+	Axis:= axis_LeftWheel_Walk, 
+	Execute:= axis_LeftWheel_Walk_MoveVelo.Execute, 
+	Velocity:= nWalkSpeed_Left, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Direction:= axis_LeftWheel_Walk_MoveVelo.Direction, 
+	BufferMode:= , 
+	Options:= , 
+	InVelocity=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+]]></ST>
+      </Implementation>
+    </Action>
+    <Method Name="WheelWalkDifferential" Id="{ac54fcc7-9b23-4cfc-a9c8-55f1dae41c78}">
+      <Declaration><![CDATA[METHOD WheelWalkDifferential : LREAL
+VAR_INPUT
+	RightWheelSteerAngle		: LREAL;		// 右后轮转向角，正值轮右转，车左转；负值轮左转，车右转
+END_VAR
+
+VAR
+	LK							: LREAL:=1450;					// 前后轴距1450
+	LJ							: LREAL:=1050;
+	RightWheelSteerAngle_RAD	: LREAL;						// 转向角弧度值			
+	v_HG						: LREAL;						// 右后轮线速度
+	v_AB						: LREAL :=nWalkSpeed_Left;		// 左前轮线速度
+	R_KI						: LREAL;						// 右轮转弯半径
+	R_JI						: LREAL;						// 左轮转弯半径
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[RightWheelSteerAngle_RAD := DEG_TO_RAD(RightWheelSteerAngle);
+
+IF RightWheelSteerAngle = 0 THEN
+	R_KI:=1;
+	R_JI:=1;
+ELSIF RightWheelSteerAngle > 0 THEN
+	R_JI := LK/(TAN(RightWheelSteerAngle_RAD)) - LJ;
+	R_KI := LK/SIN(RightWheelSteerAngle_RAD);
+ELSIF RightWheelSteerAngle < 0 THEN
+	R_JI := LK/(TAN(-RightWheelSteerAngle_RAD)) + LJ;
+	R_KI := LK/SIN(-RightWheelSteerAngle_RAD);
+END_IF
+
+v_HG := (R_KI/R_JI)*v_AB;
+
+WheelWalkDifferential := v_HG;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="WheelControl">
+      <LineId Id="960" Count="9" />
+      <LineId Id="1527" Count="0" />
+      <LineId Id="1513" Count="0" />
+      <LineId Id="1516" Count="0" />
+      <LineId Id="1505" Count="0" />
+      <LineId Id="1503" Count="1" />
+      <LineId Id="1511" Count="0" />
+      <LineId Id="1517" Count="0" />
+      <LineId Id="1547" Count="0" />
+      <LineId Id="1512" Count="0" />
+      <LineId Id="1510" Count="0" />
+      <LineId Id="970" Count="2" />
+      <LineId Id="1500" Count="2" />
+      <LineId Id="1544" Count="2" />
+      <LineId Id="973" Count="0" />
+      <LineId Id="1499" Count="0" />
+      <LineId Id="974" Count="7" />
+      <LineId Id="1410" Count="0" />
+      <LineId Id="1409" Count="0" />
+      <LineId Id="982" Count="3" />
+      <LineId Id="990" Count="43" />
+      <LineId Id="1411" Count="0" />
+      <LineId Id="1413" Count="4" />
+      <LineId Id="1412" Count="0" />
+      <LineId Id="1726" Count="0" />
+      <LineId Id="1518" Count="1" />
+      <LineId Id="1521" Count="3" />
+      <LineId Id="1541" Count="2" />
+      <LineId Id="1535" Count="0" />
+      <LineId Id="1520" Count="0" />
+      <LineId Id="1528" Count="0" />
+      <LineId Id="1530" Count="3" />
+      <LineId Id="1536" Count="0" />
+      <LineId Id="1538" Count="2" />
+      <LineId Id="1537" Count="0" />
+      <LineId Id="1534" Count="0" />
+      <LineId Id="1529" Count="0" />
+      <LineId Id="1034" Count="7" />
+      <LineId Id="1388" Count="0" />
+      <LineId Id="1046" Count="0" />
+      <LineId Id="1386" Count="1" />
+      <LineId Id="1050" Count="2" />
+      <LineId Id="1332" Count="2" />
+      <LineId Id="1053" Count="0" />
+      <LineId Id="1057" Count="0" />
+      <LineId Id="1772" Count="0" />
+      <LineId Id="1331" Count="0" />
+      <LineId Id="1783" Count="1" />
+      <LineId Id="1788" Count="1" />
+      <LineId Id="1058" Count="1" />
+      <LineId Id="1063" Count="0" />
+      <LineId Id="1785" Count="2" />
+      <LineId Id="1769" Count="0" />
+      <LineId Id="1064" Count="0" />
+      <LineId Id="1328" Count="0" />
+      <LineId Id="1065" Count="22" />
+      <LineId Id="1393" Count="0" />
+      <LineId Id="1092" Count="0" />
+      <LineId Id="1405" Count="0" />
+      <LineId Id="1093" Count="0" />
+      <LineId Id="1142" Count="22" />
+      <LineId Id="1392" Count="0" />
+      <LineId Id="1169" Count="0" />
+      <LineId Id="1404" Count="0" />
+      <LineId Id="1391" Count="0" />
+      <LineId Id="1389" Count="1" />
+      <LineId Id="1170" Count="20" />
+      <LineId Id="1406" Count="1" />
+      <LineId Id="1403" Count="0" />
+      <LineId Id="1195" Count="22" />
+      <LineId Id="1408" Count="0" />
+      <LineId Id="1221" Count="0" />
+      <LineId Id="1402" Count="0" />
+      <LineId Id="1222" Count="22" />
+      <LineId Id="1396" Count="0" />
+      <LineId Id="1248" Count="0" />
+      <LineId Id="1400" Count="1" />
+      <LineId Id="1249" Count="22" />
+      <LineId Id="1397" Count="0" />
+      <LineId Id="1275" Count="0" />
+      <LineId Id="1398" Count="1" />
+      <LineId Id="1276" Count="5" />
+      <LineId Id="1439" Count="0" />
+      <LineId Id="1441" Count="0" />
+      <LineId Id="1445" Count="2" />
+      <LineId Id="1636" Count="1" />
+      <LineId Id="1644" Count="1" />
+      <LineId Id="1649" Count="2" />
+      <LineId Id="1643" Count="0" />
+      <LineId Id="1652" Count="0" />
+      <LineId Id="1642" Count="0" />
+      <LineId Id="1639" Count="0" />
+      <LineId Id="1641" Count="0" />
+      <LineId Id="1640" Count="0" />
+      <LineId Id="1638" Count="0" />
+      <LineId Id="1448" Count="0" />
+      <LineId Id="1450" Count="0" />
+      <LineId Id="1452" Count="0" />
+      <LineId Id="1557" Count="0" />
+      <LineId Id="1627" Count="0" />
+      <LineId Id="1623" Count="0" />
+      <LineId Id="1653" Count="1" />
+      <LineId Id="1629" Count="0" />
+      <LineId Id="1656" Count="0" />
+      <LineId Id="1658" Count="0" />
+      <LineId Id="1661" Count="0" />
+      <LineId Id="1659" Count="0" />
+      <LineId Id="1662" Count="0" />
+      <LineId Id="1660" Count="0" />
+      <LineId Id="1657" Count="0" />
+      <LineId Id="1630" Count="0" />
+      <LineId Id="1663" Count="1" />
+      <LineId Id="1666" Count="0" />
+      <LineId Id="1665" Count="0" />
+      <LineId Id="1625" Count="0" />
+      <LineId Id="1628" Count="0" />
+      <LineId Id="1558" Count="0" />
+      <LineId Id="1553" Count="0" />
+      <LineId Id="1462" Count="0" />
+      <LineId Id="1465" Count="14" />
+      <LineId Id="1464" Count="0" />
+      <LineId Id="1444" Count="0" />
+      <LineId Id="1443" Count="0" />
+      <LineId Id="1440" Count="0" />
+      <LineId Id="1323" Count="0" />
+      <LineId Id="1380" Count="0" />
+      <LineId Id="1436" Count="0" />
+      <LineId Id="1419" Count="1" />
+      <LineId Id="1480" Count="0" />
+      <LineId Id="1482" Count="8" />
+      <LineId Id="1498" Count="0" />
+      <LineId Id="1491" Count="3" />
+      <LineId Id="1481" Count="0" />
+      <LineId Id="1495" Count="1" />
+      <LineId Id="1421" Count="13" />
+      <LineId Id="1437" Count="0" />
+      <LineId Id="1435" Count="0" />
+      <LineId Id="1418" Count="0" />
+      <LineId Id="1668" Count="57" />
+      <LineId Id="1667" Count="0" />
+      <LineId Id="1324" Count="0" />
+      <LineId Id="1497" Count="0" />
+      <LineId Id="1325" Count="0" />
+      <LineId Id="1305" Count="13" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="WheelControl.RightWheelSteerJog">
+      <LineId Id="23" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="4" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="2" Count="14" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="17" Count="5" />
+    </LineIds>
+    <LineIds Name="WheelControl.WheelPowerOn">
+      <LineId Id="2" Count="25" />
+      <LineId Id="29" Count="26" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="WheelControl.WheelSteerAxisMoveAbs">
+      <LineId Id="2" Count="14" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="20" Count="14" />
+      <LineId Id="19" Count="0" />
+    </LineIds>
+    <LineIds Name="WheelControl.WheelStop">
+      <LineId Id="2" Count="10" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="10" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="10" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="41" Count="10" />
+      <LineId Id="40" Count="0" />
+    </LineIds>
+    <LineIds Name="WheelControl.WheelWalkAxisMoveVelo">
+      <LineId Id="36" Count="14" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="102" Count="14" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="117" Count="1" />
+    </LineIds>
+    <LineIds Name="WheelControl.WheelWalkDifferential">
+      <LineId Id="22" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

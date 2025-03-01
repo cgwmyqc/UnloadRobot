@@ -24,7 +24,13 @@
     <Compile Include="DUTs\Box.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\DUT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Points.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\SystemStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\GVL_SerialComunication.TcGVL">
@@ -51,6 +57,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\AxisAllCtrl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\AxisStatus.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\AxisStatusReadErrorCode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\LedControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\LedLogic.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\TBoxCtrl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\WheelCtrlButtonModeCheck.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\LeftArmFK.TcPOU">
@@ -107,7 +131,7 @@
     <Compile Include="POUs\Gate_Back_Move.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Gate_Big_Move.TcPOU">
+    <Compile Include="POUs\GateMove.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Gate_Small_Move.TcPOU">
@@ -125,6 +149,9 @@
     <Compile Include="POUs\Serial\BmsSerialBackground.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\WheelControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -134,12 +161,16 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_EtherCAT">
+      <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_MC2">
       <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_MC2</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_SerialCom">
       <DefaultResolution>Tc2_SerialCom, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_SerialCom</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>

@@ -29,8 +29,17 @@ VAR_GLOBAL
 	// 后龙门单电机
 	axis_BackGate_Left											:AXIS_REF;			//后门_左电机
 	axis_BackGate_Right											:AXIS_REF;			//后门_右电机
+	
+	// 右轮
+	axis_RightWheel_Steer										:AXIS_REF;			
+	axis_RightWheel_Walk										:AXIS_REF;	
+	
+	// 左轮
+	axis_LeftWheel_Steer										:AXIS_REF;			
+	axis_LeftWheel_Walk											:AXIS_REF;		
+	
 
-	nAxisNum							: USINT:=14;						// 轴组管理的轴的数量
+	nAxisNum							: USINT:=18;						// 轴组管理的轴的数量
 	
 	// 轴组
 	aAxisGroup							: ARRAY[1..24] OF POINTER TO AXIS_REF :=[
@@ -47,7 +56,11 @@ VAR_GLOBAL
 																	  ADR(axis_BigGate_Left),
 																	  ADR(axis_BigGate_Right),
 																	  ADR(axis_BackGate_Left),
-																	  ADR(axis_BackGate_Right)
+																	  ADR(axis_BackGate_Right),
+																	  ADR(axis_RightWheel_Steer),
+																	  ADR(axis_RightWheel_Walk),
+																	  ADR(axis_LeftWheel_Steer),
+																	  ADR(axis_LeftWheel_Walk)
 																	 ];			
 
 
@@ -105,6 +118,14 @@ VAR_GLOBAL
 	// 后龙门单电机
 	axis_BackGate_Left_Power									:MC_Power;			//后门_左电机Power功能块
 	axis_BackGate_Right_Power									:MC_Power;			//后门_右电机Power功能块
+	
+	// 右轮
+	axis_RightWheel_Steer_Power									:MC_Power;
+	axis_RightWheel_Walk_Power									:MC_Power;
+	
+	// 左轮
+	axis_LeftWheel_Steer_Power									:MC_Power;
+	axis_LeftWheel_Walk_Power									:MC_Power;	
 
 	// 左臂电机
 	axis_LeftArm_Wrist_Power_Output									:ST_McOutputs;			//左臂_腕电机状态	
@@ -130,6 +151,14 @@ VAR_GLOBAL
 	axis_BackGate_Left_Power_Output									:ST_McOutputs;			//后门_左电机Power功能块
 	axis_BackGate_Right_Power_Output								:ST_McOutputs;			//后门_右电机Power功能块	
 	
+	// 右轮
+	axis_RightWheel_Steer_Power_Output									:ST_McOutputs;
+	axis_RightWheel_Walk_Power_Output									:ST_McOutputs;
+	
+	// 左轮
+	axis_LeftWheel_Steer_Power_Output									:ST_McOutputs;
+	axis_LeftWheel_Walk_Power_Output									:ST_McOutputs;
+	
 (*======================================== 机器人各轴 MC_Power定义 Start ==================================*)
 
 
@@ -138,7 +167,7 @@ VAR_GLOBAL
 
 (*======================================== 机器人各轴 MC_Reset定义 Start ==================================*)
 
-// 左臂电机
+	// 左臂电机
 	axis_LeftArm_Wrist_Reset									:MC_Reset;			//左臂_腕电机Power功能块	
 	axis_LeftArm_Left_Reset										:MC_Reset;			//左臂_左电机Power功能块
 	axis_LeftArm_Right_Reset									:MC_Reset;			//左臂_右电机Power功能块
@@ -162,6 +191,13 @@ VAR_GLOBAL
 	axis_BackGate_Left_Reset									:MC_Reset;			//后门_左电机Power功能块
 	axis_BackGate_Right_Reset									:MC_Reset;			//后门_右电机Power功能块
 
+	// 右轮
+	axis_RightWheel_Steer_Reset									:MC_Reset;
+	axis_RightWheel_Walk_Reset									:MC_Reset;
+	
+	// 左轮
+	axis_LeftWheel_Steer_Reset									:MC_Reset;
+	axis_LeftWheel_Walk_Reset									:MC_Reset;	
 
 (*======================================== 机器人各轴 MC_Reset定义 End ==================================*)
 
@@ -197,6 +233,16 @@ VAR_GLOBAL
 	axis_BackGate_Left_Jog									:MC_Jog;			//后门_左电机Jog功能块
 	axis_BackGate_Right_Jog									:MC_Jog;			//后门_右电机Jog功能块
 
+	// 右轮
+	axis_RightWheel_Steer_Jog								:MC_Jog;
+	axis_RightWheel_Walk_Jog								:MC_Jog;
+	
+	// 左轮
+	axis_LeftWheel_Steer_Jog								:MC_Jog;
+	axis_LeftWheel_Walk_Jog									:MC_Jog;
+	
+	
+
 (*======================================== 机器人各轴 MC_Jog定义 End =====================================*)
 
 
@@ -227,10 +273,25 @@ VAR_GLOBAL
 	// 后龙门单电机                                                                                      
 	axis_BackGate_Left_MoveAbs									:MC_MoveAbsolute;			//后门_左电机MoveAbs功能块
 	axis_BackGate_Right_MoveAbs									:MC_MoveAbsolute;			//后门_右电机MoveAbs功能块
+	
+	// 右轮
+	axis_RightWheel_Steer_MoveAbs								:MC_MoveAbsolute;
+	axis_RightWheel_Walk_MoveAbs								:MC_MoveAbsolute;
+	
+	// 左轮
+	axis_LeftWheel_Steer_MoveAbs								:MC_MoveAbsolute;
+	axis_LeftWheel_Walk_MoveAbs									:MC_MoveAbsolute;
 
 (*======================================== 机器人各轴 MC_MoveAbs定义 End =====================================*)
 
 
+
+(*====================================== 机器人各轴 MC_MoveVelocity定义 Start ================================*)
+
+	axis_LeftWheel_Walk_MoveVelo								:MC_MoveVelocity;			// 左轮按速度运动
+	axis_RightWheel_Walk_MoveVelo								:MC_MoveVelocity;			// 右轮按速度运动
+	
+(*====================================== 机器人各轴 MC_MoveVelocity定义 Stop ================================*)
 
 
 
@@ -260,7 +321,20 @@ VAR_GLOBAL
 	axis_BackGate_Left_McStop									:MC_Stop;			//后门_左电机MC_Stop块
 	axis_BackGate_Right_McStop									:MC_Stop;			//后门_右电机MC_Stop块
 
+	// 右轮
+	axis_RightWheel_Steer_McStop								:MC_Stop;;
+	axis_RightWheel_Walk_McStop									:MC_Stop;
+	
+	// 左轮
+	axis_LeftWheel_Steer_McStop									:MC_Stop;
+	axis_LeftWheel_Walk_McStop									:MC_Stop;	
+	
+
 (*======================================== 机器人各轴 Mc_Stop定义 End =====================================*)
+
+
+
+
 	
 
 END_VAR]]></Declaration>

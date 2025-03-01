@@ -30,6 +30,7 @@ VAR
 	
 	t			:LREAL:=0;
 	delta_t		:LREAL:=0.0005;
+	
 	lx:LREAL;
 	ly:LREAL;
 	rx:LREAL;
@@ -81,7 +82,7 @@ IF bAutoMovePosSet THEN
 			LeftArmWristTargetPos		:= LeftArmWristIK(axis_LeftArm_Right.NcToPlc.ActPos, axis_LeftArm_Left.NcToPlc.ActPos);
 			RightArmWristTargetPos		:= RightArmWristIK(axis_RightArm_Right.NcToPlc.ActPos, axis_RightArm_Left.NcToPlc.ActPos);
 			armState:=1;
-		1:
+		1:// 转动腕关节，到正确的解算位置
 			axis_LeftArm_Wrist_MoveAbs(
 				Axis:= axis_LeftArm_Wrist, 
 				Execute:= TRUE, 

@@ -8,19 +8,26 @@ VAR
 	b2			:BOOL		:=FALSE;
 	c3 			:LREAL 		:= 0;
 	
+	er			:DWORD;
+	er1         :DWORD;
+	
 	arrLeftBoxStack	:ARRAY[1..50] OF BOX;
 	arrRightBoxStack:ARRAY[1..50] OF BOX;
 	
 	
-	
+	//er:=axis_SmallGate_Left.NcToPlc.StateDWord
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[axis_BigGate_Left();	
+er := axis_BigGate_Left.NcToPlc.StateDWord AND SHL(16#1, 28);
+er1:= axis_BigGate_Left.NcToPlc.StateDWord AND SHL(16#1, 31);]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

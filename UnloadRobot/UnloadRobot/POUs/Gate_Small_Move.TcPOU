@@ -10,7 +10,7 @@ VAR
 	
 	// 默认为啮合状态，当激活大龙门左轴或者右轴的手动控制时bManualCtrl_Part_SmallGate_Left为true
 	//或bManualCtrl_Part_SmallGate_Right为True，会把此变量置false
-	bSmallGate_Gearin_do		:BOOL:=TRUE;
+	//bSmallGate_Gearin_do		:BOOL:=TRUE;
 	
 	nSmallGate_Speed					:LREAL:=2;		// 小龙门移动速度
 	nSmallGate_MoveAbs_TarPos			:LREAL;			// 小龙门MoveAbs目标位置
@@ -21,8 +21,8 @@ END_VAR
       <ST><![CDATA[// SmallGate Mc_Jog
 smallGateLeftAxisJog(
 	Axis:= axis_SmallGate_Left, 
-	JogForward:= bSmallGate_Down, 
-	JogBackwards:= bSmallGate_Up, 
+	JogForward:= bSmallGate_Down AND bManualCtrl_Asm_SmallGate, 
+	JogBackwards:= bSmallGate_Up AND bManualCtrl_Asm_SmallGate, 
 	Mode:= MC_JOGMODE_CONTINOUS, 
 	Position:= , 
 	Velocity:= nSmallGate_Speed, 
@@ -39,8 +39,8 @@ smallGateLeftAxisJog(
 // SmallGate Mc_MoveAbsolute
 smallGateLeftAxisMoveAbs(
 	Axis:= axis_SmallGate_Left, 
-	Execute:= bSmallGate_MoveAbs, 
-	Position:= nSmallGate_MoveAbs_TarPos, 
+	Execute:= bSmallGate_MoveAbs AND bManualCtrl_Asm_SmallGate, 
+	Position:= (-1)*nSmallGate_MoveAbs_TarPos, 						// 反转升，所以绝对位置也要反着
 	Velocity:= nSmallGate_Speed, 
 	Acceleration:= , 
 	Deceleration:= , 

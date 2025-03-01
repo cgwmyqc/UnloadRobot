@@ -1889,7 +1889,7 @@ namespace TestApp
             this.labelSmallGateActVelo.Location = new System.Drawing.Point(398, 44);
             this.labelSmallGateActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateActVelo.Name = "labelSmallGateActVelo";
-            this.labelSmallGateActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateActVelo.TabIndex = 38;
             this.labelSmallGateActVelo.Text = "0.00";
             // 
@@ -1913,7 +1913,7 @@ namespace TestApp
             this.labelSmallGateActPos.Location = new System.Drawing.Point(102, 44);
             this.labelSmallGateActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateActPos.Name = "labelSmallGateActPos";
-            this.labelSmallGateActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateActPos.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateActPos.TabIndex = 36;
             this.labelSmallGateActPos.Text = "0.00";
             // 
@@ -2209,7 +2209,7 @@ namespace TestApp
             this.labelBigGateActVelo.Location = new System.Drawing.Point(392, 44);
             this.labelBigGateActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateActVelo.Name = "labelBigGateActVelo";
-            this.labelBigGateActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateActVelo.TabIndex = 23;
             this.labelBigGateActVelo.Text = "0.00";
             // 
@@ -2233,7 +2233,7 @@ namespace TestApp
             this.labelBigGateActPos.Location = new System.Drawing.Point(96, 44);
             this.labelBigGateActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateActPos.Name = "labelBigGateActPos";
-            this.labelBigGateActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateActPos.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateActPos.TabIndex = 21;
             this.labelBigGateActPos.Text = "0.00";
             // 
@@ -2732,7 +2732,7 @@ namespace TestApp
             this.labelRightArmLiftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelRightArmLiftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmLiftActVelo.Name = "labelRightArmLiftActVelo";
-            this.labelRightArmLiftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmLiftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmLiftActVelo.TabIndex = 19;
             this.labelRightArmLiftActVelo.Text = "0.00";
             // 
@@ -2795,7 +2795,7 @@ namespace TestApp
             this.labelRightArmLiftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelRightArmLiftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmLiftActPos.Name = "labelRightArmLiftActPos";
-            this.labelRightArmLiftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmLiftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmLiftActPos.TabIndex = 14;
             this.labelRightArmLiftActPos.Text = "0.00";
             // 
@@ -2980,7 +2980,7 @@ namespace TestApp
             this.labelRightArmWristActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelRightArmWristActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmWristActVelo.Name = "labelRightArmWristActVelo";
-            this.labelRightArmWristActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmWristActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmWristActVelo.TabIndex = 19;
             this.labelRightArmWristActVelo.Text = "0.00";
             // 
@@ -3043,7 +3043,7 @@ namespace TestApp
             this.labelRightArmWristActPos.Location = new System.Drawing.Point(100, 58);
             this.labelRightArmWristActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmWristActPos.Name = "labelRightArmWristActPos";
-            this.labelRightArmWristActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmWristActPos.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmWristActPos.TabIndex = 14;
             this.labelRightArmWristActPos.Text = "0.00";
             // 
@@ -3230,7 +3230,7 @@ namespace TestApp
             this.labelRightArmRightActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelRightArmRightActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmRightActVelo.Name = "labelRightArmRightActVelo";
-            this.labelRightArmRightActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmRightActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmRightActVelo.TabIndex = 19;
             this.labelRightArmRightActVelo.Text = "0.00";
             // 
@@ -3293,7 +3293,7 @@ namespace TestApp
             this.labelRightArmRightActPos.Location = new System.Drawing.Point(100, 58);
             this.labelRightArmRightActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmRightActPos.Name = "labelRightArmRightActPos";
-            this.labelRightArmRightActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmRightActPos.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmRightActPos.TabIndex = 14;
             this.labelRightArmRightActPos.Text = "0.00";
             // 
@@ -3478,7 +3478,7 @@ namespace TestApp
             this.labelRightArmLeftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelRightArmLeftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmLeftActVelo.Name = "labelRightArmLeftActVelo";
-            this.labelRightArmLeftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmLeftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmLeftActVelo.TabIndex = 19;
             this.labelRightArmLeftActVelo.Text = "0.00";
             // 
@@ -3541,7 +3541,7 @@ namespace TestApp
             this.labelRightArmLeftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelRightArmLeftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRightArmLeftActPos.Name = "labelRightArmLeftActPos";
-            this.labelRightArmLeftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelRightArmLeftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelRightArmLeftActPos.TabIndex = 14;
             this.labelRightArmLeftActPos.Text = "0.00";
             // 
@@ -3726,7 +3726,7 @@ namespace TestApp
             this.labelLeftArmLiftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelLeftArmLiftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmLiftActVelo.Name = "labelLeftArmLiftActVelo";
-            this.labelLeftArmLiftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmLiftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmLiftActVelo.TabIndex = 19;
             this.labelLeftArmLiftActVelo.Text = "0.00";
             // 
@@ -3789,7 +3789,7 @@ namespace TestApp
             this.labelLeftArmLiftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelLeftArmLiftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmLiftActPos.Name = "labelLeftArmLiftActPos";
-            this.labelLeftArmLiftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmLiftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmLiftActPos.TabIndex = 14;
             this.labelLeftArmLiftActPos.Text = "0.00";
             // 
@@ -3974,7 +3974,7 @@ namespace TestApp
             this.labelLeftArmWristActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelLeftArmWristActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmWristActVelo.Name = "labelLeftArmWristActVelo";
-            this.labelLeftArmWristActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmWristActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmWristActVelo.TabIndex = 19;
             this.labelLeftArmWristActVelo.Text = "0.00";
             // 
@@ -4037,7 +4037,7 @@ namespace TestApp
             this.labelLeftArmWristActPos.Location = new System.Drawing.Point(100, 58);
             this.labelLeftArmWristActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmWristActPos.Name = "labelLeftArmWristActPos";
-            this.labelLeftArmWristActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmWristActPos.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmWristActPos.TabIndex = 14;
             this.labelLeftArmWristActPos.Text = "0.00";
             // 
@@ -4222,7 +4222,7 @@ namespace TestApp
             this.labelLeftArmRightActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelLeftArmRightActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmRightActVelo.Name = "labelLeftArmRightActVelo";
-            this.labelLeftArmRightActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmRightActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmRightActVelo.TabIndex = 19;
             this.labelLeftArmRightActVelo.Text = "0.00";
             // 
@@ -4285,7 +4285,7 @@ namespace TestApp
             this.labelLeftArmRightActPos.Location = new System.Drawing.Point(100, 58);
             this.labelLeftArmRightActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmRightActPos.Name = "labelLeftArmRightActPos";
-            this.labelLeftArmRightActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmRightActPos.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmRightActPos.TabIndex = 14;
             this.labelLeftArmRightActPos.Text = "0.00";
             // 
@@ -4470,7 +4470,7 @@ namespace TestApp
             this.labelLeftArmLeftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelLeftArmLeftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmLeftActVelo.Name = "labelLeftArmLeftActVelo";
-            this.labelLeftArmLeftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmLeftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmLeftActVelo.TabIndex = 19;
             this.labelLeftArmLeftActVelo.Text = "0.00";
             // 
@@ -4533,7 +4533,7 @@ namespace TestApp
             this.labelLeftArmLeftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelLeftArmLeftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLeftArmLeftActPos.Name = "labelLeftArmLeftActPos";
-            this.labelLeftArmLeftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelLeftArmLeftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelLeftArmLeftActPos.TabIndex = 14;
             this.labelLeftArmLeftActPos.Text = "0.00";
             // 
@@ -4735,7 +4735,7 @@ namespace TestApp
             this.labelBackGateRightActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelBackGateRightActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackGateRightActVelo.Name = "labelBackGateRightActVelo";
-            this.labelBackGateRightActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelBackGateRightActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelBackGateRightActVelo.TabIndex = 19;
             this.labelBackGateRightActVelo.Text = "0.00";
             // 
@@ -4798,7 +4798,7 @@ namespace TestApp
             this.labelBackGateRightActPos.Location = new System.Drawing.Point(100, 58);
             this.labelBackGateRightActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackGateRightActPos.Name = "labelBackGateRightActPos";
-            this.labelBackGateRightActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelBackGateRightActPos.Size = new System.Drawing.Size(121, 52);
             this.labelBackGateRightActPos.TabIndex = 14;
             this.labelBackGateRightActPos.Text = "0.00";
             // 
@@ -4983,7 +4983,7 @@ namespace TestApp
             this.labelBackGateLeftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelBackGateLeftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackGateLeftActVelo.Name = "labelBackGateLeftActVelo";
-            this.labelBackGateLeftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelBackGateLeftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelBackGateLeftActVelo.TabIndex = 19;
             this.labelBackGateLeftActVelo.Text = "0.00";
             // 
@@ -5046,7 +5046,7 @@ namespace TestApp
             this.labelBackGateLeftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelBackGateLeftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackGateLeftActPos.Name = "labelBackGateLeftActPos";
-            this.labelBackGateLeftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelBackGateLeftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelBackGateLeftActPos.TabIndex = 14;
             this.labelBackGateLeftActPos.Text = "0.00";
             // 
@@ -5231,7 +5231,7 @@ namespace TestApp
             this.labelSmallGateRightActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelSmallGateRightActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateRightActVelo.Name = "labelSmallGateRightActVelo";
-            this.labelSmallGateRightActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateRightActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateRightActVelo.TabIndex = 19;
             this.labelSmallGateRightActVelo.Text = "0.00";
             // 
@@ -5294,7 +5294,7 @@ namespace TestApp
             this.labelSmallGateRightActPos.Location = new System.Drawing.Point(100, 58);
             this.labelSmallGateRightActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateRightActPos.Name = "labelSmallGateRightActPos";
-            this.labelSmallGateRightActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateRightActPos.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateRightActPos.TabIndex = 14;
             this.labelSmallGateRightActPos.Text = "0.00";
             // 
@@ -5479,7 +5479,7 @@ namespace TestApp
             this.labelSmallGateLeftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelSmallGateLeftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateLeftActVelo.Name = "labelSmallGateLeftActVelo";
-            this.labelSmallGateLeftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateLeftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateLeftActVelo.TabIndex = 19;
             this.labelSmallGateLeftActVelo.Text = "0.00";
             // 
@@ -5542,7 +5542,7 @@ namespace TestApp
             this.labelSmallGateLeftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelSmallGateLeftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSmallGateLeftActPos.Name = "labelSmallGateLeftActPos";
-            this.labelSmallGateLeftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelSmallGateLeftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelSmallGateLeftActPos.TabIndex = 14;
             this.labelSmallGateLeftActPos.Text = "0.00";
             // 
@@ -5727,7 +5727,7 @@ namespace TestApp
             this.labelBigGateRightActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelBigGateRightActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateRightActVelo.Name = "labelBigGateRightActVelo";
-            this.labelBigGateRightActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateRightActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateRightActVelo.TabIndex = 19;
             this.labelBigGateRightActVelo.Text = "0.00";
             // 
@@ -5790,7 +5790,7 @@ namespace TestApp
             this.labelBigGateRightActPos.Location = new System.Drawing.Point(100, 58);
             this.labelBigGateRightActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateRightActPos.Name = "labelBigGateRightActPos";
-            this.labelBigGateRightActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateRightActPos.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateRightActPos.TabIndex = 14;
             this.labelBigGateRightActPos.Text = "0.00";
             // 
@@ -5975,7 +5975,7 @@ namespace TestApp
             this.labelBigGateLeftActVelo.Location = new System.Drawing.Point(412, 58);
             this.labelBigGateLeftActVelo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateLeftActVelo.Name = "labelBigGateLeftActVelo";
-            this.labelBigGateLeftActVelo.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateLeftActVelo.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateLeftActVelo.TabIndex = 19;
             this.labelBigGateLeftActVelo.Text = "0.00";
             // 
@@ -6038,7 +6038,7 @@ namespace TestApp
             this.labelBigGateLeftActPos.Location = new System.Drawing.Point(100, 58);
             this.labelBigGateLeftActPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBigGateLeftActPos.Name = "labelBigGateLeftActPos";
-            this.labelBigGateLeftActPos.Size = new System.Drawing.Size(122, 52);
+            this.labelBigGateLeftActPos.Size = new System.Drawing.Size(121, 52);
             this.labelBigGateLeftActPos.TabIndex = 14;
             this.labelBigGateLeftActPos.Text = "0.00";
             // 

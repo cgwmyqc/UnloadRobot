@@ -16,9 +16,11 @@ disp("LeftArm_Wrist:"+leftbeta);
 % disp("RightArm_theta2:"+theta2)
 
 
-[x,y] = RightArmFK(3.16,106.09);
+[x,y] = RightArmFK(33.2,122);
 disp("RightArm_x:"+x)
 disp("RightArm_y:"+y)
 
-rightbeta = RightArmWristFK(-4.02,145.58);
+rightbeta = RightArmWristFK(33.2,122);
 disp("RightArm_Wrist:"+rightbeta);
+
+disp("原地旋转转向角："+atand(1450/1050));

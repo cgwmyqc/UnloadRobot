@@ -180,55 +180,55 @@ namespace TestApp
                 nRightArm_Wrist_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_RightArm_Wrist.NcToPlc.ActVelo", typeof(double), false);
                 labelRightArmWristActVelo.Text = nRightArm_Wrist_Velo.ToString("0.00");
                 //右臂升实时位置
-                nRightArm_Lift_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_RightArm_Lift.NcToPlc.ActPos", typeof(double), false);
+                nRightArm_Lift_Pos = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_RightArm_Lift.NcToPlc.ActPos", typeof(double), false);
                 labelRightArmLiftActPos.Text = nRightArm_Lift_Pos.ToString("0.00");
                 //右臂升实时速度
-                nRightArm_Lift_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_RightArm_Lift.NcToPlc.ActVelo", typeof(double), false);
+                nRightArm_Lift_Velo = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_RightArm_Lift.NcToPlc.ActVelo", typeof(double), false);
                 labelRightArmLiftActVelo.Text = nRightArm_Lift_Velo.ToString("0.00");
 
 
 
-                //大龙门左实时位置
+                //大龙门左实时位置（大龙门左轴正转，大龙门升，所以无需加负号）
                 nBigGate_Left_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Left.NcToPlc.ActPos", typeof(double), false);
                 labelBigGateLeftActPos.Text = nBigGate_Left_Pos.ToString("0.00");
-                //大龙门左实时速度
+                //大龙门左实时速度（大龙门左轴正转，大龙门升，所以无需加负号）
                 nBigGate_Left_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Left.NcToPlc.ActVelo", typeof(double), false);
                 labelBigGateLeftActVelo.Text = nBigGate_Left_Velo.ToString("0.00");
-                //大龙门右实时位置
-                nBigGate_Right_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Right.NcToPlc.ActPos", typeof(double), false);
+                //大龙门右实时位置（大小龙门采用双侧对称齿轮齿条，大小龙门升的时候左右电机转向相反，所以右轴加符号）
+                nBigGate_Right_Pos = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Right.NcToPlc.ActPos", typeof(double), false);
                 labelBigGateRightActPos.Text = nBigGate_Right_Pos.ToString("0.00");
-                //大龙门右实时速度
-                nBigGate_Right_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Right.NcToPlc.ActVelo", typeof(double), false);
+                //大龙门右实时速度（大小龙门采用双侧对称齿轮齿条，大小龙门升的时候左右电机转向相反，所以右轴加符号）
+                nBigGate_Right_Velo = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_BigGate_Right.NcToPlc.ActVelo", typeof(double), false);
                 labelBigGateRightActVelo.Text = nBigGate_Right_Velo.ToString("0.00");
 
 
 
-                //小龙门左实时位置
-                nSmallGate_Left_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Left.NcToPlc.ActPos", typeof(double), false);
+                //小龙门左实时位置(小龙门显示以小龙门左轴为主，左轴反转小龙门升，所以要加个负号，把数字反过来)
+                nSmallGate_Left_Pos = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Left.NcToPlc.ActPos", typeof(double), false);
                 labelSmallGateLeftActPos.Text = nSmallGate_Left_Pos.ToString("0.00");
-                //小龙门左实时速度
-                nSmallGate_Left_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Left.NcToPlc.ActVelo", typeof(double), false);
+                //小龙门左实时速度（加负号的原因同上）
+                nSmallGate_Left_Velo = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Left.NcToPlc.ActVelo", typeof(double), false);
                 labelSmallGateLeftActVelo.Text = nSmallGate_Left_Velo.ToString("0.00");
-                //小龙门右实时位置
+                //小龙门右实时位置（大小龙门采用双侧对称齿轮齿条，大小龙门升的时候左右电机转向相反，所以右轴不用加符号）
                 nSmallGate_Right_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Right.NcToPlc.ActPos", typeof(double), false);
                 labelSmallGateRightActPos.Text = nSmallGate_Right_Pos.ToString("0.00");
-                //小龙门右实时速度
+                //小龙门右实时速度（大小龙门采用双侧对称齿轮齿条，大小龙门升的时候左右电机转向相反，所以右轴不用加符号）
                 nSmallGate_Right_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_SmallGate_Right.NcToPlc.ActVelo", typeof(double), false);
                 labelSmallGateRightActVelo.Text = nSmallGate_Right_Velo.ToString("0.00");
 
 
 
-                //后龙门左实时位置
-                nBackGate_Left_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Left.NcToPlc.ActPos", typeof(double), false);
+                //后龙门左实时位置(后龙门电机反转，后龙门升，要加个负号，把数字反过来)
+                nBackGate_Left_Pos = (-1)*(double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Left.NcToPlc.ActPos", typeof(double), false);
                 labelBackGateLeftActPos.Text = nBackGate_Left_Pos.ToString("0.00");
-                //后龙门左实时速度
-                nBackGate_Left_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Left.NcToPlc.ActVelo", typeof(double), false);
+                //后龙门左实时速度(同上)
+                nBackGate_Left_Velo = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Left.NcToPlc.ActVelo", typeof(double), false);
                 labelBackGateLeftActVelo.Text = nBackGate_Left_Velo.ToString("0.00");
-                //后龙门右实时位置
-                nBackGate_Right_Pos = (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Right.NcToPlc.ActPos", typeof(double), false);
+                //后龙门右实时位置（龙门再用直线导轨，和大小龙门不同，）
+                nBackGate_Right_Pos = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Right.NcToPlc.ActPos", typeof(double), false);
                 labelBackGateRightActPos.Text = nBackGate_Right_Pos.ToString("0.00");
                 //后龙门右实时速度
-                nBackGate_Right_Velo = (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Right.NcToPlc.ActVelo", typeof(double), false);
+                nBackGate_Right_Velo = (-1) * (double)adsClient.ReadSymbol("Robot_Motor.axis_BackGate_Right.NcToPlc.ActVelo", typeof(double), false);
                 labelBackGateRightActVelo.Text = nBackGate_Right_Velo.ToString("0.00");
 
                 //大龙门实时位置及速度（以大龙门左轴为准）
@@ -615,13 +615,26 @@ namespace TestApp
 
         /*********************************************************************          大龙门合成运动           *********************************************************************/
 
-        // 大龙门-轴使能
+        // 大龙门-轴使能-合成运动使能
         private void btnBigGatePowerEnable_Click(object sender, EventArgs e)
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", true, false);
+                // 先读一下龙门左右轴是不是在进行单轴控制
+                bool isManualCtrl_Part_BigGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_BigGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", typeof(bool), false);
+
+                // 如果龙门左右轴是不是在进行单轴控制，给出提示
+                if (isManualCtrl_Part_BigGate_Left | isManualCtrl_Part_BigGate_Right)
+                {
+                    MessageBox.Show("大龙门单轴运动已激活！请先关闭单轴运动！");
+                }
+                else  // 如果龙门左右轴不在进行单轴控制，则使能，并把合成运动标志位置位
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_BigGate", true, false);
+                }
             }
         }
 
@@ -631,8 +644,21 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);
+                //先读一下合成运动标志位是否开启
+                bool isManualCtrl_Asm_BigGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BigGate", typeof(bool), false);
+
+                //如果开启了就失能
+                if (isManualCtrl_Asm_BigGate)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_BigGate", false, false);
+                }
+                else //未开启给提示
+                {
+                    MessageBox.Show("大龙门使能未激活！");
+                }
+
             }
         }
 
@@ -683,7 +709,7 @@ namespace TestApp
                     double nTargetVelo = double.Parse(textBoxBigGateTarVelo.Text);
                     if (nTargetVelo >= 0 & nTargetVelo <= 200)
                     {
-                        adsClient.WriteSymbol("Gate_Big_Move.nBigGate_Speed", nTargetVelo, false);
+                        adsClient.WriteSymbol("GateMove.nBigGate_Speed", nTargetVelo, false);
                     }
                     else
                     {
@@ -707,7 +733,7 @@ namespace TestApp
                 try
                 {
                     double nTargetPos = double.Parse(textBoxBigGateTarPos.Text);
-                    adsClient.WriteSymbol("Gate_Big_Move.nBigGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("GateMove.nBigGate_MoveAbs_TarPos", nTargetPos, false);
                     adsClient.WriteSymbol("Robot_Control_State.bBigGate_MoveAbs", true, false);
                 }
                 catch (FormatException)
@@ -749,13 +775,26 @@ namespace TestApp
         /************************************************************          小龙门合成运动           *************************************************************************/
 
 
-        // 小龙门-轴使能
+        // 小龙门-轴使能-合成运动使能
         private void btnSmallGatePowerEnable_Click(object sender, EventArgs e)
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", true, false);
+                // 先读一下龙门左右轴是不是在进行单轴控制
+                bool isManualCtrl_Part_SmallGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_SmallGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", typeof(bool), false);
+
+                // 如果龙门左右轴是不是在进行单轴控制，给出提示
+                if (isManualCtrl_Part_SmallGate_Left | isManualCtrl_Part_SmallGate_Right)
+                {
+                    MessageBox.Show("小龙门单轴运动已激活！请先关闭单轴运动！");
+                }
+                else  // 如果龙门左右轴不在进行单轴控制，则使能，并把合成运动标志位置位
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_SmallGate", true, false);
+                }
             }
         }
 
@@ -764,8 +803,20 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);
+                //先读一下合成运动标志位是否开启
+                bool isManualCtrl_Asm_SmallGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_SmallGate", typeof(bool), false);
+
+                //如果开启了就失能
+                if (isManualCtrl_Asm_SmallGate)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_SmallGate", false, false);
+                }
+                else //未开启给提示
+                {
+                    MessageBox.Show("小龙门使能未激活！");
+                }
             }
         }
 
@@ -815,7 +866,7 @@ namespace TestApp
                     double nTargetVelo = double.Parse(textBoxSmallGateTarVelo.Text);
                     if (nTargetVelo >= 0 & nTargetVelo <= 200)
                     {
-                        adsClient.WriteSymbol("Gate_Small_Move.nSmallGate_Speed", nTargetVelo, false);
+                        adsClient.WriteSymbol("GateMove.nSmallGate_Speed", nTargetVelo, false);
                     }
                     else
                     {
@@ -839,7 +890,7 @@ namespace TestApp
                 try
                 {
                     double nTargetPos = double.Parse(textBoxSmallGateTarPos.Text);
-                    adsClient.WriteSymbol("Gate_Small_Move.nSmallGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("GateMove.nSmallGate_MoveAbs_TarPos", nTargetPos, false);
                     adsClient.WriteSymbol("Robot_Control_State.bSmallGate_MoveAbs", true, false);
                 }
                 catch (FormatException)
@@ -886,8 +937,21 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", true, false);
+                // 先读一下龙门左右轴是不是在进行单轴控制
+                bool isManualCtrl_Part_BackGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_BackGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", typeof(bool), false);
+
+                // 如果龙门左右轴是不是在进行单轴控制，给出提示
+                if (isManualCtrl_Part_BackGate_Left | isManualCtrl_Part_BackGate_Right)
+                {
+                    MessageBox.Show("后龙门单轴运动已激活！请先关闭单轴运动！");
+                }
+                else  // 如果龙门左右轴不在进行单轴控制，则使能，并把合成运动标志位置位
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_BackGate", true, false);
+                }
             }
         }
 
@@ -896,8 +960,20 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);
+                //先读一下合成运动标志位是否开启
+                bool isManualCtrl_Asm_BackGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BackGate", typeof(bool), false);
+
+                //如果开启了就失能
+                if (isManualCtrl_Asm_BackGate)
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Asm_BackGate", false, false);
+                }
+                else //未开启给提示
+                {
+                    MessageBox.Show("后龙门使能未激活！");
+                }
             }
         }
 
@@ -951,7 +1027,7 @@ namespace TestApp
                     double nTargetVelo = double.Parse(textBoxBackGateTarVelo.Text);
                     if (nTargetVelo >= 0 & nTargetVelo <= 15)
                     {
-                        adsClient.WriteSymbol("Gate_Back_Move.nBackGate_Speed", nTargetVelo, false);
+                        adsClient.WriteSymbol("GateMove.nBackGate_Speed", nTargetVelo, false);
                     }
                     else
                     {
@@ -975,7 +1051,7 @@ namespace TestApp
                 try
                 {
                     double nTargetPos = double.Parse(textBoxBackGateTarPos.Text);
-                    adsClient.WriteSymbol("Gate_Back_Move.nBackGate_MoveAbs_TarPos", nTargetPos, false);
+                    adsClient.WriteSymbol("GateMove.nBackGate_MoveAbs_TarPos", nTargetPos, false);
                     adsClient.WriteSymbol("Robot_Control_State.bBackGate_MoveAbs", true, false);
                 }
                 catch (FormatException)
@@ -2281,9 +2357,21 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", true, false);            // 大龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", true, false);        // 大龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Big_Move.bBigGate_Gearin_do", false, false);                                // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                // 先读一下大龙门合成运动有没有开启，开启了给提示
+                bool isManualCtrl_Asm_BigGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BigGate", typeof(bool), false);
+                
+                if (isManualCtrl_Asm_BigGate)
+                {
+                    MessageBox.Show("大龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", true, false);            // 大龙门左电机使能置true
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", true, false);        // 大龙门左电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bBigGate_Gearin_do", false, false);                        // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+
+                }
+
             }
         }
 
@@ -2292,9 +2380,30 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_Big_Move.bBigGate_Gearin_do", true, false);                                 // 激活大龙门左右轴的电子齿轮。
+                // 读一下大龙门右轴单轴控制标志位
+                bool isManualCtrl_Part_BigGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", typeof(bool), false);
+                bool isManualCtrl_Part_BigGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", typeof(bool), false);
+
+                // 如果左轴单轴控制开启了
+                if (isManualCtrl_Part_BigGate_Left)
+                {
+                    // 再判断右轴是否还在进行单轴控制，是：把左轴单轴控制标志位置位，不啮合电子齿轮；把左轴单轴控制标志位置位否：啮合电子齿轮。
+                    if (isManualCtrl_Part_BigGate_Right)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bBigGate_Gearin_do", true, false);                         // 激活大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("大龙门左轴单轴控制未激活！");
+                }
             }
         }
 
@@ -2430,9 +2539,18 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", true, false);            // 大龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", true, false);        // 大龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Big_Move.bBigGate_Gearin_do", false, false);                         // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                bool isManualCtrl_Asm_BigGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BigGate", typeof(bool), false);
+
+                if (isManualCtrl_Asm_BigGate)
+                {
+                    MessageBox.Show("大龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", true, false);            // 大龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", true, false);        // 大龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bBigGate_Gearin_do", false, false);                         // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                }
             }
         }
 
@@ -2441,9 +2559,29 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);            // 大龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", false, false);        // 大龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_Big_Move.bBigGate_Gearin_do", true, false);                                // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                // 读一下大龙门单轴运动标志位
+                bool isManualCtrl_Part_BigGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_BigGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", typeof(bool), false);
+
+                if (isManualCtrl_Part_BigGate_Right)
+                {
+                    // 判断左轴是否还在进行单轴控制，是：仅把右轴单轴控制标志位置false，但不啮合电子齿轮；否：把右轴单轴控制标志位置false，啮合电子齿轮。
+                    if (isManualCtrl_Part_BigGate_Left)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);            // 大龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", false, false);        // 大龙门右电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BigGate_Right_Enable", false, false);            // 大龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BigGate_Right", false, false);        // 大龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bBigGate_Gearin_do", true, false);                                // 激活大龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("大龙门右轴单轴控制未激活！");
+                }
             }
         }
 
@@ -2586,9 +2724,19 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", true, false);            // 小龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", true, false);        // 小龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Small_Move.bSmallGate_Gearin_do", false, false);                                // 激活小龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                // 先读一下龙门合成运动有没有开启，开启了给提示
+                bool isManualCtrl_Asm_SmallGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_SmallGate", typeof(bool), false);
+
+                if (isManualCtrl_Asm_SmallGate)
+                {
+                    MessageBox.Show("小龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", true, false);            // 小龙门左电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", true, false);        // 小龙门左电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Gearin_do", false, false);                                // 激活小龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                }
             }
         }
 
@@ -2597,11 +2745,34 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);           // 小龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", false, false);       // 小龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_Small_Move.bSmallGate_Gearin_do", true, false);                                 // 激活小龙门左右轴的电子齿轮。
+                // 读一下大龙门右轴单轴控制标志位
+                bool isManualCtrl_Part_SmallGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", typeof(bool), false);
+                bool isManualCtrl_Part_SmallGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", typeof(bool), false);
+
+
+                // 如果左轴单轴控制开启了
+                if (isManualCtrl_Part_SmallGate_Left)
+                {
+                    // 再判断右轴是否还在进行单轴控制，是：把左轴单轴控制标志位置位，不啮合电子齿轮；把左轴单轴控制标志位置位否：啮合电子齿轮。
+                    if (isManualCtrl_Part_SmallGate_Right)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Gearin_do", true, false);                         // 激活大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("小龙门左轴单轴控制未激活！");
+                }
             }
         }
+
 
         //小龙门左慢速Jog正
         private void btnSmallGateLeftJogSlowP_MouseDown(object sender, MouseEventArgs e)
@@ -2735,9 +2906,18 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", true, false);            // 小龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", true, false);        // 小龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Small_Move.bSmallGate_Gearin_do", false, false);                         // 激活小龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                bool isManualCtrl_Asm_SmallGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_SmallGate", typeof(bool), false);
+
+                if (isManualCtrl_Asm_SmallGate)
+                {
+                    MessageBox.Show("小龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", true, false);            // 小龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", true, false);        // 小龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Gearin_do", false, false);                         // 激活小龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                }
             }
         }
 
@@ -2746,11 +2926,33 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);            // 小龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", false, false);        // 小龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_Small_Move.bSmallGate_Gearin_do", true, false);                                // 激活小龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                // 读一下龙门单轴运动标志位
+                bool isManualCtrl_Part_SmallGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_SmallGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", typeof(bool), false);
+
+                if (isManualCtrl_Part_SmallGate_Right)
+                {
+                    // 判断左轴是否还在进行单轴控制，是：仅把右轴单轴控制标志位置false，但不啮合电子齿轮；否：把右轴单轴控制标志位置false，啮合电子齿轮。
+                    if (isManualCtrl_Part_SmallGate_Left)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);            // 小龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", false, false);        // 小龙门右电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_SmallGate_Right_Enable", false, false);            // 小龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_SmallGate_Right", false, false);        // 小龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bSmallGate_Gearin_do", true, false);                             // 激活小龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("小龙门右轴单轴控制未激活！");
+                }
             }
         }
+
+        
 
         // 小龙门右慢速jog正
         private void btnSmallGateRightJogSlowP_MouseDown(object sender, MouseEventArgs e)
@@ -2885,9 +3087,19 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", true, false);            // 后龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", true, false);        // 后龙门左电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Back_Move.bBackGate_Gearin_do", false, false);                                // 激活后龙门单轴手动控制时要取消后龙门左右轴的电子齿轮。
+                // 先读一下龙门合成运动有没有开启，开启了给提示
+                bool isManualCtrl_Asm_BackGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BackGate", typeof(bool), false);
+
+                if (isManualCtrl_Asm_BackGate)
+                {
+                    MessageBox.Show("后龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", true, false);            // 
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", true, false);        // 龙门左电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bBackGate_Gearin_do", false, false);                       // 激活龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                }
             }
         }
 
@@ -2896,11 +3108,34 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);           // 后龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", false, false);       // 后龙门左电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_Back_Move.bBackGate_Gearin_do", true, false);                                 // 激活后龙门左右轴的电子齿轮。
+                // 读一下后龙门右轴单轴控制标志位
+                bool isManualCtrl_Part_BackGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", typeof(bool), false);
+                bool isManualCtrl_Part_BackGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", typeof(bool), false);
+
+
+                // 如果左轴单轴控制开启了
+                if (isManualCtrl_Part_BackGate_Left)
+                {
+                    // 再判断右轴是否还在进行单轴控制，是：把左轴单轴控制标志位置位，不啮合电子齿轮；把左轴单轴控制标志位置位否：啮合电子齿轮。
+                    if (isManualCtrl_Part_BackGate_Right)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Left_Enable", false, false);           // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", false, false);       // 大龙门左电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bBackGate_Gearin_do", true, false);                         // 激活大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("后龙门左轴单轴控制未激活！");
+                }                                 
             }
         }
+
 
         //后龙门左慢速Jog正
         private void btnBackGateLeftJogSlowP_MouseDown(object sender, MouseEventArgs e)
@@ -3034,9 +3269,18 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", true, false);            // 后龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", true, false);        // 后龙门右电机单轴控制标志位置true
-                adsClient.WriteSymbol("Gate_Back_Move.bBackGate_Gearin_do", false, false);                         // 激活后龙门单轴手动控制时要取消后龙门左右轴的电子齿轮。
+                bool isManualCtrl_Asm_BackGate = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Asm_BackGate", typeof(bool), false);
+
+                if (isManualCtrl_Asm_BackGate)
+                {
+                    MessageBox.Show("后龙门合成运动已激活！请先关闭合成运动！");
+                }
+                else
+                {
+                    adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", true, false);            // 后龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", true, false);        // 后龙门右电机单轴控制标志位置true
+                    adsClient.WriteSymbol("Robot_Control_State.bBackGate_Gearin_do", false, false);                         // 激活后龙门单轴手动控制时要取消小龙门左右轴的电子齿轮。
+                }
             }
         }
 
@@ -3045,11 +3289,33 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);            // 后龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", false, false);        // 后龙门右电机单轴控制标志位置false
-                adsClient.WriteSymbol("Gate_back_Move.bBackGate_Gearin_do", true, false);                                // 激活后龙门单轴手动控制时要取消后龙门左右轴的电子齿轮。
+                // 读一下龙门单轴运动标志位
+                bool isManualCtrl_Part_BackGate_Left = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Left", typeof(bool), false);
+                bool isManualCtrl_Part_BackGate_Right = (bool)adsClient.ReadSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", typeof(bool), false);
+
+                if (isManualCtrl_Part_BackGate_Right)
+                {
+                    // 判断左轴是否还在进行单轴控制，是：仅把右轴单轴控制标志位置false，但不啮合电子齿轮；否：把右轴单轴控制标志位置false，啮合电子齿轮。
+                    if (isManualCtrl_Part_BackGate_Left)
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);            // 后龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", false, false);        // 后龙门右电机单轴控制标志位置false
+                    }
+                    else
+                    {
+                        adsClient.WriteSymbol("Robot_Control_State.bAxis_BackGate_Right_Enable", false, false);            // 小龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bManualCtrl_Part_BackGate_Right", false, false);        // 小龙门右电机单轴控制标志位置false
+                        adsClient.WriteSymbol("Robot_Control_State.bBackGate_Gearin_do", true, false);                             // 激活小龙门单轴手动控制时要取消大龙门左右轴的电子齿轮。
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("后龙门右轴单轴控制未激活！");
+                }
             }
         }
+
+
 
         // 后龙门右慢速jog正
         private void btnBackGateRightJogSlowP_MouseDown(object sender, MouseEventArgs e)
@@ -3180,8 +3446,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV1", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV1_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀2
@@ -3189,8 +3455,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV2", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV2_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀3
@@ -3198,8 +3464,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV3", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV3_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀4
@@ -3207,8 +3473,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV4", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV4_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀5
@@ -3216,8 +3482,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV5", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV5_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀6
@@ -3225,8 +3491,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV6", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV6_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀7
@@ -3234,8 +3500,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV7", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV7_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7_UpperUI", !SVFlag, false);
             }
         }
         //左臂电磁阀8
@@ -3243,8 +3509,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV8", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bLeftArm_SV8_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8_UpperUI", !SVFlag, false);
             }
         }
 
@@ -3254,8 +3520,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV1", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV1_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀2
@@ -3263,8 +3529,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV2", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV2_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀3
@@ -3272,8 +3538,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV3", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV3_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀4
@@ -3281,8 +3547,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV4", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV4_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀5
@@ -3290,8 +3556,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV5", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV5_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀6
@@ -3299,8 +3565,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV6", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV6_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀7
@@ -3308,8 +3574,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV7", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV7_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7_UpperUI", !SVFlag, false);
             }
         }
         //右臂电磁阀8
@@ -3317,8 +3583,8 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV8", typeof(bool), false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8", !SVFlag, false);
+                bool SVFlag = (bool)adsClient.ReadSymbol("Robot_Control_State.bRightArm_SV8_UpperUI", typeof(bool), false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8_UpperUI", !SVFlag, false);
             }
         }
 
@@ -3335,7 +3601,7 @@ namespace TestApp
             {
                 for (int i = 1; i <= 8; i++)
                 {
-                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString(), true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString()+ "_UpperUI", true, false);
                 }
             }
         }
@@ -3346,7 +3612,7 @@ namespace TestApp
             {
                 for (int i = 1; i <= 8; i++)
                 {
-                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString(), false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV" + i.ToString() + "_UpperUI", false, false);
                 }
             }
         }
@@ -3357,7 +3623,7 @@ namespace TestApp
             {
                 for (int i = 1; i <= 8; i++)
                 {
-                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString(), true, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString() + "_UpperUI", true, false);
                 }
             }
         }
@@ -3368,7 +3634,7 @@ namespace TestApp
             {
                 for (int i = 1; i <= 8; i++)
                 {
-                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString(), false, false);
+                    adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV" + i.ToString() + "_UpperUI", false, false);
                 }
             }
         }
@@ -3377,11 +3643,11 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV1_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV3_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV4_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV5_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV7_UpperUI", true, false);
             }
         }
 
@@ -3389,9 +3655,9 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV2_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV6_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bLeftArm_SV8_UpperUI", true, false);
             }
         }
 
@@ -3399,11 +3665,11 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV1_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV3_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV4_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV5_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV7_UpperUI", true, false);
             }
         }
 
@@ -3411,9 +3677,9 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6", true, false);
-                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV2_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV6_UpperUI", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bRightArm_SV8_UpperUI", true, false);
             }
         }
 
@@ -3498,7 +3764,7 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bPumpMotor_Enable", true, false);
+                adsClient.WriteSymbol("Robot_Control_State.bPumpMotor_Enable_UpperUI", true, false);
             }
         }
 
@@ -3506,7 +3772,7 @@ namespace TestApp
         {
             if (adsClientStateInfo.AdsState == AdsState.Run)
             {
-                adsClient.WriteSymbol("Robot_Control_State.bPumpMotor_Enable", false, false);
+                adsClient.WriteSymbol("Robot_Control_State.bPumpMotor_Enable_UpperUI", false, false);
             }
         }
 
@@ -3631,7 +3897,6 @@ namespace TestApp
                 adsClient.WriteSymbol("Robot_Control_State.bAutoMovePosSet", !bAutoMovePosFlag, false);
             }
         }
-
 
     }
 

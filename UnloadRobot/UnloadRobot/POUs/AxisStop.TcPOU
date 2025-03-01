@@ -7,21 +7,31 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// 所有轴停止
-IF bAxis_All_Stop THEN
-	FOR i:=1 TO nAxisNum DO
-		aAxis_All_Stop_Group[i]^ := TRUE;
-	END_FOR
-ELSE
-	FOR i:=1 TO nAxisNum DO
-		aAxis_All_Stop_Group[i]^ := FALSE;
-	END_FOR
-END_IF
+      <ST><![CDATA[//IF NOT bEmergencyStopBtn THEN
+//	bAxis_All_Stop := TRUE;
+//ELSE
+//	bAxis_All_Stop := FALSE;
+	
+//END_IF
+
+
+// 所有轴停止
+//IF bAxis_All_Stop THEN
+//	FOR i:=1 TO nAxisNum DO
+//		aAxis_All_Stop_Group[i]^ := TRUE;
+//	END_FOR
+//ELSE
+//	FOR i:=1 TO nAxisNum DO
+//		aAxis_All_Stop_Group[i]^ := FALSE;
+//	END_FOR
+//END_IF
+
+
 
 // LeftArm_Left_McStop
 axis_LeftArm_Left_McStop(
 	Axis:= axis_LeftArm_Left, 
-	Execute:= bAxis_LeftArm_Left_McStop, 
+	Execute:= bAxis_LeftArm_Left_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -35,7 +45,7 @@ axis_LeftArm_Left_McStop(
 // LeftArm_Right_McStop
 axis_LeftArm_Right_McStop(
 	Axis:= axis_LeftArm_Right, 
-	Execute:= bAxis_LeftArm_Right_McStop, 
+	Execute:= bAxis_LeftArm_Right_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -49,7 +59,7 @@ axis_LeftArm_Right_McStop(
 // LeftArm_Wrist_McStop	
 axis_LeftArm_Wrist_McStop(
 	Axis:= axis_LeftArm_Wrist, 
-	Execute:= bAxis_LeftArm_Wrist_McStop, 
+	Execute:= bAxis_LeftArm_Wrist_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -63,7 +73,7 @@ axis_LeftArm_Wrist_McStop(
 // LeftArm_Lift_McStop		
 axis_LeftArm_Lift_McStop(
 	Axis:= axis_LeftArm_Lift, 
-	Execute:= bAxis_LeftArm_Lift_McStop, 
+	Execute:= bAxis_LeftArm_Lift_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -78,7 +88,7 @@ axis_LeftArm_Lift_McStop(
 // RightArm_Left_McStop
 axis_RightArm_Left_McStop(
 	Axis:= axis_RightArm_Left, 
-	Execute:= bAxis_RightArm_Left_McStop, 
+	Execute:= bAxis_RightArm_Left_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -92,7 +102,7 @@ axis_RightArm_Left_McStop(
 // RightArm_Right_McStop
 axis_RightArm_Right_McStop(
 	Axis:= axis_RightArm_Right, 
-	Execute:= bAxis_RightArm_Right_McStop, 
+	Execute:= bAxis_RightArm_Right_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -106,7 +116,7 @@ axis_RightArm_Right_McStop(
 // RightArm_Wrist_McStop	
 axis_RightArm_Wrist_McStop(
 	Axis:= axis_RightArm_Wrist, 
-	Execute:= bAxis_RightArm_Wrist_McStop, 
+	Execute:= bAxis_RightArm_Wrist_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -120,7 +130,7 @@ axis_RightArm_Wrist_McStop(
 // RightArm_Lift_McStop		
 axis_RightArm_Lift_McStop(
 	Axis:= axis_RightArm_Lift, 
-	Execute:= bAxis_RightArm_Lift_McStop, 
+	Execute:= bAxis_RightArm_Lift_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -134,7 +144,7 @@ axis_RightArm_Lift_McStop(
 // BigGate_Left_McStop	
 axis_BigGate_Left_McStop(
 	Axis:= axis_BigGate_Left, 
-	Execute:= bAxis_BigGate_Left_McStop, 
+	Execute:= bAxis_BigGate_Left_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -148,7 +158,7 @@ axis_BigGate_Left_McStop(
 // BigGate_Right_McStop
 axis_BigGate_Right_McStop(
 	Axis:= axis_BigGate_Right, 
-	Execute:= bAxis_BigGate_Right_McStop, 
+	Execute:= bAxis_BigGate_Right_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -162,7 +172,7 @@ axis_BigGate_Right_McStop(
 // SmallGate_Left_McStop	
 axis_SmallGate_Left_McStop(
 	Axis:= axis_SmallGate_Left, 
-	Execute:= bAxis_SmallGate_Left_McStop, 
+	Execute:= bAxis_SmallGate_Left_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -176,7 +186,7 @@ axis_SmallGate_Left_McStop(
 // SmallGate_Right_McStop
 axis_SmallGate_Right_McStop(
 	Axis:= axis_SmallGate_Right, 
-	Execute:= bAxis_SmallGate_Right_McStop, 
+	Execute:= bAxis_SmallGate_Right_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -191,7 +201,7 @@ axis_SmallGate_Right_McStop(
 // BackGate_Left_McStop	
 axis_BackGate_Left_McStop(
 	Axis:= axis_BackGate_Left, 
-	Execute:= bAxis_BackGate_Left_McStop, 
+	Execute:= bAxis_BackGate_Left_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -205,7 +215,7 @@ axis_BackGate_Left_McStop(
 // BackGate_Right_McStop
 axis_BackGate_Right_McStop(
 	Axis:= axis_BackGate_Right, 
-	Execute:= bAxis_BackGate_Right_McStop, 
+	Execute:= bAxis_BackGate_Right_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
 	Deceleration:= , 
 	Jerk:= , 
 	Options:= , 
@@ -214,11 +224,73 @@ axis_BackGate_Right_McStop(
 	Active=> , 
 	CommandAborted=> , 
 	Error=> , 
-	ErrorID=> );]]></ST>
+	ErrorID=> );
+	
+axis_LeftWheel_Steer_McStop(
+	Axis:= axis_LeftWheel_Steer, 
+	Execute:= bAxis_LeftWheel_Steer_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_LeftWheel_Walk_McStop(
+	Axis:= axis_LeftWheel_Walk, 
+	Execute:= bAxis_LeftWheel_Walk_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightWheel_Steer_McStop(
+	Axis:= axis_RightWheel_Steer, 
+	Execute:= bAxis_RightWheel_Steer_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+axis_RightWheel_Walk_McStop(
+	Axis:= axis_RightWheel_Walk, 
+	Execute:= bAxis_RightWheel_Walk_McStop OR bAxis_All_Stop OR NOT bEmergencyStopBtn, 
+	Deceleration:= , 
+	Jerk:= , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+]]></ST>
     </Implementation>
     <LineIds Name="AxisStop">
+      <LineId Id="285" Count="0" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="292" Count="2" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="286" Count="1" />
       <LineId Id="220" Count="8" />
-      <LineId Id="218" Count="1" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="219" Count="0" />
       <LineId Id="67" Count="0" />
       <LineId Id="17" Count="10" />
       <LineId Id="5" Count="0" />
@@ -246,6 +318,20 @@ axis_BackGate_Right_McStop(
       <LineId Id="186" Count="1" />
       <LineId Id="189" Count="25" />
       <LineId Id="188" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="235" Count="10" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="248" Count="10" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="261" Count="10" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="274" Count="10" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="302" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

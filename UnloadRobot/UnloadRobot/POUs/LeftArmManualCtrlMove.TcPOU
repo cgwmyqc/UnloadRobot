@@ -61,13 +61,6 @@ IF bManualCtrl_Asm_LeftArm THEN
 	IF bAutoCtrl_Part_LeftWrist THEN
 		
 		wrist_angle := LeftArmWristIK(axis_LeftArm_Right.NcToPlc.ActPos, axis_LeftArm_Left.NcToPlc.ActPos);		// 逆解出腕电机角度
-		
-
-		// 用舵机进行程序验证的串口测试
-		//wrist_angle_int:= TO_INT(wrist_angle);
-		//wrist_angle_byte:= INT_TO_BYTE(wrist_angle_int);
-		//fb_SerialCom(TxBuffer:= TxBuffer, RxBuffer:= RxBuffer, angle:= wrist_angle_byte);	
-		
 
 	END_IF
 	
@@ -256,13 +249,6 @@ LeftArm_Wrist_ExtPosGen_Disable(
       <LineId Id="192" Count="0" />
       <LineId Id="216" Count="0" />
       <LineId Id="193" Count="0" />
-      <LineId Id="237" Count="0" />
-      <LineId Id="302" Count="0" />
-      <LineId Id="273" Count="0" />
-      <LineId Id="303" Count="0" />
-      <LineId Id="247" Count="0" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="271" Count="0" />
       <LineId Id="215" Count="0" />
       <LineId Id="194" Count="0" />
       <LineId Id="191" Count="0" />

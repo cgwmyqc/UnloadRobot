@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <DUT Name="SystemStatus" Id="{8ac778b6-2158-46dc-ac60-814e8fd39e9b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE SystemStatus :
+(
+	System_OK := 0,
+	ChassisManual_Slow,
+	ChassisManual_Fast,
+	EmergencyStop:=255
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

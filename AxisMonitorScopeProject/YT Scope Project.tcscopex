@@ -28,7 +28,7 @@
   <KeepPreviousImageExports>true</KeepPreviousImageExports>
   <Layout>&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;Layout&gt;
-  &lt;Window Guid="53a031de-dd92-47d4-ab64-b62b1ce1ee40" LastFocused="133843370823146394" DockedSize="200" PopupSize="0" FloatingLocation="-1, -1" FloatingSize="550, 400" LastOpenDockSituation="Document" LastFixedDockSituation="Document" LastFixedDockLocation="Right" LastFloatingWindowGuid="00000000-0000-0000-0000-000000000000" LastDockContainerCount="0" LastDockContainerIndex="0" DockedWorkingSize="250, 400" DockedWindowGroupGuid="00000000-0000-0000-0000-000000000000" DockedIndexInWindowGroup="0" DockedSplitPath="0" DocumentWorkingSize="250, 400" DocumentWindowGroupGuid="82eb1683-5fed-4cbe-a4e0-86b9889ebc78" DocumentIndexInWindowGroup="0" DocumentSplitPath="0" FloatingWorkingSize="250, 400" FloatingWindowGroupGuid="00000000-0000-0000-0000-000000000000" FloatingIndexInWindowGroup="0" FloatingSplitPath="0" /&gt;
+  &lt;Window Guid="53a031de-dd92-47d4-ab64-b62b1ce1ee40" LastFocused="133853060294978731" DockedSize="200" PopupSize="0" FloatingLocation="-1, -1" FloatingSize="550, 400" LastOpenDockSituation="Document" LastFixedDockSituation="Document" LastFixedDockLocation="Right" LastFloatingWindowGuid="00000000-0000-0000-0000-000000000000" LastDockContainerCount="0" LastDockContainerIndex="0" DockedWorkingSize="250, 400" DockedWindowGroupGuid="00000000-0000-0000-0000-000000000000" DockedIndexInWindowGroup="0" DockedSplitPath="0" DocumentWorkingSize="250, 400" DocumentWindowGroupGuid="82eb1683-5fed-4cbe-a4e0-86b9889ebc78" DocumentIndexInWindowGroup="0" DocumentSplitPath="0" FloatingWorkingSize="250, 400" FloatingWindowGroupGuid="00000000-0000-0000-0000-000000000000" FloatingIndexInWindowGroup="0" FloatingSplitPath="0" /&gt;
   &lt;DocumentContainer Dock="5"&gt;
     &lt;SplitLayoutSystem WorkingSize="250, 400" SplitMode="0"&gt;
       &lt;ControlLayoutSystem WorkingSize="250, 400" Guid="82eb1683-5fed-4cbe-a4e0-86b9889ebc78" Collapsed="0" SelectedControl="53a031de-dd92-47d4-ab64-b62b1ce1ee40"&gt;
@@ -83,7 +83,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>bb8ca33d-ffef-4b82-a525-67bc7c5ebcfe</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446242</IndexOffset>
+          <IndexOffset>466426</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_BackGate_Left_Torque</Name>
           <Oversample>0</Oversample>
@@ -178,7 +178,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>8d7db68f-f749-44d6-8411-0e178706ec53</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446244</IndexOffset>
+          <IndexOffset>466428</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_BackGate_Right_Torque</Name>
           <Oversample>0</Oversample>
@@ -273,7 +273,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>049920a5-6eaf-4e12-b90f-dac0df20e859</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446238</IndexOffset>
+          <IndexOffset>466422</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_BigGate_Left_Torque</Name>
           <Oversample>0</Oversample>
@@ -368,7 +368,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>9f59b881-02f6-4523-b016-82bb17fbf31c</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446240</IndexOffset>
+          <IndexOffset>466424</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_BigGate_Right_Torque</Name>
           <Oversample>0</Oversample>
@@ -463,7 +463,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>b7bbc2c1-cce9-4dda-82d1-ea7bb0984e14</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446226</IndexOffset>
+          <IndexOffset>466410</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_LeftArm_Left_Torque</Name>
           <Oversample>0</Oversample>
@@ -558,7 +558,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>19df2150-f945-4b40-865d-e172a9c8e36d</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446232</IndexOffset>
+          <IndexOffset>466416</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_LeftArm_Lift_Torque</Name>
           <Oversample>0</Oversample>
@@ -653,7 +653,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>98738572-7db0-41e4-94c5-350ff1050870</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446228</IndexOffset>
+          <IndexOffset>466412</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_LeftArm_Right_Torque</Name>
           <Oversample>0</Oversample>
@@ -748,7 +748,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>96813f17-2828-4982-990a-4421a25bc51e</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446230</IndexOffset>
+          <IndexOffset>466414</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_LeftArm_Wrist_Torque</Name>
           <Oversample>0</Oversample>
@@ -844,7 +844,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>bfc68f1d-f8cd-47f2-b5c8-d5c51cde8b7c</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>430122</IndexOffset>
+          <IndexOffset>445762</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_RightArm_Left_Torque</Name>
           <Oversample>0</Oversample>
@@ -939,7 +939,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>cd70fe52-087d-47f7-8a07-50301e8ce30c</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446224</IndexOffset>
+          <IndexOffset>466408</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_RightArm_Lift_Torque</Name>
           <Oversample>0</Oversample>
@@ -1034,7 +1034,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>f8c2cb6d-d8db-4a49-800e-43114c2facaa</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>430124</IndexOffset>
+          <IndexOffset>445764</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_RightArm_Right_Torque</Name>
           <Oversample>0</Oversample>
@@ -1129,7 +1129,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>c56b2c75-4f56-4541-af9a-fc67695a0886</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>430126</IndexOffset>
+          <IndexOffset>445766</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_RightArm_Wrist_Torque</Name>
           <Oversample>0</Oversample>
@@ -1224,7 +1224,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>1ccb06e7-8688-4e02-bdf2-40e5dbee0f31</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446234</IndexOffset>
+          <IndexOffset>466418</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_SmallGate_Left_Torque</Name>
           <Oversample>0</Oversample>
@@ -1319,7 +1319,7 @@
           <ForceOversampling>false</ForceOversampling>
           <Guid>65facfa7-1c84-4164-a7a4-d484b6ea9df6</Guid>
           <IndexGroup>61472</IndexGroup>
-          <IndexOffset>446236</IndexOffset>
+          <IndexOffset>466420</IndexOffset>
           <IsHistorical>false</IsHistorical>
           <Name>axis_SmallGate_Right_Torque</Name>
           <Oversample>0</Oversample>

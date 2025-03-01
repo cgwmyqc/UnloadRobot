@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="AxisStatus" Id="{63c41080-6801-4d90-bfa5-2c366ae0b5bf}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM AxisStatus
+VAR
+	
+
+
+RE:AxisStatusReadErrorCode;
+
+
+
+
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[axis_RightArm_Left();
+axis_RightArm_Right();
+axis_RightArm_Wrist();
+axis_RightArm_Lift();
+axis_LeftArm_Left();
+axis_LeftArm_Right();
+axis_LeftArm_Wrist();
+axis_LeftArm_Lift();
+axis_SmallGate_Left();
+axis_SmallGate_Right();
+axis_BigGate_Left();
+axis_BigGate_Right();
+axis_BackGate_Left();
+axis_BackGate_Right();
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="AxisStatus">
+      <LineId Id="5" Count="13" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

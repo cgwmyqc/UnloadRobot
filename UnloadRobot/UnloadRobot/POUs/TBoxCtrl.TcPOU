@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="TBoxCtrl" Id="{35c9ebcf-f7c2-4fb3-bf7c-b6bf605aa826}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM TBoxCtrl
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bPumpMotor_Enable_TBox OR bPumpMotor_Enable_UpperUI THEN
+	bPumpMotor_Enable:=TRUE;
+ELSE
+	bPumpMotor_Enable:=FALSE;
+END_IF
+	
+IF bLeftArm_SV1_TBox OR bLeftArm_SV1_UpperUI THEN
+	bLeftArm_SV1:=TRUE;
+ELSE
+	bLeftArm_SV1:=FALSE;
+END_IF
+
+IF bLeftArm_SV2_TBox OR bLeftArm_SV2_UpperUI THEN
+	bLeftArm_SV2:=TRUE;
+ELSE
+	bLeftArm_SV2:=FALSE;
+END_IF
+
+IF bLeftArm_SV3_TBox OR bLeftArm_SV3_UpperUI THEN
+	bLeftArm_SV3:=TRUE;
+ELSE
+	bLeftArm_SV3:=FALSE;
+END_IF
+
+IF bLeftArm_SV4_TBox OR bLeftArm_SV4_UpperUI THEN
+	bLeftArm_SV4:=TRUE;
+ELSE
+	bLeftArm_SV4:=FALSE;
+END_IF
+
+IF bLeftArm_SV5_TBox OR bLeftArm_SV5_UpperUI THEN
+	bLeftArm_SV5:=TRUE;
+ELSE
+	bLeftArm_SV5:=FALSE;
+END_IF
+
+IF bLeftArm_SV6_TBox OR bLeftArm_SV6_UpperUI THEN
+	bLeftArm_SV6:=TRUE;
+ELSE
+	bLeftArm_SV6:=FALSE;
+END_IF
+
+IF bLeftArm_SV7_TBox OR bLeftArm_SV7_UpperUI THEN
+	bLeftArm_SV7:=TRUE;
+ELSE
+	bLeftArm_SV7:=FALSE;
+END_IF
+
+IF bLeftArm_SV8_TBox OR bLeftArm_SV8_UpperUI THEN
+	bLeftArm_SV8:=TRUE;
+ELSE
+	bLeftArm_SV8:=FALSE;
+END_IF
+
+
+
+
+IF bRightArm_SV1_TBox OR bRightArm_SV1_UpperUI THEN
+	bRightArm_SV1:=TRUE;
+ELSE
+	bRightArm_SV1:=FALSE;
+END_IF
+
+IF bRightArm_SV2_TBox OR bRightArm_SV2_UpperUI THEN
+	bRightArm_SV2:=TRUE;
+ELSE
+	bRightArm_SV2:=FALSE;
+END_IF
+
+IF bRightArm_SV3_TBox OR bRightArm_SV3_UpperUI THEN
+	bRightArm_SV3:=TRUE;
+ELSE
+	bRightArm_SV3:=FALSE;
+END_IF
+
+IF bRightArm_SV4_TBox OR bRightArm_SV4_UpperUI THEN
+	bRightArm_SV4:=TRUE;
+ELSE
+	bRightArm_SV4:=FALSE;
+END_IF
+
+IF bRightArm_SV5_TBox OR bRightArm_SV5_UpperUI THEN
+	bRightArm_SV5:=TRUE;
+ELSE
+	bRightArm_SV5:=FALSE;
+END_IF
+
+IF bRightArm_SV6_TBox OR bRightArm_SV6_UpperUI THEN
+	bRightArm_SV6:=TRUE;
+ELSE
+	bRightArm_SV6:=FALSE;
+END_IF
+
+IF bRightArm_SV7_TBox OR bRightArm_SV7_UpperUI THEN
+	bRightArm_SV7:=TRUE;
+ELSE
+	bRightArm_SV7:=FALSE;
+END_IF
+
+IF bRightArm_SV8_TBox OR bRightArm_SV8_UpperUI THEN
+	bRightArm_SV8:=TRUE;
+ELSE
+	bRightArm_SV8:=FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="TBoxCtrl">
+      <LineId Id="24" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="128" Count="1" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="32" Count="4" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="39" Count="10" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="51" Count="22" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="75" Count="49" />
+      <LineId Id="74" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

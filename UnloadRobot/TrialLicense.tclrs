@@ -2,9 +2,9 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{25446ED6-AAE4-9330-88D8-BAAE10CE7133}</SystemId>
-		<IssueTime>2025-02-16T13:51:00</IssueTime>
-		<ExpireTime>2025-02-24T00:00:00</ExpireTime>
-		<LicenseKey>c5d00f01830944dffd7d06b42c5c3388647ab50abd34eede1268b76eb4ab11c6ad28e4c234cdf3ebf7c8194e675684a8fc545f751400d2900db3153ad5d756a9ac240e92f3f047c76ce5c21d155eda6984fd6c23b3c7f187b235b104beb7647b185c206bd20f083955e7b08bdb6f3e114387707c62edfab66c31c3bd3862e992e720e9f0f0857eb3f6a5fdbaacddcb19236c7c8876bf4ee4e58df6ff570369e3ddad6fd08d41bebdb2c3b64139af5810ebe08c68c2f3f9eb67ee2e04cd12307bd35bc1dda52c4b41092e351ab170a78e1f649efb07cda42e8131e08bce75059856e01745669edd52fa1e9bc451bae6594c988ba70612ff182a6fb502e708d0bf</LicenseKey>
+		<IssueTime>2025-02-24T02:00:00</IssueTime>
+		<ExpireTime>2025-03-04T00:00:00</ExpireTime>
+		<LicenseKey>a26eaecd6f348d393759bd540ba0b6eb908f10cfb6ed2cc53c2488c4cdbebe9569819cd8e19eb5feb545641bbd5e78a915067fe9a58b6f643e1d6c57fc69b3f75373f03db3c3947461d5d1ab29e6996edafaa6f7f37d93dff52c70f497cd11f3a12a732f9ce4bb80df26b786a8272ce7912c230c196be2da57eab8ad4690e40e974ffd2e0c2ef6a3562df8fd8eecf4e7c3661d37a1d2b469be59907bebc99ff49bc5797812f526b28ac2ea97b61ad92340b81ce601275c264e4d0a053a528158a975411d0c15701a376bcb44ce2d12ade001e52fd99b5b00dbe77f931ac1ca2bf1e22189c05343df92ab2206630f8257a5a71bfb453f4069eb493d8545e422a7</LicenseKey>
 		<License>
 			<LicenseId>{A19036CF-A53B-4E3A-99FF-023EF5C4798B}</LicenseId>
 			<Name>TC3 NC PTP Axis</Name>

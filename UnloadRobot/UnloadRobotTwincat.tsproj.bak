@@ -1974,7 +1974,7 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="-3" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="-15.1688" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2543,7 +2543,7 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="6" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="5.5077" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2679,12 +2679,15 @@ External Setpoint Generation:
 				<Axis Id="11" CreateSymbols="true" AxisType="1" AxisFolder="LongMen" GroupId="6">
 					<Name>Axis9_BigGate_Left</Name>
 					<AxisPara>
-						<Dynamic Acceleration="100"/>
+						<Dynamic Acceleration="404" Deceleration="708.332451330671" Jerk="8160.79999999999"/>
 						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="361.3851" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-5"/>
+							<SoftEndMaxControl Enable="true" Range="860"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2820,12 +2823,15 @@ External Setpoint Generation:
 				<Axis Id="12" CreateSymbols="true" AxisType="1" AxisFolder="LongMen" GroupId="7">
 					<Name>Axis10_BigGate_Right</Name>
 					<AxisPara>
-						<Dynamic Acceleration="100"/>
+						<Dynamic Acceleration="404" Deceleration="708.332391683178" Jerk="8160.79999999999"/>
 						<Velo RefSearch="5" RefSync="5" SlowManual="1" FastManual="5"/>
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="-371.0742" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-860"/>
+							<SoftEndMaxControl Enable="true" Range="5"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -2966,7 +2972,10 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="23.9905" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-980"/>
+							<SoftEndMaxControl Enable="true" Range="5"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3107,7 +3116,10 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="6.03" ScaleFactorDenominator="8388608" Offset="-28.5893" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-5"/>
+							<SoftEndMaxControl Enable="true" Range="980"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3248,7 +3260,9 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="5" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="5" ScaleFactorDenominator="8388608" Offset="-120.0448" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-300"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3389,7 +3403,9 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true" PulseDistancePos="1" PulseDistanceNeg="1"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="5" ScaleFactorDenominator="8388608" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="5" ScaleFactorDenominator="8388608" Offset="-44.1864" MaxCount="#xffffffff" ReferenceSystem="1">
+							<SoftEndMinControl Enable="true" Range="-300"/>
+						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3530,7 +3546,7 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="8" ScaleFactorDenominator="131072" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="1.14285714285714" ScaleFactorDenominator="65535" Offset="-120" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3588,7 +3604,7 @@ External Setpoint Generation:
 						</Vars>
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020000">
 							<Analog VeloReferenz="3300" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3645,6 +3661,7 @@ External Setpoint Generation:
 					</Drive>
 					<Controller Name="Ctrl" CtrType="1">
 						<CtrPara PriorControlFactor="1">
+							<PosDiffControl Enable="false"/>
 							<Observer BandWidth="20"/>
 						</CtrPara>
 					</Controller>
@@ -3666,12 +3683,12 @@ External Setpoint Generation:
 				<Axis Id="19" CreateSymbols="true" AxisType="1" AxisFolder="Wheel" GroupId="21">
 					<Name>Axis16_RightWheel_Walk</Name>
 					<AxisPara>
-						<General UnitName="°"/>
-						<Velo Maximum="3000"/>
+						<Dynamic AccelerationMaximum="1334" DecelerationMaximum="1334" Acceleration="999.99950000025" Deceleration="999.99950000025" Jerk="1000.00100000175"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="30" FastManual="60" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="9" ScaleFactorDenominator="65535" MaxCount="#xffffffff"/>
+						<EncPara ScaleFactorNumerator="17.27" ScaleFactorDenominator="65535" MaxCount="#xffffffff"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3729,7 +3746,7 @@ External Setpoint Generation:
 						</Vars>
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020000">
 							<Analog VeloReferenz="3300" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3813,7 +3830,7 @@ External Setpoint Generation:
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="8" ScaleFactorDenominator="131072" MaxCount="#xffffffff" ReferenceSystem="1"/>
+						<EncPara ScaleFactorNumerator="1.14285714285714" ScaleFactorDenominator="65535" Offset="-120" MaxCount="#xffffffff" ReferenceSystem="1"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -3871,7 +3888,7 @@ External Setpoint Generation:
 						</Vars>
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff">
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020000">
 							<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3950,12 +3967,12 @@ External Setpoint Generation:
 				<Axis Id="21" CreateSymbols="true" AxisType="1" AxisFolder="Wheel" GroupId="19">
 					<Name>Axis18_LeftWheel_Walk</Name>
 					<AxisPara>
-						<General UnitName="°"/>
-						<Velo RefSearch="5" RefSync="5" SlowManual="30" FastManual="60"/>
+						<Dynamic AccelerationMaximum="1334" DecelerationMaximum="1334" Acceleration="999.998" Deceleration="999.998" Jerk="1000"/>
+						<Velo RefSearch="5" RefSync="5" SlowManual="30" FastManual="60" Maximum="3000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="9" ScaleFactorDenominator="65535" MaxCount="#xffffffff"/>
+						<EncPara ScaleFactorNumerator="17.27" ScaleFactorDenominator="65535" MaxCount="#xffffffff"/>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
 							<Var>
@@ -4013,8 +4030,8 @@ External Setpoint Generation:
 						</Vars>
 					</Encoder>
 					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff">
-							<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00020000">
+							<Analog VeloReferenz="3300" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
 						<Vars VarGrpType="1">
@@ -4544,7 +4561,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{00AF3E52-1754-4A68-870A-C1969414C2E7}" Name="UnloadRobot" PrjFilePath="UnloadRobot\UnloadRobot.plcproj" TmcFilePath="UnloadRobot\UnloadRobot.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{48F394BC-E465-7216-0784-45E375B8AFE9}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="UnloadRobot\UnloadRobot.tmc" TmcHash="{DC4AE0C8-9861-F4B2-1A48-7BDCBD733031}">
 					<Name>UnloadRobot Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -4729,6 +4746,20 @@ External Setpoint Generation:
 							<Type GUID="{030FFB8A-A6E9-8903-2886-016014F84E04}" Namespace="Tc2_SerialCom">PcComInData</Type>
 						</Var>
 						<Var>
+							<Name>Robot_Motor.axis_RightArm_Left_Torque</Name>
+							<Comment><![CDATA[======================================== 机器人各轴定义 End =============================================
+======================================== 机器人各轴力矩 Start =============================================]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_RightArm_Right_Torque</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_RightArm_Wrist_Torque</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>Robot_Motor.axis_LeftArm_Wrist.NcToPlc</Name>
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
@@ -4785,18 +4816,20 @@ External Setpoint Generation:
 							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>Robot_Motor.axis_RightArm_Left_Torque</Name>
-							<Comment><![CDATA[======================================== 机器人各轴定义 End =============================================
-======================================== 机器人各轴力矩 Start =============================================]]></Comment>
-							<Type>INT</Type>
+							<Name>Robot_Motor.axis_RightWheel_Steer.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>Robot_Motor.axis_RightArm_Right_Torque</Name>
-							<Type>INT</Type>
+							<Name>Robot_Motor.axis_RightWheel_Walk.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
-							<Name>Robot_Motor.axis_RightArm_Wrist_Torque</Name>
-							<Type>INT</Type>
+							<Name>Robot_Motor.axis_LeftWheel_Steer.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_LeftWheel_Walk.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>Robot_Motor.axis_RightArm_Lift_Torque</Name>
@@ -4841,6 +4874,186 @@ External Setpoint Generation:
 						<Var>
 							<Name>Robot_Motor.axis_BackGate_Right_Torque</Name>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftArm_Left	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftArm_Right	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Wrist</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftArm_Wrist	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Lift</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftArm_Lift	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightArm_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightArm_Left	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightArm_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightArm_Right	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightArm_Wrist</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightArm_Wrist	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightArm_Lift</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightArm_Lift	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_BigGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_BigGate_Left]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_BigGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_BigGate_Right]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_SmallGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_SmallGate_Left]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_SmallGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_SmallGate_Right]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_BackGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_BackGate_Left]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_BackGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_BackGate_Right]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightWheel_Steer</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightWheel_Steer]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_RightWheel_Walk</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_RightWheel_Walk]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftWheel_Steer</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftWheel_Steer]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceError_axis_LeftWheel_Walk</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_标志位_LeftWheel_Walk]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftArm_Left	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftArm_Right	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Wrist</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftArm_Wrist	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Lift</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftArm_Lift	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightArm_Left	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightArm_Right	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Wrist</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightArm_Wrist	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Lift</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightArm_Lift	]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_BigGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_BigGate_Left]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_BigGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_BigGate_Right]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_SmallGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_SmallGate_Left]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_SmallGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_SmallGate_Right]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_BackGate_Left</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_BackGate_Left]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_BackGate_Right</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_BackGate_Right]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightWheel_Steer</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightWheel_Steer]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_RightWheel_Walk</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_RightWheel_Walk]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftWheel_Steer</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftWheel_Steer]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftWheel_Walk</Name>
+							<Comment><![CDATA[ 伺服驱动器报警_错误代码_LeftWheel_Walk]]></Comment>
+							<Type>UDINT</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -4991,6 +5204,11 @@ External Setpoint Generation:
 							<Type>BIT</Type>
 						</Var>
 						<Var>
+							<Name>WheelControl.WheelDriver_ModesOfOperation</Name>
+							<Comment><![CDATA[手动关联到舵轮驱动器的RxPDO modes of operation标志位，PLC进入运行时将标志位置为8]]></Comment>
+							<Type>SINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_SerialComunication.pComOut</Name>
 							<Type GUID="{675EF7AA-B859-9A65-9CAB-B83BD9AA10F1}" Namespace="Tc2_SerialCom">PcComOutData</Type>
 						</Var>
@@ -5050,11 +5268,59 @@ External Setpoint Generation:
 							<Name>Robot_Motor.axis_BackGate_Right.PlcToNc</Name>
 							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_RightWheel_Steer.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_RightWheel_Walk.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_LeftWheel_Steer.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>Robot_Motor.axis_LeftWheel_Walk.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2025-01-22T03:26:59">
 						<OwnerA Name="OutputSrc" Prefix="TIPC^UnloadRobot^UnloadRobot Instance" Type="2">
 							<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL2809)">
 								<Link VarA="Robot_Control_State.bStart" TypeA="BOOL" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Channel 1^Output" Size="1" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2025-02-21T08:42:31">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^UnloadRobot^UnloadRobot Instance" Type="2">
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Steer (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriverModesOfOperation" TypeA="USINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="RxPDO^Modes of operation" RestoreInfo="ANotFound"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Walk (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriverModesOfOperation" TypeA="USINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="RxPDO^Modes of operation" RestoreInfo="ANotFound"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Steer (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriverModesOfOperation" TypeA="USINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="RxPDO^Modes of operation" RestoreInfo="ANotFound"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Walk (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriverModesOfOperation" TypeA="USINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="RxPDO^Modes of operation" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2025-02-24T10:51:39">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^UnloadRobot^UnloadRobot Instance" Type="2">
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Steer (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriver_ModesOfOperation" TypeA="LREAL" InOutA="1" GuidA="{18071995-0000-0000-0000-00000000000E}" VarB="RxPDO^Modes of operation" Size="8" RestoreInfo="TypeMismatch" OldTypeA="LREAL" OldGuidA="{18071995-0000-0000-0000-00000000000E}" NewTypeA="SINT" NewGuidA="{18071995-0000-0000-0000-000000000003}"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Walk (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriver_ModesOfOperation" TypeA="LREAL" InOutA="1" GuidA="{18071995-0000-0000-0000-00000000000E}" VarB="RxPDO^Modes of operation" Size="8" RestoreInfo="TypeMismatch" OldTypeA="LREAL" OldGuidA="{18071995-0000-0000-0000-00000000000E}" NewTypeA="SINT" NewGuidA="{18071995-0000-0000-0000-000000000003}"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Steer (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriver_ModesOfOperation" TypeA="LREAL" InOutA="1" GuidA="{18071995-0000-0000-0000-00000000000E}" VarB="RxPDO^Modes of operation" Size="8" RestoreInfo="TypeMismatch" OldTypeA="LREAL" OldGuidA="{18071995-0000-0000-0000-00000000000E}" NewTypeA="SINT" NewGuidA="{18071995-0000-0000-0000-000000000003}"/>
+							</OwnerB>
+							<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Walk (XMC_ESC)">
+								<Link VarA="WheelControl.WheelDriver_ModesOfOperation" TypeA="LREAL" InOutA="1" GuidA="{18071995-0000-0000-0000-00000000000E}" VarB="RxPDO^Modes of operation" Size="8" RestoreInfo="TypeMismatch" OldTypeA="LREAL" OldGuidA="{18071995-0000-0000-0000-00000000000E}" NewTypeA="SINT" NewGuidA="{18071995-0000-0000-0000-000000000003}"/>
 							</OwnerB>
 						</OwnerA>
 					</UnrestoredVarLinks>
@@ -5106,6 +5372,9 @@ External Setpoint Generation:
 				</AddressInfo>
 				<Image Id="1" AddrType="9" ImageType="3">
 					<Name>Image</Name>
+				</Image>
+				<Image Id="10" AddrType="10" ImageType="3">
+					<Name>Image-2</Name>
 				</Image>
 				<Box Id="9" BoxType="9099">
 					<Name>Term 8 (EK1200)</Name>
@@ -5560,7 +5829,7 @@ External Setpoint Generation:
 					</Box>
 				</Box>
 				<Box Id="25" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Drive 25 (XMC_ESC)</Name>
+					<Name>Drive RightWheel Steer (XMC_ESC)</Name>
 					<ImageId>1003</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" ProductCode="#x00445566" InfoDataAddr="true" InfoDataSoeDS401="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x01000018">
 						<SyncMan>001080002600010001000000240080008000001026010000</SyncMan>
@@ -5631,7 +5900,7 @@ External Setpoint Generation:
 					</EtherCAT>
 				</Box>
 				<Box Id="26" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Drive 26 (XMC_ESC)</Name>
+					<Name>Drive RightWheel Walk (XMC_ESC)</Name>
 					<ImageId>1003</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" ProductCode="#x00445566" InfoDataAddr="true" InfoDataSoeDS401="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x01000019">
 						<SyncMan>001080002600010001000000240080008000001026010000</SyncMan>
@@ -5702,7 +5971,7 @@ External Setpoint Generation:
 					</EtherCAT>
 				</Box>
 				<Box Id="29" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Drive 29 (XMC_ESC)</Name>
+					<Name>Drive LeftWheel Steer (XMC_ESC)</Name>
 					<ImageId>1003</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" ProductCode="#x00445566" InfoDataAddr="true" InfoDataSoeDS401="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x0100001a">
 						<SyncMan>001080002600010001000000240080008000001026010000</SyncMan>
@@ -5773,7 +6042,7 @@ External Setpoint Generation:
 					</EtherCAT>
 				</Box>
 				<Box Id="30" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Drive 30 (XMC_ESC)</Name>
+					<Name>Drive LeftWheel Walk (XMC_ESC)</Name>
 					<ImageId>1003</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x3c00" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" VendorId="#x0000034e" ProductCode="#x00445566" InfoDataAddr="true" InfoDataSoeDS401="true" TimeoutStateChange1="2000" TimeoutStateChange2="9000" TimeoutMailbox2="2000" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="XMC_ESC" Desc="XMC_ESC" PortABoxInfo="#x0100001d">
 						<SyncMan>001080002600010001000000240080008000001026010000</SyncMan>
@@ -8991,10 +9260,12 @@ External Setpoint Generation:
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500870000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008A1000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-0010-0304-3000-040310000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-0040-0304-3000-040340000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-0050-0304-3000-040351000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{08502001-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{08502001-0040-0304-0020-500840000403}" Id="#x02030050" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{05000010-2001-0850-3000-040300205008}" Id="#x02030040" Watchdog="14000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis10_BigGate_Right">
@@ -9120,6 +9391,42 @@ External Setpoint Generation:
 				<Link VarA="Enc^Inputs^In^nState6" VarB="Transmit PDO mapping 1^Touch probe status" Size="8" OffsB="8"/>
 				<Link VarA="Enc^Outputs^Out^nCtrl5" VarB="Receive PDO mapping 1^Touch probe function"/>
 				<Link VarA="Enc^Outputs^Out^nCtrl6" VarB="Receive PDO mapping 1^Touch probe function" Size="8" OffsB="8"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis15_RightWheel_Steer">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Steer (XMC_ESC)">
+				<Link VarA="Drive^Inputs^In^nState1" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="RxPDO^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="RxPDO^Target_position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="TxPDO^Position actual angle vaule"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis16_RightWheel_Walk">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Walk (XMC_ESC)">
+				<Link VarA="Drive^Inputs^In^nState1" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="RxPDO^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="RxPDO^Target_position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="TxPDO^Position actual angle vaule"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis17_LeftWheel_Steer">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Steer (XMC_ESC)">
+				<Link VarA="Drive^Inputs^In^nState1" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="RxPDO^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="RxPDO^Target_position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="TxPDO^Position actual angle vaule"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis18_LeftWheel_Walk">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Walk (XMC_ESC)">
+				<Link VarA="Drive^Inputs^In^nState1" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="TxPDO^Statusword"/>
+				<Link VarA="Drive^Outputs^Out^nCtrl1" VarB="RxPDO^Controlword"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="RxPDO^Target_position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="TxPDO^Position actual angle vaule"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis1_LeftArm_Left">
@@ -9348,6 +9655,18 @@ External Setpoint Generation:
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^UnloadRobot^UnloadRobot Instance">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Steer (XMC_ESC)">
+				<Link VarA="PlcTask Outputs^WheelControl.WheelDriver_ModesOfOperation" VarB="RxPDO^Modes of operation"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive LeftWheel Walk (XMC_ESC)">
+				<Link VarA="PlcTask Outputs^WheelControl.WheelDriver_ModesOfOperation" VarB="RxPDO^Modes of operation"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Steer (XMC_ESC)">
+				<Link VarA="PlcTask Outputs^WheelControl.WheelDriver_ModesOfOperation" VarB="RxPDO^Modes of operation"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Drive RightWheel Walk (XMC_ESC)">
+				<Link VarA="PlcTask Outputs^WheelControl.WheelDriver_ModesOfOperation" VarB="RxPDO^Modes of operation"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 8 (EK1200)^Term 17 (EL1809)">
 				<Link VarA="PlcTask Inputs^Robot_Control_State.bEmergencyStopBtn" VarB="Channel 3^Input"/>
 				<Link VarA="PlcTask Inputs^Robot_Control_State.bGreenBtn" VarB="Channel 4^Input"/>
@@ -9598,58 +9917,110 @@ External Setpoint Generation:
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis10_BigGate_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BigGate_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_BigGate_Right" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_BigGate_Right" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BigGate_Right.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis11_SmallGate_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_SmallGate_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_SmallGate_Left" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_SmallGate_Left" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_SmallGate_Left.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis12_SmallGate_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_SmallGate_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_SmallGate_Right" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_SmallGate_Right" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_SmallGate_Right.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis13_BackGate_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BackGate_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_BackGate_Left" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_BackGate_Left" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BackGate_Left.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis14_BackGate_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BackGate_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_BackGate_Right" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_BackGate_Right" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BackGate_Right.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis15_RightWheel_Steer">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightWheel_Steer.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightWheel_Steer" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightWheel_Steer" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightWheel_Steer.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis16_RightWheel_Walk">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightWheel_Walk.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightWheel_Walk" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightWheel_Walk" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightWheel_Walk.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis17_LeftWheel_Steer">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftWheel_Steer.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftWheel_Steer" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftWheel_Steer" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftWheel_Steer.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis18_LeftWheel_Walk">
+				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftWheel_Walk.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftWheel_Walk" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftWheel_Walk" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
+				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftWheel_Walk.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis1_LeftArm_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Left" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Left" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Left.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis2_LeftArm_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Right" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Right" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Right.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis3_LeftArm_Wrist">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Wrist.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Wrist" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Wrist" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Wrist.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis4_LeftArm_Lift">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_LeftArm_Lift.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_LeftArm_Lift" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_LeftArm_Lift" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_LeftArm_Lift.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis5_RightArm_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Left" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightArm_Left" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Left.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis6_RightArm_Right">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Right.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Right" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightArm_Right" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Right.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis7_RightArm_Wrist">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Wrist.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Wrist" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightArm_Wrist" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Wrist.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis8_RightArm_Lift">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_RightArm_Lift.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_RightArm_Lift" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_RightArm_Lift" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_RightArm_Lift.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis9_BigGate_Left">
 				<Link VarA="PlcTask Inputs^Robot_Motor.axis_BigGate_Left.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceErrorCode_axis_BigGate_Left" VarB="Outputs^ToPlc^ErrorCode"/>
+				<Link VarA="PlcTask Inputs^Robot_Status_Info.bDriverDeviceError_axis_BigGate_Left" VarB="Outputs^ToPlc^StateDWord^DriveDeviceError"/>
 				<Link VarA="PlcTask Outputs^Robot_Motor.axis_BigGate_Left.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>

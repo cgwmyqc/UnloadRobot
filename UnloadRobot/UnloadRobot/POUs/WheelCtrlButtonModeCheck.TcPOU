@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.14">
+  <POU Name="WheelCtrlButtonModeCheck" Id="{73d40c72-7efb-4770-b38d-d383ec304f22}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK WheelCtrlButtonModeCheck
+VAR_INPUT
+	bButton		: BOOL;
+	
+END_VAR
+VAR_OUTPUT
+	
+	bDoubleClickAndHold			:BOOL;										// true: double click and hold
+	bOnceClickAndHold			:BOOL;										// true: once click and hold
+
+END_VAR
+VAR
+	tonClickTimer								:TON;						// 点击计时器，tDoubleClickTime时间内点击点击两次为双击，超时则为单机
+	tDoubleClickTime							:TIME	:=T#2000MS;			// 2000ms内认为是双击
+	
+	tonHoldTimer								:TON;						// 双击hold计时器，双击后hold住开始计时，超过tHoldTime则视为双击+Hold
+	tHoldTime									:TIME	:=T#2000MS;			// 
+	
+	cClickCnt									:CTU;						// 点击次数计数器,2次触发reset信号
+
+
+	
+	bHold					:BOOL;
+	nStep					:USINT;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+功能说明：
+
+1、当检测到按键点击时，进入nstep=1，开启tonClickTimer定时器，进行按键模式检测；
+
+2、在定时器触发ON之前，如果再点击按钮，则视为检测到双击，进入nStep=2，进入nstep2后开始检测按键是否双击后hold，如果hold，则bDoubleClickAndHold置true，如果送开则回nstep=0；
+
+3、如果在tonClickTimer定时器触发ON前松手,则返回nSteop=0;如果在tonClickTimer定时器触发ON之后还检测到BUTTON一直被按下，则进入nStep=3，单击+hold模式，如果松开则回到nstep=0待机模式。
+*)
+
+
+tonClickTimer(PT:=tDoubleClickTime);
+tonHoldTimer(PT:=tHoldTime);
+cClickCnt(CU:=bButton, PV:=2);
+
+// 点击检测
+IF bButton AND cClickCnt.CV=1 THEN
+	nStep := 1;												// 检测到单击
+ELSIF bButton AND cClickCnt.CV=2 THEN
+	nStep := 2;												// 检测到双击，进入双击+HOLD模式检测
+END_IF
+
+
+
+IF tonClickTimer.Q AND NOT bButton THEN						// 第一次单击后开启tonClickTimer计时器，计时器触发且没有检测到按钮按下，则将按键计数器复位，并将状态nstep=0，恢复到默认无按键按下状态。
+	cClickCnt(RESET:= TRUE);
+	nStep	:= 0;
+ELSIF tonClickTimer.Q AND bButton AND cClickCnt.CV=1 THEN	// 第一次单击后开启tonClickTimer计时器，计时器触发且检测到按钮一直被按下。
+	nStep := 3;												// 进入单击+HOLD模式
+END_IF
+
+// 按键计数器自复位
+IF cClickCnt.Q THEN
+	cClickCnt(reset:=TRUE);
+END_IF
+
+
+
+
+CASE nStep OF
+	// 无按键状态，所有定时器计数器复位，两个输出变量bDoubleClickAndHold、bOnceClickAndHold置false
+	0:
+		tonClickTimer(IN := FALSE);
+		tonHoldTimer(IN:=FALSE);
+		cClickCnt(RESET:= FALSE);
+		bDoubleClickAndHold := FALSE;
+		bOnceClickAndHold:=FALSE;
+	
+	//点击模式检测
+	1:
+		tonClickTimer(IN:=TRUE);
+		
+	// 双击+hold检测
+	2:
+		tonHoldTimer(IN:=TRUE);								//开启hold时间计时器
+		
+		IF tonHoldTimer.Q AND bButton THEN					// 如果Hold时间满足，即为双击+hold状态
+			bDoubleClickAndHold := TRUE;
+		END_IF
+		
+		IF NOT bButton THEN									// 检测到按键释放，所有计时器计数器、输出状态复位
+			bDoubleClickAndHold := FALSE;
+			tonClickTimer(IN:=FALSE);
+			tonHoldTimer(IN:=FALSE);
+			cClickCnt(RESET:= TRUE);
+			nStep:=0;
+		END_IF
+	
+	// 单击+HOLD模式	
+	3:
+		IF tonClickTimer.Q AND bButton THEN					// 单击的hold时根据tonClickTimer时间来测量的，时间满足且按键未松，则为单击+hold
+			bOnceClickAndHold := TRUE;
+		END_IF
+		
+		IF NOT bButton THEN									// 检测到按键释放，所有计时器计数器、输出状态复位
+			bOnceClickAndHold := FALSE;
+			tonClickTimer(IN:=FALSE);
+			cClickCnt(RESET:= TRUE);
+			nStep:=0;
+		END_IF
+		
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="WheelCtrlButtonModeCheck">
+      <LineId Id="341" Count="0" />
+      <LineId Id="353" Count="0" />
+      <LineId Id="358" Count="0" />
+      <LineId Id="354" Count="3" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="345" Count="0" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="244" Count="2" />
+      <LineId Id="360" Count="0" />
+      <LineId Id="247" Count="3" />
+      <LineId Id="252" Count="5" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="300" Count="1" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="362" Count="0" />
+      <LineId Id="260" Count="3" />
+      <LineId Id="296" Count="0" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="264" Count="5" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="271" Count="0" />
+      <LineId Id="361" Count="0" />
+      <LineId Id="272" Count="5" />
+      <LineId Id="364" Count="0" />
+      <LineId Id="279" Count="5" />
+      <LineId Id="286" Count="1" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="365" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="305" Count="5" />
+      <LineId Id="312" Count="0" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="313" Count="0" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="200" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
